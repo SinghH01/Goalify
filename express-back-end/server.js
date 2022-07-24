@@ -10,7 +10,7 @@ App.use(Express.static('public'));
 
 // Sample GET route
 App.get('/api/data', (req, res) => res.json({
-  message: "Seems to work!",
+  message: "Testing Pull request!",
 }));
 
 App.listen(PORT, () => {
