@@ -1,7 +1,7 @@
 INSERT INTO goals (
   user_id, title, description, image, start_date, end_date, online_goal
 ) VALUES (
-  1,
+  4,
   'Eating Healthy',
   'Setting healthy habits isnt always the hardest part of the journey. Keeping motivation up and having an accountability system can make a huge difference and help you reach your goals.
   This year, we have decided to join forces to lose weight.
