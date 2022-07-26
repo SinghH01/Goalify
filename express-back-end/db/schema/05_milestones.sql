@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS milestones CASCADE;
+
+CREATE TABLE milestones (
+  id SERIAL PRIMARY KEY NOT NULL,
+  goal_id INTEGER REFERENCES goals(id) ON DELETE CASCADE,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  end_date DATE NOT NULL
+);
