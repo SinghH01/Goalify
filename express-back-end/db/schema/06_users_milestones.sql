@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS users_milestones CASCADE;
+
+CREATE TABLE users_milestones (
+  id SERIAL PRIMARY KEY NOT NULL,
+  milestone_id INTEGER REFERENCES milestones(id) ON DELETE CASCADE,
+  user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  completed BOOLEAN NOT NULL DEFAULT FALSE
+);
