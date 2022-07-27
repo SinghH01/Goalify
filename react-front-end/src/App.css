@@ -1,5 +1,5 @@
-.home {
-  background-image: url("https://i.picsum.photos/id/20/3670/2462.jpg?hmac=CmQ0ln-k5ZqkdtLvVO23LjVAEabZQx2wOaT4pyeG10I");
+/* .home {
+  background-image: url("./assets/01.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 870px;
@@ -12,4 +12,86 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+} */
+
+/*****************    Start Landing page      ****************/
+.landing-page {
+  background-image: url("./assets/04.jpg");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  transition: 0.6s;
+  color: #fff;
 }
+
+.landing-page span,
+.landing-page .header-area a.active,
+.landing-page .header-area a:hover {
+  color: var(--main-color);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.header-area {
+  padding: 30px 20px;
+  text-transform: capitalize;
+  position: relative;
+  z-index: 2;
+  display: flex;
+}
+
+.header-area .logo {
+  text-align: left;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.header-area ul {
+  list-style: none;
+  text-align: right;
+  flex: 40%;
+}
+
+.header-area ul li {
+  display: inline-block;
+  padding: 0 20px;
+}
+
+.header-area ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #fff;
+}
+
+.introduction-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  text-align: center;
+}
+
+.introduction-text h1 {
+  font-size: 45px;
+}
+
+.introduction-text p {
+  font-size: 20px;
+  margin-top: 0;
+  font-weight: 350;
+  line-height: 1.6;
+  letter-spacing: 2px;
+}
+
+/*****************    End Landing page      ****************/

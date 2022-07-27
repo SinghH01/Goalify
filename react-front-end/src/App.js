@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import CustomNavbar from './components/customNavbar';
+import MyLandingPage from './components/MyLandingPage';
+
 
 
 export const App = () => {
+
   return (
     <div>
-      <CustomNavbar />
-      <div className='home'>
-        <div className='overlay'></div>
-      </div>
+      <MyLandingPage />
+
     </div>
   )
 }
