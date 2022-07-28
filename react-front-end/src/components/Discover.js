@@ -28,7 +28,7 @@ function Discover() {
   return (
     <div >
       <DicoverNavbar />
-      <Search goals={goals}/>
+      <Search placeholder="Enter a Book Name..." goals={goals}/>
       <GoalList goals={goals}/>
 
     </div>
