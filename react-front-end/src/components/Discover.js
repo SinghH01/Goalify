@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
 import DicoverNavbar from './DiscoverNavbar';
+import GoalList from '.GoalList'
 import './discover.css'
 
 
@@ -11,23 +12,22 @@ function Discover() {
     fetchGoals();
   }, []);
 
-  
+
 
   const fetchGoals = async () => {
     try {
       const response = await axios.get('/api/goals');
-      console.log(response.data);  
       setGoals(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  console.log(goals);
 
   return (
     <div >
       <DicoverNavbar />
+      <GoalList goals={goals}/>
 
     </div>
   )
