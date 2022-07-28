@@ -59,6 +59,8 @@ const usersRoutes = require("./routes/users");
 const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
 const logoutRoutes = require("./routes/logout");
+const goalsRoutes = require("./routes/goals");
+
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -66,6 +68,8 @@ app.use("/api/users", usersRoutes(db));
 app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes(db));
+app.use("/api/goals", goalsRoutes(db));
+
 
 
 app.listen(PORT, () => {
