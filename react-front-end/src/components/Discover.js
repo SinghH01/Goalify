@@ -4,6 +4,7 @@ import axios from 'axios'
 import DicoverNavbar from './DiscoverNavbar';
 import GoalList from './GoalList'
 import './discover.css'
+import Search from './Search';
 
 
 function Discover() {
@@ -27,6 +28,7 @@ function Discover() {
   return (
     <div >
       <DicoverNavbar />
+      <Search goals={goals}/>
       <GoalList goals={goals}/>
 
     </div>
