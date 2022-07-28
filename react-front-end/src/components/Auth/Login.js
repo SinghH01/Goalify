@@ -10,8 +10,11 @@ export default function Login({setValue}) {
   const handleShow = () => setShow(true);
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  Axios.defaults.withCredentials = true;
 
+  
   const login = () => {
+    //Post request to server to login user
     Axios.post('http://localhost:8080/login',{email: email, password: password})
     .then((response) => {
       console.log(response)
@@ -22,6 +25,7 @@ export default function Login({setValue}) {
       }
     });
   }
+ 
 
   const loginButton = () => {
     login();
