@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom'
 
 function MyLandingPage() {
   return (
@@ -8,7 +9,7 @@ function MyLandingPage() {
         <div className="header-area">
           <div className="logo">Goalify </div>
           <ul>
-            <li>Discover</li>
+            <li><Link to='discover'> Discover</Link> </li>
             <li>Login</li>
             <li>Register</li>
             {/* <li>contact</li> */}

@@ -26,10 +26,31 @@
   color: #fff;
 }
 
-.landing-page span,
+/* .landing-page span,
 .landing-page .header-area a.active,
 .landing-page .header-area a:hover {
-  color: var(--main-color);
+
+  border: 2px solid #fff;
+  border-radius: 40%;
+  padding: 8px 16px;
+} */
+.landing-page .header-area li {
+  border: 2px solid transparent;
+}
+.landing-page .header-area li:hover {
+  border: 2px solid #fff;
+  border-radius: 30px;
+}
+@keyframes changeImage {
+  0% {
+    background-image: url(./assets/01.jpg);
+  }
+  25% {
+    background-image: url(./assets/03.jpg);
+  }
+  50% {
+    background-image: url(./assets/02.jpg);
+  }
 }
 
 .overlay {

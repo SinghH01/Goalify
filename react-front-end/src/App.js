@@ -1,17 +1,20 @@
 import React from 'react';
 import './App.css';
 import MyLandingPage from './components/MyLandingPage';
+import Discover from './components/Discover';
+// import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
-
-export const App = () => {
-
+function App() {
   return (
-    <div>
-      <MyLandingPage />
-
-    </div>
-  )
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<MyLandingPage />} />
+        <Route path="/Discover" element={<Discover />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 

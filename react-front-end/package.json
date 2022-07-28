@@ -8,6 +8,7 @@
     "react": "^16.8.6",
     "react-bootstrap": "^2.4.0",
     "react-dom": "^16.8.6",
+    "react-router-dom": "^6.3.0",
     "react-scripts": "2.1.8",
     "react-simple-image-slider": "^2.4.1"
   },
