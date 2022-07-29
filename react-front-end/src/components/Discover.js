@@ -4,16 +4,16 @@ import axios from 'axios'
 import DicoverNavbar from './DiscoverNavbar';
 import GoalList from './GoalList'
 import './discover.css'
-import Search from './Search';
+
 
 
 function Discover() {
   const [goals, setGoals] = useState([])
+  const [searchQuery, setSearchQuery] = useState('');
+  
   useEffect(() => {
     fetchGoals();
   }, []);
-
-
 
   const fetchGoals = async () => {
     try {
@@ -24,13 +24,18 @@ function Discover() {
     }
   };
 
+  const filterGoals = (goals) => {
+    return goals.filter((goal) => {
+      const goalTitle = goal.title.toLowerCase();
+      return goalTitle.includes(searchQuery);
+    });
+  };
+  const filteredGoals = filterGoals(goals);
 
   return (
     <div >
-      <DicoverNavbar />
-      <Search placeholder="Enter a Book Name..." goals={goals}/>
-      <GoalList goals={goals}/>
-
+      <DicoverNavbar setSearchQuery={setSearchQuery} />
+      <GoalList goals={searchQuery ? filteredGoals : goals} />
     </div>
   )
 }
