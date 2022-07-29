@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 
-function DicoverNavbar() {
+function DicoverNavbar({ searchQuery, setSearchQuery }) {
   return (
 
     <Navbar bg="light" expand="lg" >
@@ -26,7 +26,7 @@ function DicoverNavbar() {
 
 
           </Nav>
-          <Search />
+          <Search setSearchQuery={setSearchQuery} />
           {/* <Form className="d-flex" style={{ marginInline: '20px' }} >
             <Form.Control
               type="search"
