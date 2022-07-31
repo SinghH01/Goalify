@@ -6,13 +6,14 @@ import GoalList from './GoalList'
 import './discover.css'
 
 
+
 function Discover() {
   const [goals, setGoals] = useState([])
+  const [searchQuery, setSearchQuery] = useState('');
+  
   useEffect(() => {
     fetchGoals();
   }, []);
-
-
 
   const fetchGoals = async () => {
     try {
@@ -23,12 +24,18 @@ function Discover() {
     }
   };
 
+  const filterGoals = (goals) => {
+    return goals.filter((goal) => {
+      const goalTitle = goal.title.toLowerCase();
+      return goalTitle.includes(searchQuery);
+    });
+  };
+  const filteredGoals = filterGoals(goals);
 
   return (
     <div >
-      <DicoverNavbar />
-      <GoalList goals={goals}/>
-
+      <DicoverNavbar setSearchQuery={setSearchQuery} />
+      <GoalList goals={searchQuery ? filteredGoals : goals} />
     </div>
   )
 }
