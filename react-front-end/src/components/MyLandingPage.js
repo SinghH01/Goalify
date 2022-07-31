@@ -30,8 +30,7 @@ function MyLandingPage(props) {
         <div className="header-area">
           <div className="logo">Goalify </div>
 
-          <ul>
-            <li><Link to='discover'> Discover</Link> </li>
+          <ul>            
             <li>
               <Login setValue={setUserValue} />
             </li>
