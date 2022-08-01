@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import axios from 'axios'
-import DicoverNavbar from './DiscoverNavbar';
+import Search from './Search';
 import GoalList from './GoalList'
 import './discover.css'
 
@@ -34,7 +34,7 @@ function Discover() {
 
   return (
     <div >
-      <DicoverNavbar setSearchQuery={setSearchQuery} />
+      <Search setSearchQuery={setSearchQuery} />
       <GoalList goals={searchQuery ? filteredGoals : goals} />
     </div>
   )
