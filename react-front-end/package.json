@@ -3,13 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
     "axios": "^0.18.1",
-=======
-    "axios": "^0.27.2",
->>>>>>> implment_styale_goals
     "bootstrap": "^5.2.0",
     "moment": "^2.29.4",
     "react": "^16.8.6",
