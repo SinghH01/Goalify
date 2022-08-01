@@ -12,33 +12,36 @@ function MyLandingPage(props) {
 
   return (
     <>
-      <Routes>        
+      <Routes>
         <Route exact path="/discover" element={<Discover />} />
       </Routes>
-    <div className="landing-page">
-      {/* <div className="overlay"></div> */}
-      <div className="container">
-        <div className="header-area">
-          <div className="logo">Goalify </div>
+      <div className="landing-page">
+        {/* <div className="overlay"></div> */}
+        <div className="container">
+          <div className="header-area">
+            <div className="logo">Goalify </div>
 
 
-          <ul>
-            <li><Link to='discover'> Discover</Link> </li>            
-            <li>
-              <Login />
-            </li>
-            <Register />
+            <ul>
+              <li><Link to='discover'> Discover</Link> </li>
+              <li>
+                <Login />
+              </li>
+              <li>
 
-          </ul>
+                <Register />
+              </li>
+
+            </ul>
+          </div>
+        </div>
+        <div className="introduction-text">
+          <h1>    Welcome! </h1>
+          <h1>Meet, chat, and share
+            with people who lovewhat you love!</h1>
+
         </div>
       </div>
-      <div className="introduction-text">
-        <h1>    Welcome! </h1>
-        <h1>Meet, chat, and share
-          with people who lovewhat you love!</h1>
-
-      </div>
-    </div>
     </>
   );
 }

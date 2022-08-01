@@ -6,13 +6,16 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
+import { GiStairsGoal } from "react-icons/gi";
+
 
 function DicoverNavbar({ searchQuery, setSearchQuery }) {
   return (
 
-    <Navbar bg="light" expand="lg" >
+    <Navbar bg="dark" expand="lg" >
       <Container >
-        <Navbar.Brand href="" className='logoDiscover'>Goalify
+        <Navbar.Brand href="" className='logoDiscover' style={{ color: '#f8f9fa' }}><GiStairsGoal size='2rem' /> Goalify
+
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
@@ -21,7 +24,7 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1" style={{ color: '#000' }}>Home</Nav.Link>
+            <Nav.Link href="#action1" style={{ color: '#f8f9fa' }}>Home</Nav.Link>
 
 
 

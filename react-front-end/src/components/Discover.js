@@ -10,7 +10,7 @@ import './discover.css'
 function Discover() {
   const [goals, setGoals] = useState([])
   const [searchQuery, setSearchQuery] = useState('');
-  
+
   useEffect(() => {
     fetchGoals();
   }, []);

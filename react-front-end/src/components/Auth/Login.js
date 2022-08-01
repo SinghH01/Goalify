@@ -4,7 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 import Axios from 'axios'
 
-export default function Login({setValue}) {
+export default function Login({ setValue }) {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -12,32 +12,32 @@ export default function Login({setValue}) {
   const [password, setPassword] = useState('')
   Axios.defaults.withCredentials = true;
 
-  
+
   const login = () => {
     //Post request to server to login user
-    Axios.post('http://localhost:8080/login',{email: email, password: password})
-    .then((response) => {
-      console.log(response)
-      if(response.data.rows !== undefined) {
-        const name = response.data.rows[0].first_name;    
-        
-        refreshPage();    
-      }
-    });
+    Axios.post('http://localhost:8080/login', { email: email, password: password })
+      .then((response) => {
+        console.log(response)
+        if (response.data.rows !== undefined) {
+          const name = response.data.rows[0].first_name;
+
+          refreshPage();
+        }
+      });
   }
   function refreshPage() {
     window.location.reload(false);
   }
 
   const loginButton = () => {
-    login();    
+    login();
     handleClose();
   }
 
   return (
     <>
       <Button variant="light" onClick={handleShow}>
-        Login 
+        Login
       </Button>
 
       <Modal show={show} onHide={handleClose}>
@@ -51,7 +51,7 @@ export default function Login({setValue}) {
               <Form.Control
                 type="email"
                 placeholder="name@example.com"
-                onChange={(e)=> {setEmail(e.target.value)}}
+                onChange={(e) => { setEmail(e.target.value) }}
                 autoFocus
               />
             </Form.Group>
@@ -60,7 +60,7 @@ export default function Login({setValue}) {
               <Form.Control
                 type="password"
                 placeholder="password"
-                onChange={(e)=> {setPassword(e.target.value)}}
+                onChange={(e) => { setPassword(e.target.value) }}
                 autoFocus
               />
             </Form.Group>
@@ -79,6 +79,3 @@ export default function Login({setValue}) {
     </>
   );
 }
-
-
-

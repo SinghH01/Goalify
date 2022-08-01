@@ -1,0 +1,15 @@
+section h4 {
+  font-size: calc(2.275rem + 0.3vw);
+  font-weight: bold;
+  margin-top: 20px;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  /* padding-left: 549px; */
+  text-align: center;
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
