@@ -13,12 +13,11 @@ export default function Dashboard() {
       <DicoverNavbar />
       <div className='dashboard-body'>
         <Sidebar />
-        <main className='dashboard-main'>
-          <Router>
+        <main className='dashboard-main'>          
             <Routes>
-              <Route exact path="/discover" element={<Discover />}/>
+              <Route exact path="/find" element={<Discover />}/>
             </Routes>
-          </Router>
+          
         </main>
       </div>
       

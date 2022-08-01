@@ -24,7 +24,7 @@ export const SidebarData = [
   {
     title: "Discover",
     icon: <PageviewIcon />,
-    link: "/discover"
+    link: "/find"
   }
 
 ] 

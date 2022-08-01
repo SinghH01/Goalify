@@ -19,16 +19,18 @@ export default function Login({setValue}) {
     .then((response) => {
       console.log(response)
       if(response.data.rows !== undefined) {
-        const name = response.data.rows[0].first_name;
+        const name = response.data.rows[0].first_name;    
         
-        setValue(response.data.rows[0])            
+        refreshPage();    
       }
     });
   }
- 
+  function refreshPage() {
+    window.location.reload(false);
+  }
 
   const loginButton = () => {
-    login();
+    login();    
     handleClose();
   }
 
