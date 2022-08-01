@@ -1,15 +1,19 @@
 import React from 'react'
 import GoalListItem from './GoalListItem';
-
+import './GoalList.css'
+import Container from 'react-bootstrap/Container';
 
 export default function GoalList(props) {
 
-const goals = props.goals
+  const goals = props.goals
+
 
   return (
     <section>
       <h4 >Goals</h4>
-      <ul style={{ listStyleType: "none" }} >
+      {/* <ul style={{ listStyleType: "none", }} > */}
+      <Container fluid style={{ textAlign: 'center' }}>
+
         {
           goals.map((goal) => {
             return (
@@ -19,12 +23,14 @@ const goals = props.goals
                 description={goal.description}
                 image={goal.image}
                 start_date={goal.start_date}
-                end_date= {goal.end_date}
+                end_date={goal.end_date}
               />
             );
           })
         }
-      </ul>
+      </Container>
+
+      {/* </ul> */}
     </section>
   );
 }

@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form'
 
 const Search = ({ setSearchQuery }) => {
   return (
-    <Form className="d-flex" style={{ marginInline: '20px' }} >
+    <Form className="d-flex" style={{ marginInline: '20px', }} >
       <Form.Control
         type="search"
         onInput={(e) => setSearchQuery(e.target.value)}
@@ -11,7 +11,6 @@ const Search = ({ setSearchQuery }) => {
         className="me-2"
         aria-label="Search"
       />
-
     </Form>
   )
 }
