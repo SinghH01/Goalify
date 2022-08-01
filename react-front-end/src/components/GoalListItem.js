@@ -1,20 +1,28 @@
 import React from "react";
+import { useState } from "react";
 import moment from 'moment';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import "./GoalList.css"
+import GoalDetails from "./GoalDetails";
+
 function GoalListItem(props) {
+  const [modalShow, setModalShow] = useState(false)
+
+
+
   let styles = {
     width: '30%',
     marginBlock: '36px',
     marginInline: 'auto',
-    boxShadow: '1px 1px 14px #999'
+    boxShadow: '1px 1px 14px #999',
+    cursor: "pointer"
   };
 
   return (
-
-    <Card style={styles}>
+<>
+    <Card onClick={() => setModalShow(true)} style={styles}>
       <Card.Img variant="top" src={props.image} style={{ height: '300px' }} />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
@@ -40,8 +48,14 @@ function GoalListItem(props) {
           </span>
         </ListGroup.Item>
       </ListGroup>
-
+      
     </Card >
+    
+    <GoalDetails
+      show={modalShow}
+      onHide={() => setModalShow(false)}
+    />
+    </>
   );
 }
 
