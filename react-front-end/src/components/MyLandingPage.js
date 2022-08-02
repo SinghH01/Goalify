@@ -12,9 +12,6 @@ function MyLandingPage(props) {
 
   return (
     <>
-      <Routes>
-        <Route exact path="/discover" element={<Discover />} />
-      </Routes>
       <div className="landing-page">
         {/* <div className="overlay"></div> */}
         <div className="container">
