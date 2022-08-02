@@ -30,12 +30,20 @@ function GoalListItem(props) {
       console.log(error);
     }
   };
-
+  const dislikeGoal = async () => {
+    try {
+      const response = await Axios.post('http://localhost:8080/favourites/dislike',{ userId: user.id, goalId: props.id});
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   function favButton () {
     if(favState === false) {
       likeGoal();
       setFavState(true)
     } else {
+      dislikeGoal();      
       setFavState(false);
     }
   }
