@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import Axios from 'axios'
 import GoalList from './GoalList'
+import { useRecoilState } from 'recoil';
 import { userState } from '../App';
 
 
