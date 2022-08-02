@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import moment from 'moment';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import "./GoalList.css"
 import GoalDetails from "./GoalDetails";
 import Axios from 'axios'
@@ -90,17 +87,7 @@ function GoalListItem(props) {
               End Date{`-${moment(props.End_date).format('MMMM Do, YYYY')}`}
             </span>
           </ListGroup.Item>
-          {/* <ListGroup.Item></ListGroup.Item> */}
-          <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span >
-              {favState === false && (<FavoriteBorderIcon onClick={favButton} />)}
-              {favState === true && (<FavoriteIcon onClick={favButton} />)}
-
-            </span>
-            <span>
-              <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button>
-            </span>
-          </ListGroup.Item>
+          
         </ListGroup>
 
       </Card >
@@ -110,6 +97,8 @@ function GoalListItem(props) {
         goal={props}
         show={modalShow}
         onHide={() => setModalShow(false)}
+        favButton={favButton}
+        favState={favState}
       />
     </>
   );
