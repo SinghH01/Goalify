@@ -60,6 +60,8 @@ const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
 const logoutRoutes = require("./routes/logout");
 const goalsRoutes = require("./routes/goals");
+const milestonesRoutes = require("./routes/milestones");
+
 
 
 // Mount all resource routes
@@ -69,6 +71,8 @@ app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/api/goals", goalsRoutes(db));
+app.use("/api/milestones", milestonesRoutes(db));
+
 
 
 
