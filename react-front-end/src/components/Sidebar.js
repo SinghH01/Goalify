@@ -12,7 +12,7 @@ export default function Sidebar({onStateChange}) {
   return (
     <div className='sidebar' >
       <div className='sidebar-user-info'>
-      <img src={user.avatar} alt="Avatar" class="avatar" />
+      <img src={user.avatar} alt="Avatar" className="avatar" />
       <h2>{user.first_name} {user.last_name}</h2>
 
       </div>
