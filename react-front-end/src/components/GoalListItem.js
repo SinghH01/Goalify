@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState} from "react";
 import moment from 'moment';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import "./GoalList.css"
 function GoalListItem(props) {
   let styles = {
@@ -11,6 +13,17 @@ function GoalListItem(props) {
     marginInline: 'auto',
     boxShadow: '1px 1px 14px #999'
   };
+
+  const [favState, setFavState] = useState(false)  
+
+  function favButton () {
+    if(favState === false) {
+      console.log(props.id)
+      setFavState(true)
+    } else {
+      setFavState(false);
+    }
+  }
 
   return (
 
@@ -34,6 +47,9 @@ function GoalListItem(props) {
         {/* <ListGroup.Item></ListGroup.Item> */}
         <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span >
+          {favState === false && (<FavoriteBorderIcon onClick ={favButton} />)}
+          {favState === true && (<FavoriteIcon onClick ={favButton}/>)}
+            
           </span>
           <span>
             <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button>
