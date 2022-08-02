@@ -8,10 +8,25 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import { GiStairsGoal } from "react-icons/gi";
 import Button from 'react-bootstrap/Button';
-
+import axios from 'axios'
+import MyLandingPage from './MyLandingPage';
 
 
 function DicoverNavbar({ searchQuery, setSearchQuery }) {
+
+  function refreshPage() {
+    window.location.reload(false);
+  }
+  const logout = () => {
+    axios.get('http://localhost:8080/logout').then((val) => {
+      console.log(val);
+      if (val.status == 200) {
+        sessionStorage.clear()
+        refreshPage()
+      }
+    })
+  }
+
   return (
 
     <Navbar expand="lg" >
@@ -31,11 +46,9 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
         >
           {/* <Nav.Link href="#action1" style={{ color: '#f8f9fa' }}>Home</Nav.Link> */}
 
-
-
         </Nav>
 
-        <Button variant='transparent' style={{ color: '#fff' }}>Logout</Button>{' '}
+        <Button variant='transparent' style={{ color: '#fff' }} onClick={logout}>Logout</Button>{' '}
         {/* <Search setSearchQuery={setSearchQuery} /> */}
         {/* <Form className="d-flex" style={{ marginInline: '20px' }} >
             <Form.Control
