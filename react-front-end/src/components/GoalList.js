@@ -4,9 +4,7 @@ import './GoalList.css'
 import Container from 'react-bootstrap/Container';
 
 export default function GoalList(props) {
-
   const goals = props.goals
-
 
   return (
     <section>
@@ -19,7 +17,7 @@ export default function GoalList(props) {
             return (
               <GoalListItem
                 key={goal.id}
-                id = {goal.id}
+                id={goal.id}
                 title={goal.title}
                 description={goal.description}
                 image={goal.image}
