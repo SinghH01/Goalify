@@ -23,6 +23,7 @@ export default function GoalList(props) {
                 image={goal.image}
                 start_date={goal.start_date}
                 end_date={goal.end_date}
+                online_goal={goal.online_goal}
               />
             );
           })
