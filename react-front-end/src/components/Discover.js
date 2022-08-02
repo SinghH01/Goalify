@@ -7,6 +7,7 @@ import './discover.css'
 
 
 
+
 function Discover() {
   const [goals, setGoals] = useState([])
   const [searchQuery, setSearchQuery] = useState('');
@@ -36,6 +37,7 @@ function Discover() {
     <div >
       <Search setSearchQuery={setSearchQuery} />
       <GoalList goals={searchQuery ? filteredGoals : goals} />
+
     </div>
   )
 }

@@ -7,30 +7,37 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import { Link } from 'react-router-dom';
 import { GiStairsGoal } from "react-icons/gi";
+import Button from 'react-bootstrap/Button';
+
 
 
 function DicoverNavbar({ searchQuery, setSearchQuery }) {
   return (
 
-    <Navbar bg="dark" expand="lg" >
-      <Container >
-        <Navbar.Brand href="" className='logoDiscover' style={{ color: '#f8f9fa' }}><GiStairsGoal size='2rem' /> Goalify
+    <Navbar expand="lg" >
+      {/* <Container > */}
+      <Navbar.Brand href="" className='logoDiscover' style={{
+        color: '#f8f9fa', marginInlineStart: '22px'
+        , fontSize: '24px'
+      }}><GiStairsGoal size='2rem' /> Goalify
 
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="#action1" style={{ color: '#f8f9fa' }}>Home</Nav.Link>
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="navbarScroll" />
+      <Navbar.Collapse id="navbarScroll">
+        <Nav
+          className="me-auto my-2 my-lg-0"
+          style={{ maxHeight: '100px' }}
+          navbarScroll
+        >
+          {/* <Nav.Link href="#action1" style={{ color: '#f8f9fa' }}>Home</Nav.Link> */}
 
 
 
-          </Nav>
-          <Search setSearchQuery={setSearchQuery} />
-          {/* <Form className="d-flex" style={{ marginInline: '20px' }} >
+        </Nav>
+
+        <Button variant='transparent' style={{ color: '#fff' }}>Logout</Button>{' '}
+        {/* <Search setSearchQuery={setSearchQuery} /> */}
+        {/* <Form className="d-flex" style={{ marginInline: '20px' }} >
             <Form.Control
               type="search"
               placeholder="Search"
@@ -39,16 +46,16 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
             />
             <Button variant="outline-success">Search</Button>
           </Form> */}
-          <NavDropdown title="Sign" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3"><Link to="/login"> Login </Link></NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action5">"
-              Register
-            </NavDropdown.Item>
-          </NavDropdown>
-        </Navbar.Collapse>
+        <NavDropdown title="Sign" id="navbarScrollingDropdown">
+          <NavDropdown.Item href="#action3"><Link to="/login"> Login </Link></NavDropdown.Item>
+          <NavDropdown.Divider />
+          <NavDropdown.Item href="#action5">"
+            Register
+          </NavDropdown.Item>
+        </NavDropdown>
+      </Navbar.Collapse>
 
-      </Container>
+      {/* </Container> */}
     </Navbar >
 
   );

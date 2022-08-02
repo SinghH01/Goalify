@@ -10,7 +10,7 @@ export default function GoalList(props) {
 
   return (
     <section>
-      <h4 >Goals</h4>
+
       {/* <ul style={{ listStyleType: "none", }} > */}
       <Container fluid style={{ textAlign: 'center' }}>
 

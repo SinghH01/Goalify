@@ -14,6 +14,18 @@
   background-color: rgba(0, 0, 0, 0.5);
 } */
 
+nav {
+  background: #061b28 !important;
+}
+div#navbarScroll {
+  display: flex !important;
+  flex-basis: auto;
+  margin-inline: 51px;
+  color: #fff;
+}
+.dropdown {
+  margin-inline: 20px;
+}
 /*****************    Start Landing page      ****************/
 .landing-page {
   background-image: url("./assets/04.jpg");
