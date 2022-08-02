@@ -6,8 +6,6 @@ import { useState, useEffect } from "react";
 import Loading from "./Loading";
 import Axios from 'axios'
 import moment from 'moment';
-import Button from 'react-bootstrap/Button';
-import ListGroup from 'react-bootstrap/ListGroup';
 
 
 
