@@ -9,22 +9,22 @@ export const SidebarData = [
   {
     title: "Home",
     icon: <HomeIcon />,
-    link: "/home"
+    link: "home"
   },
   {
     title: "My Goals",
     icon: <TrackChangesIcon />,
-    link: "/mygoals"
+    link: "mygoals"
   },
   {
     title: "Favourites",
     icon: <FavoriteIcon />,
-    link: "/favourites"
+    link: "favourites"
   },
   {
     title: "Discover",
     icon: <PageviewIcon />,
-    link: "/find"
+    link: "find"
   }
 
 ] 
