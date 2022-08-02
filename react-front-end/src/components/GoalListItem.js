@@ -70,7 +70,7 @@ function GoalListItem(props) {
               Start Date{`-${moment(props.start_date).format('MMMM Do, YYYY')}`}
             </span>
             <span>
-              End Date{`-${moment(props.End_date).format('MMMM Do, YYYY')}`}
+              End Date{`-${moment(props.end_date).format('MMMM Do, YYYY')}`}
             </span>
           </ListGroup.Item>
 
