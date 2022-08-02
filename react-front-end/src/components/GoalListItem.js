@@ -6,6 +6,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import "./GoalList.css"
+import { useRecoilState } from 'recoil';
+import { userState } from '../App';
+import Axios from "axios";
+
+
 function GoalListItem(props) {
   let styles = {
     width: '30%',
@@ -15,10 +20,20 @@ function GoalListItem(props) {
   };
 
   const [favState, setFavState] = useState(false)  
+  const [user, setUser] = useRecoilState(userState);
+
+  const likeGoal = async () => {
+    try {
+      const response = await Axios.post('http://localhost:8080/favourites/like',{ userId: user.id, goalId: props.id});
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   function favButton () {
     if(favState === false) {
-      console.log(props.id)
+      likeGoal();
       setFavState(true)
     } else {
       setFavState(false);
