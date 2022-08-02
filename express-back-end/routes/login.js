@@ -21,8 +21,6 @@ module.exports = (db) => {
     WHERE email = $1`, values)
       .then((data)=> {
 
-        //console.log(data.rows)
-
         if(data.rows.length !== undefined) {
           bcrypt.compare(req.body.password, data.rows[0].password, (error, response) => {
             if(response) {
