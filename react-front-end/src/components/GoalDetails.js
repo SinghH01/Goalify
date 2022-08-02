@@ -1,16 +1,16 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 
 
 
 function GoalDetails(props) {
   
-
-
   return (
     <>
       <Modal
@@ -55,9 +55,14 @@ function GoalDetails(props) {
             </Accordion.Item>
           </Accordion>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button>
-          {/* <Button onClick={props.onHide}>Close</Button> */}
+        <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <span >
+              {props.favState === false && (<FavoriteBorderIcon onClick={props.favButton} />)}
+              {props.favState === true && (<FavoriteIcon onClick={props.favButton} />)}
+            </span>
+            <span>
+              <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button>
+            </span>
         </Modal.Footer>
       </Modal>
     </>
