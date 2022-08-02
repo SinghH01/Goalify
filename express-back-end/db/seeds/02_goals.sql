@@ -25,7 +25,7 @@ INSERT INTO goals (
   'https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F499177459%2F676x380.webp&w=3840&q=75',
   '2022-08-15',
   '2022-10-15',
-  FALSE
+  TRUE
 );
 
 INSERT INTO goals (
@@ -38,7 +38,7 @@ INSERT INTO goals (
   'https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F505229030%2F676x380.webp&w=3840&q=75',
   '2022-07-01',
   '2022-10-01',
-  TRUE
+  FALSE
 );
 
 INSERT INTO goals (
@@ -54,7 +54,7 @@ INSERT INTO goals (
   'https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F500766461%2F676x380.webp&w=3840&q=75',
   '2022-12-01',
   '2022-12-25',
-  TRUE
+  FALSE
 );
 
 INSERT INTO goals (
@@ -68,6 +68,6 @@ Bodybuilding decreases risk of developing coronary heart disease. By engaging in
   'https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F505369496%2F676x380.webp&w=3840&q=75',
   '2023-01-01',
   '2023-06-30',
-  FALSE
+  TRUE
 );
 

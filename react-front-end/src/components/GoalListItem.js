@@ -11,31 +11,13 @@ import Axios from 'axios'
 import { useRecoilState } from 'recoil';
 import { userState } from '../App';
 
-
 function GoalListItem(props) {
 
   const [modalShow, setModalShow] = useState(false)
-  const [milestones, setMilestones] = useState([])
+  
   const [favState, setFavState] = useState(false)
   const [user, setUser] = useRecoilState(userState);
-  const goalId = props.id
-
-  const fetchMilestones = async () => {
-
-    try {
-      const response = await Axios.get(`/api/milestones/${goalId}`);
-      setMilestones(response.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-
-  function openTab() {
-    setModalShow(true)
-    fetchMilestones()
-  }
-
+  
   const likeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/like', { userId: user.id, goalId: props.id });
@@ -68,29 +50,30 @@ function GoalListItem(props) {
     marginBlock: '36px',
     marginInline: 'auto',
     boxShadow: '1px 1px 14px #999',
-    cursor: "pointer"
   };
+
 
   return (
     <>
-      <Card onClick={() => openTab()} style={styles}>
-        <Card.Img variant="top" src={props.image} style={{ height: '300px' }} />
-        <Card.Body>
+      <Card style={styles}>
+        <Card.Img variant="top" src={props.image} style={{ height: '300px', cursor: "pointer" }} onClick={() => setModalShow(true)} />
+        <Card.Body >
           <Card.Title>{props.title}</Card.Title>
           <Card.Text>
             {props.description}
           </Card.Text>
         </Card.Body>
+
         <ListGroup className="list-group-flush">
           <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between' }}>
             <span >
               Start Date{`-${moment(props.start_date).format('MMMM Do, YYYY')}`}
             </span>
             <span>
-              End Date{`-${moment(props.End_date).format('MMMM Do, YYYY')}`}
+              End Date{`-${moment(props.end_date).format('MMMM Do, YYYY')}`}
             </span>
           </ListGroup.Item>
-          {/* <ListGroup.Item></ListGroup.Item> */}
+
           <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span >
               {favState === false && (<FavoriteBorderIcon onClick={favButton} />)}
@@ -105,12 +88,13 @@ function GoalListItem(props) {
 
       </Card >
 
-      <GoalDetails
-        milestones={milestones}
-        goal={props}
-        show={modalShow}
-        onHide={() => setModalShow(false)}
-      />
+     
+        < GoalDetails
+          goal={props}
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+        />
+      
     </>
   );
 }
