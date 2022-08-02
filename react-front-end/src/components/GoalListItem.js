@@ -68,24 +68,9 @@ function GoalListItem(props) {
         </ListGroup>
 
       </Card >
-      {/* {
-        milestones.map((milestone) => {
-          return (
-            <GoalDetails
-              key={milestone.id}
-              id={milestone.id}
-              title={milestone.title}
-              description={milestone.description}
-              end_date={milestone.end_date}
-              show={modalShow}
-              onHide={() => setModalShow(false)}
-              goal={props}
-            />
-          );
-        })
-      } */}
+      
       <GoalDetails
-        // setMilestones={setMilestones}
+
         milestones={milestones}
         goal={props}
         show={modalShow}
