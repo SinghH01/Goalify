@@ -19,6 +19,7 @@ export default function GoalList(props) {
             return (
               <GoalListItem
                 key={goal.id}
+                id = {goal.id}
                 title={goal.title}
                 description={goal.description}
                 image={goal.image}
