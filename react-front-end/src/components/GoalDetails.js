@@ -2,16 +2,41 @@ import React from "react";
 import Modal from 'react-bootstrap/Modal';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-
+import {useState, useEffect} from "react";
+import Loading from "./Loading";
+import Axios from 'axios'
 
 
 
 function GoalDetails(props) {
-  
+  const [loading, setLoading] = useState(true)
+  const [milestones, setMilestones] = useState([])
+
+  useEffect(() => {
+    fetchMilestones();
+  }, []);
+
+  const goalId = props.goal.id
+
+  const fetchMilestones = async () => {
+
+    try {
+      const response = await Axios.get(`/api/milestones/${goalId}`);
+      setMilestones(response.data);
+      setLoading(false)
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+
+  if (loading){
+    return <Loading/>
+  }
+
+
   return (
+
     <>
       <Modal
         {...props}
@@ -36,33 +61,28 @@ function GoalDetails(props) {
           <h4>MilseStones</h4>
           <Accordion>
             <Accordion.Item eventKey="0">
-              <Accordion.Header>{"title"}</Accordion.Header>
+              <Accordion.Header>{milestones[0].title}</Accordion.Header>
               <Accordion.Body>
-              {/* {props.description} */}
+              {milestones[0].description}
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
-              <Accordion.Header>title</Accordion.Header>
+              <Accordion.Header>{milestones[1].title}</Accordion.Header>
               <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              {milestones[1].description}
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
-              <Accordion.Header>Accordion Item #2</Accordion.Header>
+              <Accordion.Header>{milestones[2].title}</Accordion.Header>
               <Accordion.Body>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              {milestones[2].description}
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
         </Modal.Body>
-        <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span >
-              {props.favState === false && (<FavoriteBorderIcon onClick={props.favButton} />)}
-              {props.favState === true && (<FavoriteIcon onClick={props.favButton} />)}
-            </span>
-            <span>
-              <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button>
-            </span>
+        <Modal.Footer>
+          {/* <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button> */}
+          {/* <Button onClick={props.onHide}>Close</Button> */}
         </Modal.Footer>
       </Modal>
     </>
