@@ -8,11 +8,11 @@ import MyLandingPage from './MyLandingPage';
 import DicoverNavbar from './DiscoverNavbar';
 import Discover from './Discover';
 import Sidebar from './Sidebar'
+import Favourites from './Favourites';
 
 
 export default function Dashboard() {
-
-  const [user, setUser] = useRecoilState(userState)
+  
   const [state, setState] = useState('')
 
   return (
@@ -26,6 +26,9 @@ export default function Dashboard() {
             )}
              {state === 'home' && (
                 <MyLandingPage   />
+            )}
+            {state === 'favourites' && (
+                <Favourites  />
             )}
           
         </main>
