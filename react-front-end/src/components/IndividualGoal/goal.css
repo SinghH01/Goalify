@@ -1,16 +1,32 @@
 .goal-main {
   display: flex;
-  flex-direction: row;
+  flex-direction: row; 
+  overflow-y: scroll;
+  
 }
 
 .goal {
   flex: 60%;
   height: 100vh;
-  background-color: lightblue;
+  text-align: center;
+  padding-top: 2%;
+  
 }
 
 .chat {
 flex: 40%;
 height: 100vh;
-background-color: lightcyan;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding-top: 8.5%;
+box-shadow: rgba(0, 0, 0, 0.35) 0px -50px 36px -28px inset;
+}
+
+.goal-image {
+  margin-top: 5%;
+  height: 45%;
+  width: 70%;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+  border-radius: 2%;
 }
