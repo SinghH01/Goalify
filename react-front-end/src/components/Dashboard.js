@@ -14,7 +14,7 @@ import ActiveGoals from './IndividualGoal/ActiveGoals';
 
 export default function Dashboard() {
   
-  const [state, setState] = useState('')
+  const [state, setState] = useState('find')
 
   return (
     <div className='dashboard'>
@@ -23,7 +23,6 @@ export default function Dashboard() {
         <Sidebar onStateChange = {setState}/>
         <main className='dashboard-main'>
             {state === 'find' && ( <Discover /> )}
-            {state === 'home' && (<MyLandingPage />)}
             {state === 'favourites' && (<Favourites />)}
             {state === 'activegoals' && (<ActiveGoals />)}
           
