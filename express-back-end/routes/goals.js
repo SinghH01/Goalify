@@ -34,6 +34,22 @@ module.exports = (db) => {
   });
 
 
+  router.get("/:id", (req, res) => {
+    db.query(`SELECT * FROM goals where user_id = $1;`,[
+      req.params.id
+    ])
+      .then(data => {
+        const userGaols = data.rows;
+        res.json( userGaols );
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
 
   return router;
 };
