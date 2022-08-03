@@ -1,18 +1,10 @@
 import React from 'react'
-//import Button from 'react-bootstrap/Button';
-import Search from './Search';
-import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from 'react-router-dom';
 import { GiStairsGoal } from "react-icons/gi";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
-import MyLandingPage from './MyLandingPage';
-import Register from './Auth/Register';
-
-
+import './navbar.css'
 
 
 function DicoverNavbar({ searchQuery, setSearchQuery }) {
@@ -32,7 +24,7 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
 
   return (
 
-    <Navbar expand="lg" >
+    <Navbar className="nav" expand="lg" >
       <Navbar.Brand href="" className='logoDiscover' style={{
         color: '#f8f9fa', marginInlineStart: '22px'
         , fontSize: '24px'

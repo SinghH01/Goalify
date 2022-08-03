@@ -41,6 +41,18 @@ function GoalDetails(props) {
     return <Loading />;
   }
 
+  let individualMilestone = milestones.map((milestone, index) => {
+      return (
+      <Accordion.Item eventKey={index}>
+      <Accordion.Header>
+        {milestone.title}
+      </Accordion.Header>
+      <Accordion.Body>
+        {milestone.description}
+      </Accordion.Body>
+    </Accordion.Item>
+      )
+  });
 
   return (
 
@@ -71,26 +83,7 @@ function GoalDetails(props) {
           </p>
           <h4>MilseStones</h4>
           <Accordion>
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>
-                {milestones[0].title}
-              </Accordion.Header>
-              <Accordion.Body>
-                {milestones[0].description}
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="1">
-              <Accordion.Header>{milestones[1].title}</Accordion.Header>
-              <Accordion.Body>
-                {milestones[1].description}
-              </Accordion.Body>
-            </Accordion.Item>
-            <Accordion.Item eventKey="2">
-              <Accordion.Header>{milestones[2].title}</Accordion.Header>
-              <Accordion.Body>
-                {milestones[2].description}
-              </Accordion.Body>
-            </Accordion.Item>
+            {individualMilestone}
           </Accordion>
         </Modal.Body>
         <Modal.Footer style={{ display: 'flex', justifyContent: 'space-between' }}>

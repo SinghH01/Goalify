@@ -11,4 +11,7 @@
 .dashboard-main {
   height: 100vh;
   width: 100vw;
+  background-image: url('../../src/assets/background.png');
+  background-repeat: no-repeat;
+  background-size: 100% 98%;
 }
