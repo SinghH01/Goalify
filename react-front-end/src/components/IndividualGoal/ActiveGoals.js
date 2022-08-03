@@ -1,9 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import Axios from 'axios'
-import GoalList from '../GoalList'
 import { useRecoilState } from 'recoil';
 import { userState } from '../../App';
+import ActiveList from './ActiveList';
 
 
 
@@ -26,7 +26,7 @@ function ActiveGoals() {
 
   return (
     <div >
-      <GoalList goals={goals} />
+      <ActiveList goals={goals} />
     </div>
   )
 }
