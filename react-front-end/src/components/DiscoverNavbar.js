@@ -33,7 +33,6 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
   return (
 
     <Navbar expand="lg" >
-      {/* <Container > */}
       <Navbar.Brand href="" className='logoDiscover' style={{
         color: '#f8f9fa', marginInlineStart: '22px'
         , fontSize: '24px'
@@ -47,31 +46,10 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
           style={{ maxHeight: '100px' }}
           navbarScroll
         >
-          {/* <Nav.Link href="#action1" style={{ color: '#f8f9fa' }}>Home</Nav.Link> */}
-
         </Nav>
 
         <Button variant='transparent' style={{ color: '#fff' }} onClick={logout}>Logout</Button>{' '}
-        {/* <Search setSearchQuery={setSearchQuery} /> */}
-        {/* <Form className="d-flex" style={{ marginInline: '20px' }} >
-            <Form.Control
-              type="search"
-              placeholder="Search"
-              className="me-2"
-              aria-label="Search"
-            />
-            <Button variant="outline-success">Search</Button>
-          </Form> */}
-        <NavDropdown title="Sign" id="navbarScrollingDropdown">
-          <NavDropdown.Item href="#action3"><Link to="/login"> Login </Link></NavDropdown.Item>
-          <NavDropdown.Divider />
-          <NavDropdown.Item href="#action5"><Link to="/Register">
-            Register</Link>
-          </NavDropdown.Item>
-        </NavDropdown>
       </Navbar.Collapse>
-
-      {/* </Container> */}
     </Navbar >
 
   );
