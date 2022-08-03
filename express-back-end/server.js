@@ -62,6 +62,7 @@ const logoutRoutes = require("./routes/logout");
 const goalsRoutes = require("./routes/goals");
 const milestonesRoutes = require("./routes/milestones");
 const favouritesRoutes = require("./routes/favourites");
+const activeRoutes = require("./routes/active");
 
 
 // Mount all resource routes
@@ -76,6 +77,7 @@ app.use("/favourites", favouritesRoutes(db));
 app.use("/favourites/like", favouritesRoutes(db));
 app.use("/favourites/dislike", favouritesRoutes(db));
 app.use("/favourites/check", favouritesRoutes(db));
+app.use("/active", activeRoutes(db));
 
 
 
