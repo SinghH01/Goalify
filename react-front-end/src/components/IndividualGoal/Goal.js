@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useRecoilState } from 'recoil';
 import { userState } from '../../App';
+import Chat from "./Chat";
 import './goal.css'
 
 function Goal(props) {
@@ -14,6 +15,7 @@ function Goal(props) {
       </div>
       <div className="chat">
       <h1>User ID is: {user.id}</h1>
+      <Chat id = {props.id}/>
       </div>
     </div>
 
