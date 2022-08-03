@@ -22,7 +22,6 @@ module.exports = (db) => {
       req.params.id
     ])
       .then(data => {
-        console.log(data.rows)
         const goalLocation = data.rows;
         res.json( goalLocation );
       })
@@ -32,8 +31,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
-
 
   return router;
 };
