@@ -7,9 +7,9 @@ import PageviewIcon from '@material-ui/icons/Pageview';
 
 export const SidebarData = [
   {
-    title: "Home",
+    title: "Active Goals",
     icon: <HomeIcon />,
-    link: "home"
+    link: "activegoals"
   },
   {
     title: "My Goals",
