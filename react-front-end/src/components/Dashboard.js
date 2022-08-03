@@ -9,8 +9,7 @@ import DicoverNavbar from './DiscoverNavbar';
 import Discover from './Discover';
 import Sidebar from './Sidebar'
 import Favourites from './Favourites';
-
-
+import MyGoals from './UserGoals/MyGoals';
 export default function Dashboard() {
   
   const [state, setState] = useState('')
@@ -29,6 +28,9 @@ export default function Dashboard() {
             )}
             {state === 'favourites' && (
                 <Favourites  />
+            )}
+            {state === 'mygoals' && (
+                <MyGoals  />
             )}
           
         </main>
