@@ -46,10 +46,6 @@ function Chat(props) {
   return (
     <>
       <div className="chat-window">
-      <h1>Chat</h1>
-      <button onClick={joinRoom}> Join Chat {user.first_name}  Goal ID: {props.id}</button>
-
-
 
     <div className="chat-header">
       <p>Live Chat</p>
