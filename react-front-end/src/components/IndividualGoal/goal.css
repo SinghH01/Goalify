@@ -1,0 +1,16 @@
+.goal-main {
+  display: flex;
+  flex-direction: row;
+}
+
+.goal {
+  flex: 60%;
+  height: 100vh;
+  background-color: lightblue;
+}
+
+.chat {
+flex: 40%;
+height: 100vh;
+background-color: lightcyan;
+}
