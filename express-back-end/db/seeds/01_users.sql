@@ -12,7 +12,7 @@ INSERT INTO users (first_name, last_name, email, password, avatar) VALUES (
   'Gomez',
   '02@gmail.com',
   '$2b$10$/BX/zSdtRJYymT/wg4/JBuewjIrHFjwTDjXHn.pIArem8jPWpJXu2',
-  'https://cdn-icons.flaticon.com/png/512/4140/premium/4140047.png?token=exp=1658820012~hmac=9c92cdffabbc123910625ea0e514fc2b'
+  'https://www.eastriverdental.com/wp-content/uploads/2021/03/Avatar-PNG-High-Quality-Image.png'
   );
 
   INSERT INTO users (first_name, last_name, email, password, avatar) VALUES (
@@ -20,7 +20,7 @@ INSERT INTO users (first_name, last_name, email, password, avatar) VALUES (
   'Hendricks',
   '03@gmail.com',
   '$2b$10$/BX/zSdtRJYymT/wg4/JBuewjIrHFjwTDjXHn.pIArem8jPWpJXu2',
-  'https://cdn-icons.flaticon.com/png/512/4140/premium/4140047.png?token=exp=1658820012~hmac=9c92cdffabbc123910625ea0e514fc2b'
+  'https://www.eastriverdental.com/wp-content/uploads/2021/03/Avatar-PNG-High-Quality-Image.png'
   );
     INSERT INTO users (first_name, last_name, email, password, avatar) VALUES (
   'Aryan',

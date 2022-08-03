@@ -91,4 +91,50 @@ VALUES (
 );
 
 
+INSERT INTO milestones (goal_id, title, description, end_date)
+VALUES (
+  2,
+  'Initial research',
+  'Research online to find different ways to invest money',
+  '2022-12-05'
+);
 
+INSERT INTO milestones (goal_id, title, description, end_date)
+VALUES (
+  2,
+  'Pick your interest',
+  'Pick the area that intrests you the most . It could be stock, real estate or anything else',
+  '2022-12-08'
+);
+
+INSERT INTO milestones (goal_id, title, description, end_date)
+VALUES (
+  2,
+  'Learn the skill',
+  'Find the tutorials or book and finish it by the end of the oal period',
+  '2022-12-25'
+);
+
+INSERT INTO milestones (goal_id, title, description, end_date)
+VALUES (
+  3,
+  'Initial research',
+  'Research online to find different ways to invest money',
+  '2022-12-05'
+);
+
+INSERT INTO milestones (goal_id, title, description, end_date)
+VALUES (
+  3,
+  'Pick your interest',
+  'Pick the area that intrests you the most . It could be stock, real estate or anything else',
+  '2022-12-08'
+);
+
+INSERT INTO milestones (goal_id, title, description, end_date)
+VALUES (
+  3,
+  'Learn the skill',
+  'Find the tutorials or book and finish it by the end of the oal period',
+  '2022-12-25'
+);

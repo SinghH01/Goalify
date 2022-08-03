@@ -1,26 +1,38 @@
-import React from 'react'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import DicoverNavbar from './DiscoverNavbar';
+import React, {useState} from 'react'
+import { userState } from '../App';
+import { useRecoilState } from 'recoil';
 import './dashboard.css'
-import Sidebar from './Sidebar'
+
+//Components
+import MyLandingPage from './MyLandingPage';
+import DicoverNavbar from './DiscoverNavbar';
 import Discover from './Discover';
+import Sidebar from './Sidebar'
+import Favourites from './Favourites';
 
 
 export default function Dashboard() {
+  
+  const [state, setState] = useState('')
 
   return (
     <div className='dashboard'>
       <DicoverNavbar />
       <div className='dashboard-body'>
-        <Sidebar />
-        <main className='dashboard-main'>          
-            <Routes>
-              <Route exact path="/find" element={<Discover />}/>
-            </Routes>
+        <Sidebar onStateChange = {setState}/>
+        <main className='dashboard-main'>
+            {state === 'find' && (
+                <Discover   />
+            )}
+             {state === 'home' && (
+                <MyLandingPage   />
+            )}
+            {state === 'favourites' && (
+                <Favourites  />
+            )}
           
         </main>
-      </div>
-      
+      </div>      
     </div>
   )
 }
