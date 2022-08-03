@@ -10,6 +10,9 @@ import { GiStairsGoal } from "react-icons/gi";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 import MyLandingPage from './MyLandingPage';
+import Register from './Auth/Register';
+
+
 
 
 function DicoverNavbar({ searchQuery, setSearchQuery }) {
@@ -62,8 +65,8 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
         <NavDropdown title="Sign" id="navbarScrollingDropdown">
           <NavDropdown.Item href="#action3"><Link to="/login"> Login </Link></NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item href="#action5">"
-            Register
+          <NavDropdown.Item href="#action5"><Link to="/Register">
+            Register</Link>
           </NavDropdown.Item>
         </NavDropdown>
       </Navbar.Collapse>
