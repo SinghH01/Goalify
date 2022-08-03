@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "local": "./node_modules/.bin/nodemon -L --ignore public/",
-    "db:reset": "node bin/resetdb.js"
+    "db:reset": "node bin/resetdb.js",
+    "nodemon": "nodemon server.js"
   },
   "author": "Lighthouse Labs",
   "license": "ISC",
@@ -21,9 +22,10 @@
     "express": "^4.17.1",
     "express-session": "^1.17.3",
     "morgan": "^1.9.1",
-    "pg": "^8.5.0"
+    "pg": "^8.5.0",
+    "socket.io": "^4.5.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.10"
+    "nodemon": "^2.0.19"
   }
 }

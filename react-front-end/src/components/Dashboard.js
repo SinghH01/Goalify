@@ -9,12 +9,13 @@ import DicoverNavbar from './DiscoverNavbar';
 import Discover from './Discover';
 import Sidebar from './Sidebar'
 import Favourites from './Favourites';
+import ActiveGoals from './IndividualGoal/ActiveGoals';
 
 
 
 export default function Dashboard() {
 
-  const [state, setState] = useState('')
+  const [state, setState] = useState('find')
 
   return (
     <div className='dashboard'>
@@ -22,16 +23,9 @@ export default function Dashboard() {
       <div className='dashboard-body'>
         <Sidebar onStateChange={setState} />
         <main className='dashboard-main'>
-          {state === 'find' && (
-            <Discover />
-
-          )}
-          {state === 'home' && (
-            <MyLandingPage />
-          )}
-          {state === 'favourites' && (
-            <Favourites />
-          )}
+          {state === 'find' && (<Discover />)}
+          {state === 'favourites' && (<Favourites />)}
+          {state === 'activegoals' && (<ActiveGoals />)}
 
         </main>
       </div>
