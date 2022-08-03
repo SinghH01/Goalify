@@ -119,3 +119,10 @@ div#navbarScroll {
 }
 
 /*****************    End Landing page      ****************/
+
+.text-goal {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

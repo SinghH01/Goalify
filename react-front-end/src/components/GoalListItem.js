@@ -14,10 +14,10 @@ import { userState } from '../App';
 function GoalListItem(props) {
 
   const [modalShow, setModalShow] = useState(false)
-  
+
   const [favState, setFavState] = useState(false)
   const [user, setUser] = useRecoilState(userState);
-  
+
   const likeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/like', { userId: user.id, goalId: props.id });
@@ -46,8 +46,8 @@ function GoalListItem(props) {
 
 
   let styles = {
-    width: '30%',
-    marginBlock: '36px',
+    width: "80%",
+    marginBottom: '26px',
     marginInline: 'auto',
     boxShadow: '1px 1px 14px #999',
   };
@@ -59,7 +59,7 @@ function GoalListItem(props) {
         <Card.Img variant="top" src={props.image} style={{ height: '300px', cursor: "pointer" }} onClick={() => setModalShow(true)} />
         <Card.Body >
           <Card.Title>{props.title}</Card.Title>
-          <Card.Text>
+          <Card.Text className="text-goal">
             {props.description}
           </Card.Text>
         </Card.Body>
@@ -88,13 +88,13 @@ function GoalListItem(props) {
 
       </Card >
 
-     
-        < GoalDetails
-          goal={props}
-          show={modalShow}
-          onHide={() => setModalShow(false)}
-        />
-      
+
+      < GoalDetails
+        goal={props}
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+      />
+
     </>
   );
 }

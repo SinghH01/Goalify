@@ -4,6 +4,7 @@ import axios from 'axios'
 import Search from './Search';
 import GoalList from './GoalList'
 import './discover.css'
+import DicoverNavbar from './DiscoverNavbar';
 
 
 
@@ -34,9 +35,12 @@ function Discover() {
   const filteredGoals = filterGoals(goals);
 
   return (
+
     <div >
+
       <Search setSearchQuery={setSearchQuery} />
       <GoalList goals={searchQuery ? filteredGoals : goals} />
+
 
     </div>
   )
