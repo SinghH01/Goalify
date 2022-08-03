@@ -5,14 +5,15 @@
 }
 .sidebar-user-info {
   width: 250px;
-  height:300px;
+  height: 300px;
   background-color: #09293c;
-  display:flex ;
-  flex-direction: column;  
-  align-items:center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   color: white;
   /* box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px; */
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+    rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .sidebar-user-info h2 {
@@ -27,11 +28,9 @@
 }
 
 .sidebarList {
-
   height: auto;
-  padding: 0;  
+  padding: 0;
   width: 100%;
-
 }
 
 .sidebarList .row {
@@ -39,21 +38,22 @@
   height: 50px;
   list-style-type: none;
   margin-top: 15%;
-  padding-left: 20%; 
-  margin-bottom: 15%; 
-  color:white;  
-  justify-content:center;
-  align-items:center;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  padding-left: 20%;
+  margin-bottom: 15%;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 .sidebarList .row:hover {
   cursor: pointer;
-  background-color: #2F4050;
+  background-color: #2f4050;
 }
 
 #listItems {
-  display:flex ;
+  display: flex;
   flex-direction: row;
 }
 
