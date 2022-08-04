@@ -32,6 +32,22 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/individualgoal", (req, res) => {
+    let values = [req.body.id]
+
+    db.query(`SELECT goals.*
+    FROM goals WHERE id = $1;`, values)
+      .then(data => {
+        const goals = data.rows;
+        res.json( goals );
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
 
   router.get("/:id", (req, res) => {
     db.query(`SELECT * FROM goals where user_id = $1;`, [
@@ -64,21 +80,7 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/individualgoal", (req, res) => {
-    let values = [req.body.id]
 
-    db.query(`SELECT goals.*
-    FROM goals WHERE id = $1;`, values)
-      .then(data => {
-        const goals = data.rows;
-        res.json( goals );
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  });
 
 
   return router;
