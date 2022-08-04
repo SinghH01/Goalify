@@ -1,0 +1,9 @@
+.map {
+  width: 500px;
+  height: 300px;
+}
+
+.location-icon {
+  font-size: 3rem;
+  color: red;
+}
