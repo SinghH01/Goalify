@@ -3,23 +3,19 @@ import { useState, useEffect } from 'react';
 import Axios from 'axios'
 import { useRecoilState } from 'recoil';
 import { userState } from '../../App';
-import Form from 'react-bootstrap/Form';
-import { Table } from "react-bootstrap";
-import { Nav, Navbar, Container, Row, Col }
-
-  from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
-import {
-  BrowserRouter as Router, Switch,
-  Route, Link
-} from "react-router-dom";
 import GoalsTableRow from './GoalsTableRow';
+import './MyGoal.css'
+import EditGoal from './EditGoals';
+import CreateGoal from './CreateGoal';
+
 
 function MyGoals() {
 
   const [goals, setGoals] = useState([]);
   const [user, setUser] = useRecoilState(userState);
-console.log(goals)
+  const [state, setState] = useState("all")
+
   useEffect(() => {
     fetchGoals();
   }, []);
@@ -35,45 +31,26 @@ console.log(goals)
 
 
 
-  
-
   const DataTable = () => {
     return goals.map((res, i) => {
-      return <GoalsTableRow obj={res} key={i} />;
+      return <GoalsTableRow handleEdit={handleEdit} obj={res} key={i} />;
     });
   };
 
+  const handleClick = () => {
+    setState("create");
+  }
 
-    return (
+  const handleEdit = () => {
+    setState("edit");
+  }
+
+  return (<>
+    {state === "all" && (
       <>
-      <Navbar bg="dark" variant="dark">
-            <Container>
-              <Navbar.Brand>
-                <Link to={"/create-student"} 
-                  className="nav-link">
-                  My Goals
-                </Link>
-              </Navbar.Brand>
+        <Button variant="outline-primary" onClick={handleClick}>Create Goal</Button>{' '}
 
-              <Nav className="justify-content-end">
-                <Nav>
-                  <Link to={"/create-student"} 
-                    className="nav-link">
-                    Create Student
-                  </Link>
-                </Nav>
-
-                <Nav>
-                  <Link to={"/student-list"} 
-                    className="nav-link">
-                    Student List
-                  </Link>
-                </Nav>
-              </Nav>
-            </Container>
-          </Navbar>
-
-          <div className="table-wrapper">
+        <div className="table-wrapper">
           <Table striped bordered hover>
             <thead>
               <tr>
@@ -88,8 +65,14 @@ console.log(goals)
             <tbody>{DataTable()}</tbody>
           </Table>
         </div>
-        </>
-    );
+      </>
+    )}
+
+    {state === "create" && (<CreateGoal userId={user.id} />)}
+    {state === "edit" && (<EditGoal />)}
+
+  </>
+  );
 
 }
 
