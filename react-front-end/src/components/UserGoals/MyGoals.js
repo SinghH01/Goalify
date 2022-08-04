@@ -49,7 +49,7 @@ function MyGoals() {
   return (<>
     {state === "all" && (
       <>
-        <Button variant="outline-primary" onClick={handleClick}>Create Goal</Button>{' '}
+        <Button className='createButton' variant="outline-primary" onClick={handleClick}>Create Goal</Button>{' '}
 
         <div className="table-wrapper">
           <Table striped bordered hover>
