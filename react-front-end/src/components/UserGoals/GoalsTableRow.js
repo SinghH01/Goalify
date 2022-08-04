@@ -5,8 +5,8 @@ import axios from "axios";
 import moment from 'moment';
   
 const GoalsTableRow = (props) => {
-  const { _id, title, description, image,start_date,end_date,online_goal } = props.obj;
-  
+  const { title, description, image,start_date,end_date,online_goal } = props.obj;
+  const {userId} = props.userId
 //   const deleteStudent = () => {
 //     axios
 //       .delete(
@@ -25,7 +25,7 @@ const GoalsTableRow = (props) => {
       <td>{title}</td>
       <td>{description}</td>
       <td>
-      < img class="img-fluid img-thumbnail" src={image}/>
+      < img className="img-fluid img-thumbnail" src={image}/>
       </td>
       <td>{moment(start_date).format('MMMM Do, YYYY')}</td>
       <td>{moment(end_date).format('MMMM Do, YYYY')}</td>
@@ -34,10 +34,10 @@ const GoalsTableRow = (props) => {
 
 
       <td>
-        <Link className="edit-link" 
-          to={"/edit-student/" + _id}>
+        <Button onClick={event => props.handleEdit()} 
+          size="lg" variant="primary">
           Edit
-        </Link>
+        </Button>
         <Button onClick={"deleteStudent"} 
           size="sm" variant="danger">
           Delete
