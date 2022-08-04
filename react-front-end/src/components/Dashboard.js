@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { userState } from '../App';
 import { useRecoilState } from 'recoil';
 import './dashboard.css'
@@ -10,31 +10,27 @@ import Discover from './Discover';
 import Sidebar from './Sidebar'
 import Favourites from './Favourites';
 import MyGoals from './UserGoals/MyGoals';
+import ActiveGoals from './IndividualGoal/ActiveGoals';
+
+
+
 export default function Dashboard() {
-  
-  const [state, setState] = useState('')
+
+  const [state, setState] = useState('find')
 
   return (
     <div className='dashboard'>
       <DicoverNavbar />
       <div className='dashboard-body'>
-        <Sidebar onStateChange = {setState}/>
+        <Sidebar onStateChange={setState} />
         <main className='dashboard-main'>
-            {state === 'find' && (
-                <Discover   />
-            )}
-             {state === 'home' && (
-                <MyLandingPage   />
-            )}
-            {state === 'favourites' && (
-                <Favourites  />
-            )}
-            {state === 'mygoals' && (
-                <MyGoals  />
-            )}
-          
+          {state === 'find' && (<Discover />)}
+          {state === 'favourites' && (<Favourites />)}
+          {state === 'activegoals' && (<ActiveGoals />)}
+          {state === 'mygoals' && (<MyGoals />)}
+
         </main>
-      </div>      
+      </div>
     </div>
   )
 }

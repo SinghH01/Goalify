@@ -22,7 +22,6 @@ module.exports = (db) => {
       req.params.id
     ])
       .then(data => {
-        console.log(data.rows)
         const goalLocation = data.rows;
         res.json(goalLocation);
       })
@@ -65,6 +64,21 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/individualgoal", (req, res) => {
+    let values = [req.body.id]
+
+    db.query(`SELECT goals.*
+    FROM goals WHERE id = $1;`, values)
+      .then(data => {
+        const goals = data.rows;
+        res.json( goals );
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
   return router;

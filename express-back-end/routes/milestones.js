@@ -7,7 +7,6 @@ module.exports = (db) => {
       req.params.id
     ])
       .then(data => {
-        console.log(data.rows)
         const milsestones = data.rows;
         res.json( milsestones );
       })

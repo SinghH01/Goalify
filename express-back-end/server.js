@@ -5,8 +5,35 @@ require("dotenv").config();
 const PORT = process.env.PORT || 8080;
 const express = require("express");
 const app = express();
+const http = require("http");
 const morgan = require("morgan");
 const cors = require("cors")
+const { Server } = require("socket.io")
+
+const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: "http://localhost:3000",
+    method: ["GET", "POST"],
+  },
+})
+
+io.on("connection", (socket) => {
+  console.log(`User Connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined the Room ID ${data}`)
+  })
+
+  socket.on("send_message", (data) => {
+    socket.to(data.room).emit("receive_message", data)
+  })
+
+  socket.on("disconnect", () => {
+    console.log("User Disconected", socket.id)
+  });
+});
 
 //user-session
 const bodyParser = require('body-parser')
@@ -54,7 +81,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // Separated Routes for each Resource
-// Note: Feel free to replace the example routes below with your own
 const usersRoutes = require("./routes/users");
 const loginRoutes = require("./routes/login");
 const registerRoutes = require("./routes/register");
@@ -62,6 +88,7 @@ const logoutRoutes = require("./routes/logout");
 const goalsRoutes = require("./routes/goals");
 const milestonesRoutes = require("./routes/milestones");
 const favouritesRoutes = require("./routes/favourites");
+const activeRoutes = require("./routes/active");
 
 
 // Mount all resource routes
@@ -71,14 +98,16 @@ app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/api/goals", goalsRoutes(db));
+app.use("/api/goals/individualgoal", goalsRoutes(db));
 app.use("/api/milestones", milestonesRoutes(db));
 app.use("/favourites", favouritesRoutes(db));
 app.use("/favourites/like", favouritesRoutes(db));
 app.use("/favourites/dislike", favouritesRoutes(db));
 app.use("/favourites/check", favouritesRoutes(db));
+app.use("/active", activeRoutes(db));
 
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
