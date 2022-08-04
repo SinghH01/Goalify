@@ -9,6 +9,7 @@ import DicoverNavbar from './DiscoverNavbar';
 import Discover from './Discover';
 import Sidebar from './Sidebar'
 import Favourites from './Favourites';
+import MyGoals from './UserGoals/MyGoals';
 import ActiveGoals from './IndividualGoal/ActiveGoals';
 
 
@@ -26,6 +27,7 @@ export default function Dashboard() {
           {state === 'find' && (<Discover />)}
           {state === 'favourites' && (<Favourites />)}
           {state === 'activegoals' && (<ActiveGoals />)}
+          {state === 'mygoals' && (<MyGoals />)}
 
         </main>
       </div>

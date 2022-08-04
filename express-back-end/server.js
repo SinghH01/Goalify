@@ -98,12 +98,8 @@ app.use("/register", registerRoutes(db));
 app.use("/login", loginRoutes(db));
 app.use("/logout", logoutRoutes(db));
 app.use("/api/goals", goalsRoutes(db));
-app.use("/api/goals/individualgoal", goalsRoutes(db));
 app.use("/api/milestones", milestonesRoutes(db));
 app.use("/favourites", favouritesRoutes(db));
-app.use("/favourites/like", favouritesRoutes(db));
-app.use("/favourites/dislike", favouritesRoutes(db));
-app.use("/favourites/check", favouritesRoutes(db));
 app.use("/active", activeRoutes(db));
 
 
