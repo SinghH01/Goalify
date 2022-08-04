@@ -43,10 +43,9 @@ function Goal(props) {
 
       <div className="chat">
         <Chat id = {props.id}/>
-        <div>
-        {/* {location !== undefined && (<h1>This Goal has Physical Location: {fullAddress} </h1>)} */}
+        <div className="location-container">
         {location !== undefined && (<MapContainer location = {fullAddress}/>)}
-        {location === undefined && (<h1>This is online goal</h1>)}
+        {location === undefined && (<h3>This is an online goal</h3>)}
         </div>        
       </div>
 
