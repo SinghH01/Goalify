@@ -8,6 +8,7 @@ import GoalsTableRow from './GoalsTableRow';
 import './MyGoal.css'
 import EditGoal from './EditGoals';
 import CreateGoal from './CreateGoal';
+import { Button, Table } from 'react-bootstrap';
 
 
 function MyGoals() {

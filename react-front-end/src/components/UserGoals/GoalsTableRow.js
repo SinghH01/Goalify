@@ -6,7 +6,6 @@ import moment from 'moment';
   
 const GoalsTableRow = (props) => {
   const { title, description, image,start_date,end_date,online_goal } = props.obj;
-  const {userId} = props.userId
 //   const deleteStudent = () => {
 //     axios
 //       .delete(
