@@ -39,7 +39,7 @@ module.exports = (db) => {
     FROM goals WHERE id = $1;`, values)
       .then(data => {
         const goals = data.rows;
-        res.json( goals );
+        res.json(goals);
       })
       .catch(err => {
         res
@@ -67,11 +67,13 @@ module.exports = (db) => {
   router.post("/:id", (req, res) => {
     console.log(req.body)
     console.log(req.params.id)
-    const values = [req.params.id, req.body.title, req.body.description,req.body.image, req.body.start_date, req.body.end_date]
+    const values = [req.params.id, req.body.title, req.body.description, req.body.image, req.body.start_date, req.body.end_date]
     db.query(`INSERT INTO goals (user_id, title, description, image, start_date, end_date)
       VALUES ($1, $2, $3, $4, $5,$6)`, values)
-      .then(()=> {
-        console.log("goal added to the database");
+      .then(() => {
+        setTimeout(() => {
+          res.status(204).json({});
+        }, 1000);
       })
       .catch(err => {
         res
@@ -80,7 +82,23 @@ module.exports = (db) => {
       });
   });
 
-
+  // POST route for delete Goal
+  router.post("/delete/:id", (req, res) => {
+    db.query(`DELETE FROM goals
+    WHERE id = $1`, [
+      req.params.id
+    ])
+    .then(() => {
+      setTimeout(() => {
+        res.status(204).json({});
+      }, 1000);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
 
 
   return router;
