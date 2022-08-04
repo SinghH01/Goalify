@@ -18,6 +18,8 @@ body h3 {
 
 .table-wrapper {
   max-width: 700px;
+  height: 100vh;
+  overflow-y: scroll;
 }
 
 .edit-link {
