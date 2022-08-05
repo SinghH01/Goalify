@@ -19,7 +19,8 @@ function MyGoals() {
   const [user, setUser] = useRecoilState(userState);
   const [state, setState] = useState("all")
   const [loading, setLoading] = useState(false)
-  
+  const [goal, setGoal] = useState({})
+
 
   useEffect(() => {
     fetchGoals();
@@ -46,7 +47,8 @@ function MyGoals() {
     setState("create");
   }
 
-  const handleEdit = () => {
+  const handleEdit = (goal) => {
+    setGoal({...goal})
     setState("edit");
   }
 
@@ -55,9 +57,9 @@ function MyGoals() {
   }
 
   if (loading) {
-    return <Loading/>
+    return <Loading />
   }
-  
+
   return (<>
     {state === "all" && (
       <>
@@ -82,8 +84,8 @@ function MyGoals() {
     )}
 
     {state === "create" && (<CreateGoal userId={user.id} />)}
-    {state === "edit" && (<EditGoal />)}
-    
+    {state === "edit" && (<EditGoal goal={goal}/>)}
+
 
   </>
   );
