@@ -4,13 +4,14 @@ import './GoalList.css'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Zoom from 'react-reveal/Zoom';
 
 export default function GoalList(props) {
   const goals = props.goals
 
   return (
     <section>
-
+      
       {/* <ul style={{ listStyleType: "none", }} > */}
       <Container fluid style={{ textAlign: 'center' }}>
         <Row style={{ width: "80%", marginInline: 'auto', marginTop: '30px', marginBottom: '60px' }}>
@@ -18,6 +19,7 @@ export default function GoalList(props) {
             goals.map((goal) => {
               return (
                 <Col xs={6} >
+                  <Zoom >
                   <GoalListItem
                     key={goal.id}
                     id={goal.id}
@@ -28,13 +30,15 @@ export default function GoalList(props) {
                     end_date={goal.end_date}
                     online_goal={goal.online_goal}
                   />
+                  </Zoom>
                 </Col>
               );
             })
           }
         </Row>
-      </Container>
-
+      </Container>   
+        
+      
       {/* </ul> */}
     </section>
   );
