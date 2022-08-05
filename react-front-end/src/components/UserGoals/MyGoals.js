@@ -83,8 +83,8 @@ function MyGoals() {
       </>
     )}
 
-    {state === "create" && (<CreateGoal userId={user.id} />)}
-    {state === "edit" && (<EditGoal goal={goal}/>)}
+    {state === "create" && (<CreateGoal userId={user.id} handleLoading={handleLoading} />)}
+    {state === "edit" && (<EditGoal goal={goal} handleLoading={handleLoading}/>)}
 
 
   </>
