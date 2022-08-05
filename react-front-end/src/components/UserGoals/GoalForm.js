@@ -14,7 +14,6 @@ const GoalForm = (props) => {
     end_date: Yup.date().required("End Date Required")
   });
 
-  console.log(props);
   return (
     <div className="form-wrapper">
       

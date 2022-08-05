@@ -9,6 +9,8 @@ import './MyGoal.css'
 import EditGoal from './EditGoals';
 import CreateGoal from './CreateGoal';
 import { Button, Table } from 'react-bootstrap';
+import Loading from "../Loading";
+
 
 
 function MyGoals() {
@@ -16,6 +18,9 @@ function MyGoals() {
   const [goals, setGoals] = useState([]);
   const [user, setUser] = useRecoilState(userState);
   const [state, setState] = useState("all")
+  const [loading, setLoading] = useState(false)
+  const [goal, setGoal] = useState({})
+
 
   useEffect(() => {
     fetchGoals();
@@ -34,7 +39,7 @@ function MyGoals() {
 
   const DataTable = () => {
     return goals.map((res, i) => {
-      return <GoalsTableRow handleEdit={handleEdit} obj={res} key={i} />;
+      return <GoalsTableRow handleEdit={handleEdit} handleLoading={handleLoading} obj={res} key={i} />;
     });
   };
 
@@ -42,8 +47,17 @@ function MyGoals() {
     setState("create");
   }
 
-  const handleEdit = () => {
+  const handleEdit = (goal) => {
+    setGoal({...goal})
     setState("edit");
+  }
+
+  const handleLoading = () => {
+    setLoading(cur => !cur)
+  }
+
+  if (loading) {
+    return <Loading />
   }
 
   return (<>
@@ -70,7 +84,8 @@ function MyGoals() {
     )}
 
     {state === "create" && (<CreateGoal userId={user.id} />)}
-    {state === "edit" && (<EditGoal />)}
+    {state === "edit" && (<EditGoal goal={goal}/>)}
+
 
   </>
   );
