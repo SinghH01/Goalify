@@ -14,6 +14,7 @@ const EditGoal = (props) => {
   }
 
   const onSubmit = (GoalObject) => {
+    props.handleLoading();
     Axios
       .put(
         `http://localhost:8080/api/goals/edit/${props.goal.id}`,
@@ -26,6 +27,8 @@ const EditGoal = (props) => {
       })
       .catch((err) => alert("Something went wrong"));
   };
+
+  
   
 
   return (
@@ -42,5 +45,5 @@ const EditGoal = (props) => {
   );
 };
 
-// Export EditStudent Component
+
 export default EditGoal;
