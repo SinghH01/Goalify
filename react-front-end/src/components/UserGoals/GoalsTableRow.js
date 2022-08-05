@@ -51,6 +51,7 @@ const GoalsTableRow = (props) => {
           size="sm" variant="danger">
           Delete
         </Button>
+
       </td>
     </tr >
   );

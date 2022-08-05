@@ -1,14 +1,16 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import GoalListItem from '../GoalListItem';
 import '../GoalList.css'
 import Container from 'react-bootstrap/Container';
 import ActiveListItem from './ActiveListItem';
 import Goal from './Goal';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default function ActiveList(props) {
   const goals = props.goals
-  const[state, setState] = useState(false);
-  const[goalID, setGoalID] = useState(undefined);
+  const [state, setState] = useState(false);
+  const [goalID, setGoalID] = useState(undefined);
 
   const handleClick = val => {
     setState(true)
@@ -17,32 +19,35 @@ export default function ActiveList(props) {
 
   return (
     <>
-     {state === false && ( <section>
-      <Container fluid style={{ textAlign: 'center' }}>
+      {state === false && (<section>
+        <Container fluid style={{ textAlign: 'center' }}>
+          <Row style={{ width: "80%", marginInline: 'auto', marginTop: '30px', marginBottom: '60px' }}>
+            {
+              goals.map((goal) => {
+                return (
+                  <Col xs={6} >
+                    <ActiveListItem
+                      key={goal.id}
+                      id={goal.id}
+                      title={goal.title}
+                      description={goal.description}
+                      image={goal.image}
+                      start_date={goal.start_date}
+                      end_date={goal.end_date}
+                      online_goal={goal.online_goal}
+                      handleClick={handleClick}
+                    />
+                  </Col>
+                );
+              })
+            }
+          </Row>
+        </Container>
+      </section>
+      )}
 
-        {
-          goals.map((goal) => {
-            return (
-              <ActiveListItem
-                key={goal.id}
-                id={goal.id}
-                title={goal.title}
-                description={goal.description}
-                image={goal.image}
-                start_date={goal.start_date}
-                end_date={goal.end_date}
-                online_goal={goal.online_goal}
-                handleClick={handleClick}
-              />
-            );
-          })
-        }
-      </Container>
-    </section>
-      )}    
-      
-    {state === true && ( <Goal id = {goalID}/> )}
-  </>
-    
+      {state === true && (<Goal id={goalID} />)}
+    </>
+
   );
 }
