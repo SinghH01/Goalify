@@ -10,7 +10,7 @@ const GoalsTableRow = (props) => {
 
   const deleteGoal = () => {
     Axios
-      .post(
+      .delete(
         `http://localhost:8080/api/goals/delete/${id}`)
       .then((res) => {
         if (res.status === 204) {
@@ -43,7 +43,7 @@ const GoalsTableRow = (props) => {
 
 
       <td>
-        <Button onClick={() => props.handleEdit()}
+        <Button onClick={() => props.handleEdit({...props.obj})}
           size="lg" variant="primary">
           Edit
         </Button>
