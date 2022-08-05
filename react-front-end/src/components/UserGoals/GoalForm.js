@@ -20,7 +20,7 @@ const GoalForm = (props) => {
       <Formik {...props} validationSchema={validationSchema}>
         <Form>
           <FormGroup>
-              <label htmlFor="name">Title</label>
+              <label htmlFor="title">Title</label>
               <Field name="title" className="form-control" type="text" />
            
             <ErrorMessage
@@ -30,7 +30,7 @@ const GoalForm = (props) => {
             />
           </FormGroup>
           <FormGroup>
-            <label>Description</label>
+            <label htmlFor="description">Description</label>
             <Field name="description" className="form-control" as="textarea" rows={3} cols={10} />
             <ErrorMessage
               name="description"
