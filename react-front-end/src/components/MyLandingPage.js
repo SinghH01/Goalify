@@ -4,31 +4,29 @@ import Login from "./Auth/Login";
 import Register from "./Auth/Register";
 import { Link } from 'react-router-dom'
 import Discover from './Discover';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function MyLandingPage(props) {
-
 
 
   return (
     <>
       <div className="landing-page">
-        {/* <div className="overlay"></div> */}
         <div className="container">
           <div className="header-area">
             <div className="logo">Goalify </div>
-
-
             <ul>
-              <li><Link to='discover'> Discover</Link> </li>
+              <li>
+                <Link to='about'> About</Link>
+              </li>
+              <li>
+                <Link to='discover'> Discover</Link>
+              </li>
               <li>
                 <Login />
               </li>
               <li>
-
                 <Register />
               </li>
-
             </ul>
           </div>
         </div>
@@ -36,11 +34,9 @@ function MyLandingPage(props) {
           <h1>    Welcome! </h1>
           <h1>Meet, chat, and share
             with people who lovewhat you love!</h1>
-
         </div>
       </div>
     </>
   );
 }
-
 export default MyLandingPage;
