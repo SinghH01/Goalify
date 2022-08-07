@@ -8,13 +8,12 @@ const CreateGoal = (props) => {
   const [formValues, setFormValues] =
     useState({ title: '', description: '', image: '', start_date: '', end_date: '' })
   const onSubmit = goalObject => {
-    props.handleLoading();
+    props.setState("loading")
     Axios.post(
       `http://localhost:8080/api/goals/${props.userId}`,
       goalObject)
       .then(res => {
-        window.location.reload(false);
-
+        props.setState("all")
       })
       .catch(err => alert('Something went wrong'))
   }

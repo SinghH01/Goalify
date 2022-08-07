@@ -14,7 +14,7 @@ const EditGoal = (props) => {
   }
 
   const onSubmit = (GoalObject) => {
-    props.handleLoading();
+    props.setState("loading");
     Axios
       .put(
         `http://localhost:8080/api/goals/edit/${props.goal.id}`,
@@ -22,7 +22,7 @@ const EditGoal = (props) => {
       )
       .then((res) => {
         if (res.status === 204) {
-          window.location.reload();
+          props.setState("all");
         } else Promise.reject();
       })
       .catch((err) => alert("Something went wrong"));
