@@ -20,14 +20,13 @@ function MyGoals() {
   const [goals, setGoals] = useState([]);
   const [user, setUser] = useRecoilState(userState);
   const [state, setState] = useState("all")
-  const [loading, setLoading] = useState(false)
   const [goal, setGoal] = useState({})
   const [milestones, setMilestones] = useState([])
 
 
   useEffect(() => {
     fetchGoals();
-  }, []);
+  }, [state]);
 
   const fetchGoals = async () => {
     try {
@@ -40,11 +39,9 @@ function MyGoals() {
     }
   };
 
-  console.log(milestones)
-
   const DataTable = () => {
     return goals.map((res, i) => {
-      return <GoalsTableRow handleEdit={handleEdit} handleLoading={handleLoading} obj={res} key={i} />;
+      return <GoalsTableRow handleEdit={handleEdit} obj={res} key={i} setState={setState}/>;
     });
   };
 
@@ -57,14 +54,6 @@ function MyGoals() {
     setState("edit");
   }
 
-  const handleLoading = () => {
-    setLoading(cur => !cur)
-  }
-
-
-  if (loading) {
-    return <Loading />
-  }
 
   return (<>
     {state === "all" && (
@@ -88,8 +77,9 @@ function MyGoals() {
       </>
     )}
 
-    {state === "create" && (<CreateGoal userId={user.id} handleLoading={handleLoading} />)}
-    {state === "edit" && (<EditGoal goal={goal} handleLoading={handleLoading} />)}
+    {state === "create" && (<CreateGoal userId={user.id} setState={setState} />)}
+    {state === "edit" && (<EditGoal goal={goal} setState={setState} />)}
+    {state === "loading" && (<Loading />)}
 
 
   </>
