@@ -12,24 +12,20 @@ const GoalsTableRow = (props) => {
 
 
   const deleteGoal = () => {
+    props.setState("loading")
     Axios
       .delete(
         `http://localhost:8080/api/goals/delete/${id}`)
       .then((res) => {
         if (res.status === 204) {
-          props.handleLoading()
-          window.location.reload();
+          props.setState("all")
+
+
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
   };
 
-
-
-  function onClick() {
-    deleteGoal();
-    props.handleLoading();
-  };
 
   return (
 
@@ -50,17 +46,10 @@ const GoalsTableRow = (props) => {
           </Fab>
         </div>
         <div className="action-btn">
-          <Fab style={{ color: "red" }} size="small" aria-label="delete" onClick={() => onClick()}>
+          <Fab style={{ color: "red" }} size="small" aria-label="delete" onClick={deleteGoal}>
             <DeleteIcon />
           </Fab>
         </div>
-        <div className="action-btn">
-          <Fab style={{ color: "green" }} size="small" aria-label="add">
-            <AddIcon />
-          </Fab>
-        </div>
-        
-
       </td>
     </tr >
   );
