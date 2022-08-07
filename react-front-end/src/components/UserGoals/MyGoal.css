@@ -13,12 +13,6 @@ body h3 {
   margin: 0 auto;
 }
 
-.goal-index {
-      margin: 30px;
-      padding: 10px;
-      /* overflow: hidden; */
-}
-
 .goal_header {
   margin: 0;
   padding: 0.25em;
@@ -28,14 +22,14 @@ body h3 {
 
   }
 
-/* .table-wrapper {
+.table-wrapper {
   display: flex;
       justify-content: space-around;
       flex-direction: row;
       margin: 30px;
       padding: 10px
 
-} */
+}
 
 .goal-img {
   width: 100%;
@@ -46,14 +40,18 @@ body h3 {
   border: 0.1em solid rgba(0, 130, 29, 0.8);
 }
 
-.goal-btn {
-  width: 140px;
+/* .goal-btn { */
+  /* width: 140px;
   font-size: 1em;
   padding-left: 1em;
   padding-right: 1em;
-  background-color: rgba(0, 130, 29, 0.7);
-  color: white;
-  font-weight: 700;
+  background-color: rgba(251, 2, 2, 0.7); */
+  /* color: rgb(255, 5, 5); */
+  /* font-weight: 700; */
+/* } */
+
+.action-btn{
+  margin: 5px;
 }
 
 
