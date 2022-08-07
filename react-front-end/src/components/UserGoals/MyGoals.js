@@ -70,7 +70,6 @@ function MyGoals() {
     {state === "all" && (
       <>
         <Button className='createButton' variant="outline-primary" onClick={handleClick}>Create Goal</Button>{' '}
-        <section className="goal-index">
           <div className="table-wrapper">
             <Table striped bordered hover variant="dark">
               <thead>
@@ -78,17 +77,14 @@ function MyGoals() {
                   <th>Title</th>
                   <th>Description</th>
                   <th>image</th>
-                  <th>Start Date</th>
-                  <th>End Date</th>
+                  <th>Start</th>
+                  <th>End</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>{DataTable()}</tbody>
             </Table>
           </div>
-
-
-        </section>
       </>
     )}
 
