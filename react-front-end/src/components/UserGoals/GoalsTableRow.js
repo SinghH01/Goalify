@@ -34,7 +34,7 @@ const GoalsTableRow = (props) => {
       <td>{title}</td>
       <td>{description}</td>
       <td>
-        < img className="img-fluid img-thumbnail" src={image} />
+        < img className="goal-img" src={image} />
       </td>
       <td>{moment(start_date).format('MMMM Do, YYYY')}</td>
       <td>{moment(end_date).format('MMMM Do, YYYY')}</td>
@@ -43,12 +43,11 @@ const GoalsTableRow = (props) => {
 
 
       <td>
-        <Button onClick={() => props.handleEdit({...props.obj})}
-          size="lg" variant="primary">
+        <Button className="goal-btn" onClick={() => props.handleEdit({ ...props.obj })}>
           Edit
         </Button>
-        <Button onClick={() => onClick()}
-          size="sm" variant="danger">
+        <Button className="goal-btn" onClick={() => onClick()}
+          variant="danger">
           Delete
         </Button>
 

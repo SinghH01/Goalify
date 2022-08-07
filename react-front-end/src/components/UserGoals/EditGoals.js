@@ -33,7 +33,7 @@ const EditGoal = (props) => {
 
   return (
     <>
-      <h1>Edit a Goal</h1>
+      <h1 className="goal_header">Edit a Goal</h1>
       <GoalForm
         initialValues={formValues}
         onSubmit={onSubmit}

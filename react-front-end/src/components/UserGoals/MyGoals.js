@@ -13,6 +13,8 @@ import Loading from "../Loading";
 
 
 
+
+
 function MyGoals() {
 
   const [goals, setGoals] = useState([]);
@@ -56,6 +58,7 @@ function MyGoals() {
     setLoading(cur => !cur)
   }
 
+
   if (loading) {
     return <Loading />
   }
@@ -63,10 +66,10 @@ function MyGoals() {
   return (<>
     {state === "all" && (
       <>
-
-        <div className="table-wrapper">
           <Button className='createButton' variant="outline-primary" onClick={handleClick}>Create Goal</Button>{' '}
-          <Table striped bordered hover>
+          <section className="goal-index">
+          <div className="table-wrapper">
+          <Table striped bordered hover variant="dark">
             <thead>
               <tr>
                 <th>Title</th>
@@ -80,6 +83,9 @@ function MyGoals() {
             <tbody>{DataTable()}</tbody>
           </Table>
         </div>
+
+       
+        </section>
       </>
     )}
 

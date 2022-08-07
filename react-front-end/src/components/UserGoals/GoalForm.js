@@ -68,7 +68,7 @@ const GoalForm = (props) => {
               component="span"
             />
           </FormGroup>
-          <Button variant="danger" size="lg"
+          <Button variant="danger" 
             block="block" type="submit">
             {props.children}
           </Button>
