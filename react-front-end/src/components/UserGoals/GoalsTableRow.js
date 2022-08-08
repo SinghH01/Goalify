@@ -28,6 +28,19 @@ export default function GoalsTableRow(props) {
       .catch((err) => console.log(err));
   };
 
+  const deleteMilestone = (id) => {
+    props.setState("loading");
+    Axios
+      .delete(
+        `http://localhost:8080/api/milestones/delete/${id}`)
+      .then((res) => {
+        if (res.status === 204) {
+          props.setState("all");
+        } else Promise.reject();
+      })
+      .catch((err) => console.log(err));
+  };
+
 
 
   const fetchMilestones = async () => {
@@ -44,7 +57,6 @@ export default function GoalsTableRow(props) {
     setOpen(!open);
   };
 
-
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -53,7 +65,6 @@ export default function GoalsTableRow(props) {
             aria-label="expand row"
             size="small"
             onClick={() => onClick()}
-
           >
             {open ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
           </IconButton>
@@ -91,14 +102,15 @@ export default function GoalsTableRow(props) {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {milestones.map((milestone) => (
-                    <TableRow>
+                  {milestones.map((milestone, i) => (
+                    <TableRow key={i}>
                       <TableCell> {milestone.title}</TableCell>
                       <TableCell>{milestone.description}</TableCell>
                       <TableCell>{moment(milestone.end_date).format('MMMM Do, YYYY')}</TableCell>
-                      <TableCell><IconButton>
-                        <DeleteIcon />
+                      <TableCell><IconButton onClick={() => deleteMilestone(milestone.id)}>
+                      <DeleteIcon />
                       </IconButton></TableCell>
+
                     </TableRow>
                   ))}
                 </TableBody>
