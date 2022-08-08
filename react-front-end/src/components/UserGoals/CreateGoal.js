@@ -12,8 +12,12 @@ const CreateGoal = (props) => {
   const openNotificationWithIcon = (type) => {
     notification[type]({
       message: 'Goalify',
-      description:
-        `Thank you ${props.userName} your Gaol has been successfully created!!!`
+      description: (
+        <>
+        Thank you {props.userName}.<br />
+        Your Gaol has been successfully created!!!
+        </>
+      )
     });
   };
 

@@ -11,14 +11,16 @@ const EditGoal = (props) => {
   const openNotificationWithIcon = (type) => {
     notification[type]({
       message: 'Goalify',
-      description:
-        `Thank you ${props.userName} your Gaol has been successfully Edited!!!
-        `
-
+      description: (
+        <>
+          Thank you {props.userName}.<br />
+          Gaol has been successfully Edited!!!
+        </>
+      )
     });
   };
 
-  
+
   const formValues = {
     title: props.goal.title,
     description: props.goal.description,
@@ -41,8 +43,8 @@ const EditGoal = (props) => {
       .catch((err) => alert("Something went wrong"));
   };
 
-  
-  
+
+
 
   return (
     <>
