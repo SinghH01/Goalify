@@ -1,0 +1,14 @@
+.body {
+  height: 100vh;
+  background-color: #a0d5d2;
+}
+.header {
+  padding-top: 50px;
+  padding-left: 20px;
+  width: 60%;
+  /* overflow: hidden; */
+}
+.header h1 {
+  font-weight: bold;
+  text-transform: capitalize;
+}
