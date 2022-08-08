@@ -8,8 +8,18 @@ import AddIcon from '@material-ui/icons//Add';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography, Fab } from '@material-ui/core'
+import { notification } from 'antd';
+
 
 export default function GoalsTableRow(props) {
+
+  const openNotificationWithIcon = (type) => {
+    notification[type]({
+      message: 'Goalify',
+      description:
+        `Your Gaol has been deleted!!!`
+    });
+  };
 
   const { id, title, description, image, start_date, end_date } = props.obj;
   const [open, setOpen] = useState(false);
@@ -24,6 +34,7 @@ export default function GoalsTableRow(props) {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
+          openNotificationWithIcon("error")
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
