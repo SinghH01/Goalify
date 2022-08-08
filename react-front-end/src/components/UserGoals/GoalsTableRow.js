@@ -13,11 +13,11 @@ import { notification } from 'antd';
 
 export default function GoalsTableRow(props) {
 
-  const openNotificationWithIcon = (type) => {
+  const openNotificationWithIcon = (type, text) => {
     notification[type]({
       message: 'Goalify',
       description:
-        `Your Gaol has been deleted!!!`
+        `Your ${text} has been deleted!!!`
     });
   };
 
@@ -34,7 +34,7 @@ export default function GoalsTableRow(props) {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
-          openNotificationWithIcon("error")
+          openNotificationWithIcon("error", "Goal")
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
@@ -48,6 +48,7 @@ export default function GoalsTableRow(props) {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
+          openNotificationWithIcon("error", "MileStone")
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
