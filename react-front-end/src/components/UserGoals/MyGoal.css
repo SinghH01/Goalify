@@ -1,6 +1,4 @@
-
-.form-wrapper
-{
+.form-wrapper {
   max-width: 500px;
   margin: 0 auto;
 }
@@ -12,15 +10,15 @@
   font-weight: 700;
   font-family: "Montserrat";
 
-  }
+}
 
 .table-wrapper {
   display: flex;
-      justify-content: space-around;
-      flex-direction: row;
-      margin: 30px;
-      padding: 10px;
-      
+  justify-content: space-around;
+  flex-direction: row;
+  margin: 30px;
+  padding: 10px;
+
 
 }
 
@@ -41,3 +39,10 @@
 }
 
 
+.milestone-heading {
+
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 5px
+}
