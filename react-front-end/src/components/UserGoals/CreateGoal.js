@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
 import GoalForm from "./GoalForm";
-import { Button, notification, Space } from 'antd';
-import 'antd/dist/antd.css';
+import { notification } from 'antd';
+
 
 
 
@@ -13,9 +13,7 @@ const CreateGoal = (props) => {
     notification[type]({
       message: 'Goalify',
       description:
-        `Thank you ${props.userName} your Gaol has been successfully created
-        `
-
+        `Thank you ${props.userName} your Gaol has been successfully created!!!`
     });
   };
 
