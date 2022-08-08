@@ -4,9 +4,10 @@ import moment from 'moment';
 import './MyGoal.css'
 import DeleteIcon from '@material-ui/icons//Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons//Add';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography } from '@material-ui/core'
+import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography, Fab } from '@material-ui/core'
 
 export default function GoalsTableRow(props) {
 
@@ -89,8 +90,12 @@ export default function GoalsTableRow(props) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
+              <div className="milestone-heading"><h5>Milestones</h5>
+                <Fab size="small" color="primary" aria-label="add">
+                  <AddIcon />
+                </Fab>
+              </div>
               <Typography variant="h6" gutterBottom component="div">
-                Milsestones
               </Typography>
               <Table size="small" aria-label="milsestones">
                 <TableHead>
@@ -108,7 +113,7 @@ export default function GoalsTableRow(props) {
                       <TableCell>{milestone.description}</TableCell>
                       <TableCell>{moment(milestone.end_date).format('MMMM Do, YYYY')}</TableCell>
                       <TableCell><IconButton onClick={() => deleteMilestone(milestone.id)}>
-                      <DeleteIcon />
+                        <DeleteIcon />
                       </IconButton></TableCell>
 
                     </TableRow>
