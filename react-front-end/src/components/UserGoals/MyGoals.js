@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import './MyGoal.css'
 import EditGoal from './EditGoals';
 import CreateGoal from './CreateGoal';
+import CreateMilestone from './CreateMilestone';
 // import { Button } from 'react-bootstrap';
 import Loading from "../Loading";
 import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Fab } from '@material-ui/core';
@@ -38,7 +39,13 @@ export default function MyGoals() {
 
   const DataTable = () => {
     return goals.map((res, i) => {
-      return <GoalsTableRow handleEdit={handleEdit} obj={res} key={i} setState={setState} />;
+      return <GoalsTableRow
+        obj={res}
+        key={i}
+        setState={setState} 
+        handleEdit={handleEdit}
+        handleMileStone={handleMileStone}
+        />;
     });
   };
 
@@ -51,9 +58,10 @@ export default function MyGoals() {
     setState("edit");
   }
 
-
-
-
+  const handleMileStone = (goal) => {
+    setGoal({ ...goal })
+    setState("createMilestone");
+  }
 
 
   return (<>
@@ -87,7 +95,8 @@ export default function MyGoals() {
       </>
     )}
     {state === "create" && (<CreateGoal userId={user.id} setState={setState} />)}
-    {state === "edit" && (<EditGoal goal={goal} setState={setState} />)}
+    {state === "createMilestone" && (<CreateMilestone goalId={goal.id} setState={setState} />)}
+    {state === "edit" && (<EditGoal  goal={goal} setState={setState} />)}
     {state === "loading" && (<Loading />)}
   </>
   );
