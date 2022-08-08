@@ -1,27 +1,26 @@
-import React from 'react'
+import React from 'react';
 import { useState, useEffect } from 'react';
 import Axios from 'axios'
 import { useRecoilState } from 'recoil';
 import { userState } from '../../App';
 import "bootstrap/dist/css/bootstrap.css";
-import GoalsTableRow from './GoalsTableRow';
 import './MyGoal.css'
 import EditGoal from './EditGoals';
 import CreateGoal from './CreateGoal';
-import { Button, Table } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import Loading from "../Loading";
+import MilestonesList from './MilestonesList';
+import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Fab, IconButton } from '@material-ui/core';
+import AddIcon from '@material-ui/icons//Add';
 
 
 
-
-
-function MyGoals() {
+export default function Milestones() {
 
   const [goals, setGoals] = useState([]);
   const [user, setUser] = useRecoilState(userState);
   const [state, setState] = useState("all")
   const [goal, setGoal] = useState({})
-  const [milestones, setMilestones] = useState([])
 
 
   useEffect(() => {
@@ -31,9 +30,7 @@ function MyGoals() {
   const fetchGoals = async () => {
     try {
       const response = await Axios.get(`/api/goals/${user.id}`);
-      const res = await Axios.get(`/api/milestones`);
       setGoals(response.data);
-      setMilestones(res.data);
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +38,7 @@ function MyGoals() {
 
   const DataTable = () => {
     return goals.map((res, i) => {
-      return <GoalsTableRow handleEdit={handleEdit} obj={res} key={i} setState={setState}/>;
+      return <MilestonesList handleEdit={handleEdit} obj={res} key={i} setState={setState} />;
     });
   };
 
@@ -55,36 +52,44 @@ function MyGoals() {
   }
 
 
+
+
+
+
   return (<>
     {state === "all" && (
       <>
-        <Button className='createButton' variant="outline-primary" onClick={handleClick}>Create Goal</Button>{' '}
-          <div className="table-wrapper">
-            <Table striped bordered hover variant="dark">
-              <thead>
-                <tr>
-                  <th>Title</th>
-                  <th>Description</th>
-                  <th>image</th>
-                  <th>Start</th>
-                  <th>End</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              <tbody>{DataTable()}</tbody>
+      <h3 className='goal_header'>My Goals</h3>
+        <Fab color="primary" aria-label="add" className='createButton' onClick={handleClick}>
+          <AddIcon />
+        </Fab>
+        <div className="table-wrapper">
+          <TableContainer component={Paper}>
+            <Table aria-label="collapsible table">
+              <TableHead>
+                <TableRow >
+                  <TableCell />
+                  <TableCell>Title</TableCell>
+                  <TableCell>Description</TableCell>
+                  <TableCell>Image</TableCell>
+                  <TableCell>Start</TableCell>
+                  <TableCell>End</TableCell>
+                  <TableCell>Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {DataTable()}
+              </TableBody>
             </Table>
-          </div>
+          </TableContainer>
+        </div>
+
       </>
     )}
-
     {state === "create" && (<CreateGoal userId={user.id} setState={setState} />)}
     {state === "edit" && (<EditGoal goal={goal} setState={setState} />)}
     {state === "loading" && (<Loading />)}
-
-
   </>
   );
 
 }
-
-export default MyGoals;
