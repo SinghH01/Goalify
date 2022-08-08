@@ -1,16 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, FormControl, Button } from "react-bootstrap";
 
 
-const GoalForm = (props) => {
+const MilestoneForm = (props) => {
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().required(" Title Can't be Balnk"),
     description: Yup.string().required("Description Can't be Balnk"),
     // image: Yup.string().required("Required"),
-    start_date: Yup.date().required("Start Date Required"),
     end_date: Yup.date().required("End Date Required")
   });
 
@@ -38,26 +37,7 @@ const GoalForm = (props) => {
               component="span"
             />
           </FormGroup>
-          <FormGroup>
-          <label>Image</label>
-            <Field name="image" type="test"
-              className="form-control" />
-            <ErrorMessage
-              name="image"
-              className="d-block invalid-feedback"
-              component="span"
-            />
-          </FormGroup>
-          <FormGroup>
-          <label>Start Date</label>
-            <Field name="start_date" type="date"
-              className="form-control" />
-            <ErrorMessage
-              name="start_date"
-              className="d-block invalid-feedback"
-              component="span"
-            />
-          </FormGroup>
+          
           <FormGroup>
           <label>End Date</label>
             <Field name="end_date" type="date"
@@ -78,4 +58,4 @@ const GoalForm = (props) => {
   );
 };
 
-export default GoalForm;
+export default MilestoneForm;

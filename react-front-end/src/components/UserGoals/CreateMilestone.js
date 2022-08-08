@@ -1,16 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
-import GoalForm from "./GoalForm";
+import MilestoneForm from "./MilestoneForm";
 
-
-const CreateGoal = (props) => {
-
+const CreateMilestone = (props) => {
   const [formValues, setFormValues] =
-    useState({ title: '', description: '', image: '', start_date: '', end_date: '' })
+    useState({ title: '', description: '', end_date: '' })
+
   const onSubmit = goalObject => {
     props.setState("loading")
     Axios.post(
-      `http://localhost:8080/api/goals/${props.userId}`,
+      `http://localhost:8080/api/milestones/add/${props.goalId}`,
       goalObject)
       .then(res => {
         props.setState("all")
@@ -21,15 +20,15 @@ const CreateGoal = (props) => {
 
   return (
     <>
-      <h1 className="goal_header">Greate New Goal</h1>
-      <GoalForm initialValues={formValues}
+      <h1 className="goal_header">Greate MileStone</h1>
+      <MilestoneForm initialValues={formValues}
         onSubmit={onSubmit}
         enableReinitialize>
-        Create Goal
-      </GoalForm>
+        Create Milestone
+      </MilestoneForm>
     </>
   )
 }
 
 
-export default CreateGoal
+export default CreateMilestone
