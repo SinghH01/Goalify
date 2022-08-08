@@ -29,8 +29,8 @@ const Footer = (props) => (
         <a
           href="https://github.com/Huwaida1990"
           className="icon fa-github alt"
-        >
-          <span className="label"><AiFillGithub />GitHub</span>
+        ><AiFillGithub />
+          <span className="label"><AiFillGithub /> GitHub</span>
         </a>
 
       </section>
