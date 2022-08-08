@@ -8,7 +8,7 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography } from '@material-ui/core'
 
-export default function MilestonesList(props) {
+export default function GoalsTableRow(props) {
 
   const { id, title, description, image, start_date, end_date } = props.obj;
   const [open, setOpen] = useState(false);

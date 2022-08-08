@@ -9,13 +9,13 @@ import EditGoal from './EditGoals';
 import CreateGoal from './CreateGoal';
 // import { Button } from 'react-bootstrap';
 import Loading from "../Loading";
-import MilestonesList from './MilestonesList';
-import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Fab, IconButton } from '@material-ui/core';
+import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons//Add';
+import GoalsTableRow from './GoalsTableRow';
 
 
 
-export default function Milestones() {
+export default function MyGoals() {
 
   const [goals, setGoals] = useState([]);
   const [user, setUser] = useRecoilState(userState);
@@ -38,7 +38,7 @@ export default function Milestones() {
 
   const DataTable = () => {
     return goals.map((res, i) => {
-      return <MilestonesList handleEdit={handleEdit} obj={res} key={i} setState={setState} />;
+      return <GoalsTableRow handleEdit={handleEdit} obj={res} key={i} setState={setState} />;
     });
   };
 
@@ -59,7 +59,7 @@ export default function Milestones() {
   return (<>
     {state === "all" && (
       <>
-      <h3 className='goal_header'>My Goals</h3>
+        <h3 className='goal_header'>My Goals</h3>
         <Fab color="primary" aria-label="add" className='createButton' onClick={handleClick}>
           <AddIcon />
         </Fab>
