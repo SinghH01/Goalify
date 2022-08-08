@@ -98,7 +98,7 @@ export default function MyGoals() {
       </>
     )}
     {state === "create" && (<CreateGoal userId={user.id} setState={setState} userName={user.first_name} />)}
-    {state === "createMilestone" && (<CreateMilestone goalId={goal.id} setState={setState} />)}
+    {state === "createMilestone" && (<CreateMilestone goalId={goal.id} setState={setState} userName={user.first_name} />)}
     {state === "edit" && (<EditGoal  goal={goal} setState={setState} userName={user.first_name}/>)}
     {state === "loading" && (<Loading />)}
   </>
