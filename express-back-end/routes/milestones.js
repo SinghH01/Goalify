@@ -30,5 +30,24 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
+
+  router.delete("/delete/:id", (req, res) => {
+    db.query(`DELETE FROM milestones
+    WHERE id = $1;`, [
+      req.params.id
+    ])
+      .then(() => {
+        setTimeout(() => {
+          res.status(204).json({});
+        }, 1000);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
   return router;
 };
