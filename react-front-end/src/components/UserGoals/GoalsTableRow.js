@@ -87,6 +87,7 @@ export default function GoalsTableRow(props) {
                     <TableCell>Title</TableCell>
                     <TableCell>Description</TableCell>
                     <TableCell>End Date</TableCell>
+                    <TableCell>Action</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -95,6 +96,9 @@ export default function GoalsTableRow(props) {
                       <TableCell> {milestone.title}</TableCell>
                       <TableCell>{milestone.description}</TableCell>
                       <TableCell>{moment(milestone.end_date).format('MMMM Do, YYYY')}</TableCell>
+                      <TableCell><IconButton>
+                        <DeleteIcon />
+                      </IconButton></TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
