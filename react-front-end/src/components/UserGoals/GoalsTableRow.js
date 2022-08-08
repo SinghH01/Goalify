@@ -91,7 +91,7 @@ export default function GoalsTableRow(props) {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
               <div className="milestone-heading"><h5>Milestones</h5>
-                <Fab size="small" color="primary" aria-label="add">
+                <Fab size="small" color="primary" aria-label="add" onClick={() => props.handleMileStone({ ...props.obj })}>
                   <AddIcon />
                 </Fab>
               </div>
