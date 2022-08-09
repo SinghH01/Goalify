@@ -24,7 +24,7 @@ function GoalListItem(props) {
   const likeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/like', { userId: user.id, goalId: props.id });
-      console.log(response.data);
+      openNotificationWithIcon("success", "added to");
     } catch (error) {
       console.log(error);
     }
@@ -32,34 +32,27 @@ function GoalListItem(props) {
   const dislikeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/dislike', { userId: user.id, goalId: props.id });
-      console.log(response.data);
+      openNotificationWithIcon("error", "removed from");
     } catch (error) {
       console.log(error);
     }
   };
   function favButton() {
-    if (favState === false) {
+    if (!favState) {
       likeGoal();
-      setFavState(true)
-      openNotificationWithIcon("success", "added to")
+      setFavState(prev => !prev);
 
     } else {
       dislikeGoal();
-      setFavState(false);
-      openNotificationWithIcon("error", "removed from")
-
+      setFavState(prev => !prev);
     }
-  }
+  };
+
   const checkFavourite = async () => {
     try {
       const response = await Axios.post('/favourites/check', { userId: user.id, goalId: props.id });
-      console.log(response.data.liked)
-      //console.log("Prints First")
       if (response.data.liked === true) {
-        setFavState(true)
-
-      } else {
-        setFavState(false)
+        setFavState(prev => !prev);
       }
     } catch (error) {
       console.log(error);
@@ -67,7 +60,7 @@ function GoalListItem(props) {
   };
 
   useEffect(() => {
-    checkFavourite()
+    checkFavourite();
   }, [])
 
   const openNotificationWithIcon = (type, text) => {
@@ -75,10 +68,9 @@ function GoalListItem(props) {
       message: 'Goalify',
       description: (
         <>
-          The Goal <strong>{props.title}</strong> {text} the Favourites`
+          The Goal <strong>{props.title}</strong> {text} the Favourites!!!
         </>
       )
-
     });
   };
 
@@ -114,9 +106,11 @@ function GoalListItem(props) {
 
           <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span >
-              {favState === false && (<FavoriteBorderIcon onClick={favButton} />)}
-              {favState === true && (<FavoriteIcon onClick={favButton} />)}
-
+              {!favState ?
+                <FavoriteBorderIcon onClick={favButton} />
+                :
+                <FavoriteIcon onClick={favButton} />
+              }
             </span>
             <span>
               <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button>
