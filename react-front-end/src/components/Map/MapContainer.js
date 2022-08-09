@@ -20,7 +20,6 @@ function getGeo() {
       const { lat, lng } = response.results[0].geometry.location;
       setLat(lat);
       setLng(lng);
-      console.log(lat, lng);
     },
     (error) => {
       console.error(error);

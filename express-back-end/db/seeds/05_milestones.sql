@@ -94,47 +94,47 @@ VALUES (
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   2,
-  'Initial research',
-  'Research online to find different ways to invest money',
+  'Learn breathing technique',
+  'Meditate 15 mins every day and focus on breathing',
   '2022-12-05'
 );
 
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   2,
-  'Pick your interest',
-  'Pick the area that intrests you the most . It could be stock, real estate or anything else',
+  'Body scan',
+  'Spend atleast 30 mins a day doing guided meditation technique called Body Scan',
   '2022-12-08'
 );
 
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   2,
-  'Learn the skill',
-  'Find the tutorials or book and finish it by the end of the oal period',
+  'Unguided meditation',
+  'Meditate without any guiding voice.',
   '2022-12-25'
 );
 
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   3,
-  'Initial research',
-  'Research online to find different ways to invest money',
+  'Fundamentals',
+  'Learn javascript syntax and basic fundamentals',
   '2022-12-05'
 );
 
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   3,
-  'Pick your interest',
-  'Pick the area that intrests you the most . It could be stock, real estate or anything else',
+  'Learn HTML and CSS',
+  'Learn HTML and CSS',
   '2022-12-08'
 );
 
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   3,
-  'Learn the skill',
-  'Find the tutorials or book and finish it by the end of the oal period',
+  'Build a project',
+  'Build a mini project using learned stuff',
   '2022-12-25'
 );
