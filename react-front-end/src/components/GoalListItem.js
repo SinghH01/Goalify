@@ -73,12 +73,12 @@ function GoalListItem(props) {
   const openNotificationWithIcon = (type, text) => {
     notification[type]({
       message: 'Goalify',
-      description:(
+      description: (
         <>
-        Goal <strong>{props.title}</strong> {text} the Favourites
+          The Goal <strong>{props.title}</strong> {text} the Favourites`
         </>
       )
-       
+
     });
   };
 
