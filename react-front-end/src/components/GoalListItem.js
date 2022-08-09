@@ -10,6 +10,8 @@ import GoalDetails from "./GoalDetails";
 import Axios from 'axios'
 import { useRecoilState } from 'recoil';
 import { userState } from '../App';
+import { notification } from 'antd';
+
 
 function GoalListItem(props) {
 
@@ -17,6 +19,7 @@ function GoalListItem(props) {
 
   const [favState, setFavState] = useState(false)
   const [user, setUser] = useRecoilState(userState);
+
 
   const likeGoal = async () => {
     try {
@@ -38,6 +41,7 @@ function GoalListItem(props) {
     if (favState === false) {
       likeGoal();
       setFavState(true)
+      
     } else {
       dislikeGoal();
       setFavState(false);
@@ -45,10 +49,10 @@ function GoalListItem(props) {
   }
   const checkFavourite = async () => {
     try {
-      const response = await Axios.post('/favourites/check',{ userId: user.id, goalId: props.id });
+      const response = await Axios.post('/favourites/check', { userId: user.id, goalId: props.id });
       console.log(response.data.liked)
       //console.log("Prints First")
-      if(response.data.liked === true) {
+      if (response.data.liked === true) {
         setFavState(true)
       } else {
         setFavState(false)
@@ -58,9 +62,17 @@ function GoalListItem(props) {
     }
   };
 
-useEffect(() =>{
-checkFavourite()
-}, [])  
+  useEffect(() => {
+    checkFavourite()
+  }, [])
+
+  const openNotificationWithIcon = (type, text) => {
+    notification[type]({
+      message: 'Goalify',
+      description:
+        `The Goal ${text} the Favourites`
+    });
+  };
 
 
   let styles = {
