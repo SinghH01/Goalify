@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import moment from 'moment';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -43,6 +43,24 @@ function GoalListItem(props) {
       setFavState(false);
     }
   }
+  const checkFavourite = async () => {
+    try {
+      const response = await Axios.post('/favourites/check',{ userId: user.id, goalId: props.id });
+      console.log(response.data.liked)
+      //console.log("Prints First")
+      if(response.data.liked === true) {
+        setFavState(true)
+      } else {
+        setFavState(false)
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+useEffect(() =>{
+checkFavourite()
+}, [])  
 
 
   let styles = {
