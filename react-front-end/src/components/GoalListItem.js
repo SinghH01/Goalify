@@ -43,10 +43,11 @@ function GoalListItem(props) {
       setFavState(true)
       openNotificationWithIcon("success", "added to")
 
-
     } else {
       dislikeGoal();
       setFavState(false);
+      openNotificationWithIcon("error", "removed from")
+
     }
   }
   const checkFavourite = async () => {
