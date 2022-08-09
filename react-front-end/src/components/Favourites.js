@@ -13,7 +13,7 @@ function Favourites() {
 
   useEffect(() => {
     fetchGoals();
-  }, []);
+  }, [goals]);
   
   const fetchGoals = async () => {
     try {
