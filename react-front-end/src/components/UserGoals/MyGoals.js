@@ -13,6 +13,9 @@ import Loading from "../Loading";
 import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Fab } from '@material-ui/core';
 import AddIcon from '@material-ui/icons//Add';
 import GoalsTableRow from './GoalsTableRow';
+import 'antd/dist/antd.css';
+
+
 
 
 
@@ -94,9 +97,9 @@ export default function MyGoals() {
 
       </>
     )}
-    {state === "create" && (<CreateGoal userId={user.id} setState={setState} />)}
-    {state === "createMilestone" && (<CreateMilestone goalId={goal.id} setState={setState} />)}
-    {state === "edit" && (<EditGoal  goal={goal} setState={setState} />)}
+    {state === "create" && (<CreateGoal userId={user.id} setState={setState} userName={user.first_name} />)}
+    {state === "createMilestone" && (<CreateMilestone goalId={goal.id} setState={setState} userName={user.first_name} />)}
+    {state === "edit" && (<EditGoal  goal={goal} setState={setState} userName={user.first_name}/>)}
     {state === "loading" && (<Loading />)}
   </>
   );
