@@ -41,7 +41,7 @@ function GoalListItem(props) {
     if (favState === false) {
       likeGoal();
       setFavState(true)
-      
+
     } else {
       dislikeGoal();
       setFavState(false);
@@ -54,6 +54,8 @@ function GoalListItem(props) {
       //console.log("Prints First")
       if (response.data.liked === true) {
         setFavState(true)
+        openNotificationWithIcon("success", "added to")
+
       } else {
         setFavState(false)
       }
