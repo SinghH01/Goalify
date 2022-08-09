@@ -14,7 +14,7 @@ const EditGoal = (props) => {
       description: (
         <>
           Thank you {props.userName}.<br />
-          Gaol has been successfully Edited!!!
+          Your Gaol has been successfully Edited!!!
         </>
       )
     });
