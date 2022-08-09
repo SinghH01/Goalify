@@ -15,6 +15,20 @@ module.exports = (db) => {
       });
   });
 
+  router.post("/user_milestones", (req, res) => {
+    values =[ req.body.milestoneId, req.body.userId]
+    db.query(`UPDATE users_milestones
+    SET completed = true
+    WHERE milestone_id = $1 AND user_id = $2 ;`, values)
+      .then(() => {
+        res.send({Message: "Updated Successfully"})
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
   router.get("/:id", (req, res) => {
     db.query(`SELECT * FROM milestones where goal_id = $1;`,[
@@ -63,7 +77,6 @@ module.exports = (db) => {
           .json({ error: err.message });
       });
   });
-
 
   return router;
 };
