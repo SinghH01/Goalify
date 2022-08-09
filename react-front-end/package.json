@@ -7,6 +7,7 @@
     "@iconify/react": "^3.2.2",
     "@material-ui/core": "^4.12.4",
     "@material-ui/icons": "^4.11.3",
+    "antd": "^4.22.4",
     "axios": "^0.18.1",
     "bootstrap": "^5.2.0",
     "formik": "^2.2.9",
@@ -24,6 +25,7 @@
     "react-scroll-to-bottom": "^4.2.0",
     "react-simple-image-slider": "^2.4.1",
     "recoil": "^0.7.4",
+    "rsuite": "^5.16.4",
     "socket.io-client": "^4.5.1",
     "yup": "^0.32.11"
   },
