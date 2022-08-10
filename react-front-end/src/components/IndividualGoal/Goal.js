@@ -7,10 +7,14 @@ import './goal.css'
 import MapContainer from "../Map/MapContainer";
 import Confeti from "./confetti";
 import Jump from 'react-reveal/Jump';
+import Flip from 'react-reveal/Flip';
 import moment from 'moment';
 import 'antd/dist/antd.css'
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import EventBusyIcon from '@material-ui/icons/EventBusy';
 import { Progress, Steps } from 'antd';
 const { Step } = Steps;
+
 
 
 
@@ -105,20 +109,45 @@ function Goal(props) {
 
   return (
     <div className="goal-main">
+      {confetti === true && (<Confeti />)}
 
-      <div className="goal">
-        <h1>{goal.title}</h1>
-        <Jump>
-        <img className="goal-image" src={goal.image} />
-        </Jump> 
-          {confetti === true && (<Confeti />)}
-          
-        <Steps current={current} onChange={onChange} direction="vertical">
-          {individualMilestone}
-        </Steps>
-        <>
-          <Progress type="circle" percent={Math.round(daysLeft)} format={(percent) => `${Math.round(dayLeft)} Days Left`} />
-        </>
+      <div className="goal"> 
+          <Jump>
+          <img className="goal-image" src={goal.image} />
+          </Jump> 
+          <Flip left>
+        <div className="goal-details">
+          <div>     
+            <h1>{goal.title}</h1>            
+            <h5>{goal.description}</h5>
+          </div>
+
+          <div className="goal-dates">
+            <div className="start-date">
+              <p><EventAvailableIcon /> START DATE</p>
+              <p>{` ${moment(goal.start_date).format('MMMM Do, YYYY')}`}</p>
+            
+            </div>
+            <div className="end-date">
+            <p><EventBusyIcon /> END DATE</p>
+            <p>{` ${moment(goal.end_date).format('MMMM Do, YYYY')}`}</p>
+            </div>
+          </div>
+        </div> 
+        </Flip>
+        <div className="goal-progress">
+          <div className="steps">
+            <h3>MILESTONES</h3>
+            <Steps current={current} onChange={onChange} direction="vertical">
+            {individualMilestone}
+            </Steps>      
+          </div>
+          <div>
+            <h5>UNTIL GOAL COMPLETED</h5>
+            <Progress className="progress-bar" type="circle" percent={Math.round(daysLeft)} format={(percent) => `${Math.round(dayLeft)} Days Left`} />
+          </div>
+        </div>
+        
       </div>
 
       <div className="chat">
