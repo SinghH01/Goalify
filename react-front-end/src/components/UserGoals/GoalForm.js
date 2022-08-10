@@ -67,15 +67,15 @@ const GoalForm = (props) => {
             </FormGroup>
 
             <FormGroup>
-              <div class="custom-file">
-                <input id="inputGroupFile01" type="file" class="custom-file-input"
-                  name='image'
-                  accept='image/*'
-                  onChange={(e) =>
-                    setFieldValue('image', e.currentTarget.files[0])
-                  } />
-              </div>
-
+            <label htmlFor="image">Image</label>
+                <div class="custom-file">
+                  <input id="inputGroupFile01" type="file" class="custom-file-input"
+                    name='image'
+                    accept='image/*'
+                    onChange={(e) =>
+                      setFieldValue('image', e.currentTarget.files[0])
+                    } />
+                </div>
             </FormGroup>
             <FormGroup>
               <label>Start Date</label>
@@ -99,9 +99,11 @@ const GoalForm = (props) => {
                 value={values.end_date}
               />
             </FormGroup>
-            <Button variant="outline-success" block="block" type="submit">
-              {props.children}
-            </Button>{' '}
+            <div className="form-submit">
+              <Button variant="outline-success" block="block" type="submit">
+                {props.children}
+              </Button>{' '}
+            </div>
           </Form>
         )}
       </Formik>
