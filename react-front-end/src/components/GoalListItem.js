@@ -85,7 +85,7 @@ function GoalListItem(props) {
 
   return (
     <>
-      <Card style={styles}>
+      <Card className="goal-card" style={styles}>
         <Card.Img variant="top" src={props.image} style={{ height: '300px', cursor: "pointer" }} onClick={() => setModalShow(true)} />
         <Card.Body >
           <Card.Title>{props.title}</Card.Title>
@@ -107,9 +107,9 @@ function GoalListItem(props) {
           <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span >
               {!favState ?
-                <FavoriteBorderIcon onClick={favButton} />
+                <FavoriteBorderIcon style={{cursor: "pointer"}} onClick={favButton} />
                 :
-                <FavoriteIcon onClick={favButton} />
+                <FavoriteIcon style={{cursor: "pointer"}} onClick={favButton} />
               }
             </span>
             <span>
