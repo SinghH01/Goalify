@@ -38,7 +38,7 @@ const CreateGoal = (props) => {
 
   return (
     <>
-      <h1 className="goal_header">Greate New Goal</h1>
+      <h2 className="goal_header">Create New Goal</h2>
       <GoalForm initialValues={formValues}
         onSubmit={onSubmit}
         enableReinitialize>
