@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
-import NewForm from "./NewForm";
+import GoalForm from "./GoalForm";
 import { notification } from 'antd';
 
 
@@ -39,11 +39,11 @@ const CreateGoal = (props) => {
   return (
     <>
       <h1 className="goal_header">Greate New Goal</h1>
-      <NewForm initialValues={formValues}
+      <GoalForm initialValues={formValues}
         onSubmit={onSubmit}
         enableReinitialize>
         Create Goal
-      </NewForm>
+      </GoalForm>
     </>
   )
 }
