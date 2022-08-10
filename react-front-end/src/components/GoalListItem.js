@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import moment from 'moment';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -10,6 +10,7 @@ import GoalDetails from "./GoalDetails";
 import Axios from 'axios'
 import { useRecoilState } from 'recoil';
 import { userState } from '../App';
+import DashboardContext from "./DashBoardContext";
 import { notification } from 'antd';
 
 
@@ -19,6 +20,9 @@ function GoalListItem(props) {
 
   const [favState, setFavState] = useState(false)
   const [user, setUser] = useRecoilState(userState);
+
+  const setState = useContext(DashboardContext)
+
 
 
   const likeGoal = async () => {
@@ -75,6 +79,22 @@ function GoalListItem(props) {
   };
 
 
+  const joinGaol = () => {
+    setState("loading")
+    Axios.post(
+      `http://localhost:8080/active/add`,
+      { userId: user.id, goalId: props.id })
+      .then((res) => {
+        if (res.status === 204) {
+          setState("activegoals");
+          // openNotificationWithIcon("error", "MileStone")
+        } else Promise.reject();
+      })
+      .catch(err => alert('Something went wrong'))
+  };
+
+
+
   let styles = {
     width: "80%",
     marginBottom: '26px',
@@ -107,13 +127,13 @@ function GoalListItem(props) {
           <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span >
               {!favState ?
-                <FavoriteBorderIcon style={{cursor: "pointer"}} onClick={favButton} />
+                <FavoriteBorderIcon style={{ cursor: "pointer" }} onClick={favButton} />
                 :
-                <FavoriteIcon style={{cursor: "pointer"}} onClick={favButton} />
+                <FavoriteIcon style={{ cursor: "pointer" }} onClick={favButton} />
               }
             </span>
             <span>
-              <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button>
+              <Button variant="primary" style={{ width: '66px', height: '42px' }} onClick={joinGaol}>Join</Button>
             </span>
           </ListGroup.Item>
         </ListGroup>
