@@ -107,9 +107,9 @@ function GoalListItem(props) {
           <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span >
               {!favState ?
-                <FavoriteBorderIcon onClick={favButton} />
+                <FavoriteBorderIcon style={{cursor: "pointer"}} onClick={favButton} />
                 :
-                <FavoriteIcon onClick={favButton} />
+                <FavoriteIcon style={{cursor: "pointer"}} onClick={favButton} />
               }
             </span>
             <span>
