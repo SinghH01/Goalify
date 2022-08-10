@@ -16,63 +16,95 @@ const GoalForm = (props) => {
 
   return (
     <div className="form-wrapper">
-      
-      <Formik {...props} validationSchema={validationSchema}>
-        <Form>
-          <FormGroup>
+
+      <Formik
+        validationSchema={validationSchema}
+
+
+        onSubmit={(values) => {
+
+          const formData = new FormData();
+          for (let value in values) {
+            formData.append(value, values[value]);
+          }
+
+          props.onSubmit(formData)
+          console.log(formData);
+
+        }}
+        initialValues={
+          { ...props.initialValues }
+        }
+
+      >
+
+        {({ handleSubmit, handleChange, values, setFieldValue }) => (
+          <Form>
+            <FormGroup>
               <label htmlFor="title">Title</label>
-              <Field name="title" className="form-control" type="text" />
-           
-            <ErrorMessage
-              name="title"
-              className="d-block invalid-feedback"
-              component="span"
-            />
-          </FormGroup>
-          <FormGroup>
-            <label htmlFor="description">Description</label>
-            <Field name="description" className="form-control" as="textarea" rows={3} cols={10} />
-            <ErrorMessage
-              name="description"
-              className="d-block invalid-feedback"
-              component="span"
-            />
-          </FormGroup>
-          <FormGroup>
-          <label>Image</label>
-            <Field name="image" type="test"
-              className="form-control" />
-            <ErrorMessage
-              name="image"
-              className="d-block invalid-feedback"
-              component="span"
-            />
-          </FormGroup>
-          <FormGroup>
-          <label>Start Date</label>
-            <Field name="start_date" type="date"
-              className="form-control" />
-            <ErrorMessage
-              name="start_date"
-              className="d-block invalid-feedback"
-              component="span"
-            />
-          </FormGroup>
-          <FormGroup>
-          <label>End Date</label>
-            <Field name="end_date" type="date"
-              className="form-control" />
-            <ErrorMessage
-              name="end_date"
-              className="d-block invalid-feedback"
-              component="span"
-            />
-          </FormGroup>
-          <Button variant="danger" 
-            block="block" type="submit">
-            {props.children}
-          </Button>
-        </Form>
+              <Field name="title" className="form-control" type="text"
+                onChange={handleChange}
+                value={values.title}
+              />
+
+              <ErrorMessage
+                name="title"
+                className="d-block invalid-feedback"
+                component="span"
+              />
+            </FormGroup>
+            <FormGroup>
+              <label htmlFor="description">Description</label>
+              <Field name="description" className="form-control" as="textarea" rows={3} cols={10}
+                onChange={handleChange}
+                value={values.description} />
+              <ErrorMessage
+                name="description"
+                className="d-block invalid-feedback"
+                component="span"
+              />
+            </FormGroup>
+
+            <FormGroup>
+
+              <input
+                className="custom-file-input"
+                type='file'
+                name='image'
+                accept='image/*'
+                onChange={(e) =>
+                  setFieldValue('image', e.currentTarget.files[0])
+                }
+              />
+            </FormGroup>
+            <FormGroup>
+              <label>Start Date</label>
+              <Field name="start_date" type="date"
+                className="form-control" />
+              <ErrorMessage
+                name="start_date"
+                className="d-block invalid-feedback"
+                onChange={handleChange}
+                value={values.start_date}
+              />
+            </FormGroup>
+            <FormGroup>
+              <label>End Date</label>
+              <Field name="end_date" type="date"
+                className="form-control" />
+              <ErrorMessage
+                name="end_date"
+                className="d-block invalid-feedback"
+                onChange={handleChange}
+                value={values.end_date}
+              />
+            </FormGroup>
+            <Button variant="danger"
+              block="block" type="submit">
+              {props.children}
+            </Button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
