@@ -23,5 +23,23 @@ module.exports = (db) => {
   });
 
 
+  router.post("/add", (req, res) => {
+    let values = [req.body.userId, req.body.goalId]
+
+    db.query(`INSERT INTO users_goals (user_id, goal_id)
+    VALUES ($1, $2)`, values)
+    .then(() => {
+      setTimeout(() => {
+        res.status(204).json({});
+      }, 1000);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
+
   return router;
 };
