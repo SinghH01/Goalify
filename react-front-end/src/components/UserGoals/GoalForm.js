@@ -30,7 +30,7 @@ const GoalForm = (props) => {
           }
 
           props.onSubmit(formData)
-          console.log(formData);
+
 
         }}
         initialValues={
@@ -67,20 +67,22 @@ const GoalForm = (props) => {
             </FormGroup>
 
             <FormGroup>
-            <label htmlFor="image">Image</label>
-                <div class="custom-file">
-                  <input id="inputGroupFile01" type="file" class="custom-file-input"
-                    name='image'
-                    accept='image/*'
-                    onChange={(e) =>
-                      setFieldValue('image', e.currentTarget.files[0])
-                    } />
-                </div>
+              <label htmlFor="image">Image</label>
+              <div class="custom-file">
+                <input id="inputGroupFile01" type="file" class="custom-file-input"
+                  name='image'
+                  accept='image/*'
+                  onChange={(e) =>
+                    setFieldValue('image', e.currentTarget.files[0])
+                  } />
+              </div>
             </FormGroup>
             <FormGroup>
               <label>Start Date</label>
               <Field name="start_date" type="date"
-                className="form-control" />
+                className="form-control"
+                value={values.start_date}
+              />
               <ErrorMessage
                 name="start_date"
                 className="d-block invalid-feedback"
