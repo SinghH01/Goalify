@@ -5,7 +5,8 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import "../GoalList.css"
 import { useRecoilState } from 'recoil';
 import { userState } from '../../App';
-import Goal from "./Goal";
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import EventBusyIcon from '@material-ui/icons/EventBusy';
 
 function ActiveListItem(props) {
   const [user, setUser] = useRecoilState(userState);
@@ -31,12 +32,12 @@ function ActiveListItem(props) {
         </Card.Body>
 
         <ListGroup className="list-group-flush">
-          <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', color: "gray" }}>
             <span >
-              Start Date{`-${moment(props.start_date).format('MMMM Do, YYYY')}`}
+              <EventAvailableIcon />{` ${moment(props.start_date).format('MMMM Do, YYYY')}`}
             </span>
             <span>
-              End Date{`-${moment(props.end_date).format('MMMM Do, YYYY')}`}
+              <EventBusyIcon />{` ${moment(props.end_date).format('MMMM Do, YYYY')}`}
             </span>
           </ListGroup.Item>
         </ListGroup>
