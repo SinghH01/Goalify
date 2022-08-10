@@ -21,7 +21,7 @@ function ActiveListItem(props) {
 
   return (
     <>
-      <Card style={styles}>
+      <Card className="goal-card" style={styles}>
         <Card.Img variant="top" src={props.image} style={{ height: '300px', cursor: "pointer" }}
           onClick={event => props.handleClick(props.id)} />
         <Card.Body >
