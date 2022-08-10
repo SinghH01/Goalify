@@ -6,6 +6,8 @@ import ActiveListItem from './ActiveListItem';
 import Goal from './Goal';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Zoom from 'react-reveal/Zoom';
+
 
 export default function ActiveList(props) {
   const goals = props.goals
@@ -26,6 +28,7 @@ export default function ActiveList(props) {
               goals.map((goal) => {
                 return (
                   <Col xs={6} >
+                    <Zoom>
                     <ActiveListItem
                       key={goal.id}
                       id={goal.id}
@@ -37,6 +40,7 @@ export default function ActiveList(props) {
                       online_goal={goal.online_goal}
                       handleClick={handleClick}
                     />
+                    </Zoom>
                   </Col>
                 );
               })

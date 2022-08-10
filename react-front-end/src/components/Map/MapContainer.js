@@ -35,7 +35,6 @@ let value = {
 getGeo();
   return (
     <div >
-      <h5>{props.location}</h5>
        {lat !== undefined && lng !== undefined && (<Map value = {value}/>)}      
     </div>
   );

@@ -1,9 +1,4 @@
-/* section {
-  height: 100vh;
-  overflow-y: scroll;
-  position: fixed;
-} */
-section h4 {
+ection h4 {
   font-size: calc(2.275rem + 0.3vw);
   font-weight: bold;
   margin-top: 20px;
@@ -17,4 +12,8 @@ section h4 {
 .list-group-item {
   display: flex;
   justify-content: space-between;
+}
+
+.goal-card:hover {
+  transform: scale(1.05);
 }
