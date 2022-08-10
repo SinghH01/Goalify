@@ -143,7 +143,7 @@ function Goal(props) {
             </Steps>      
           </div>
           <div>
-            <h5>UNTIL GOAL COMPLETED</h5>
+            <h5>UNTIL GOAL IS COMPLETED</h5>
             <Progress className="progress-bar" type="circle" percent={Math.round(daysLeft)} format={(percent) => `${Math.round(dayLeft)} Days Left`} />
           </div>
         </div>
