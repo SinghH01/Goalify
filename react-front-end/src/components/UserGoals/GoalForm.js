@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, FormControl, Button } from "react-bootstrap";
 
 
+
 const GoalForm = (props) => {
 
   const validationSchema = Yup.object().shape({
@@ -38,7 +39,7 @@ const GoalForm = (props) => {
 
       >
 
-        {({ handleSubmit, handleChange, values, setFieldValue }) => (
+        {({ handleChange, values, setFieldValue }) => (
           <Form>
             <FormGroup>
               <label htmlFor="title">Title</label>
@@ -66,16 +67,18 @@ const GoalForm = (props) => {
             </FormGroup>
 
             <FormGroup>
+            
+                  <input
+                    className="custom-file-input"
+                    type='file'
+                    name='image'
+                    accept='image/*'
+                    onChange={(e) =>
+                      setFieldValue('image', e.currentTarget.files[0])
+                    }
+                  />
+               
 
-              <input
-                className="custom-file-input"
-                type='file'
-                name='image'
-                accept='image/*'
-                onChange={(e) =>
-                  setFieldValue('image', e.currentTarget.files[0])
-                }
-              />
             </FormGroup>
             <FormGroup>
               <label>Start Date</label>
