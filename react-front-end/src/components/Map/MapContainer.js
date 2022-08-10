@@ -8,7 +8,7 @@ function MapContainer(props) {
   const [lat, setLat] = useState(undefined);
   const [lng, setLng] = useState(undefined);
 
-  Geocode.setApiKey(process.env.REACT_APP_MAP_KEY);
+  Geocode.setApiKey("AIzaSyDvv-ZvZZ0lRK-QlkG5w0XG8dCxHKgIoa8");
   Geocode.setLanguage("en");
   Geocode.setLocationType("ROOFTOP");
   Geocode.enableDebug();
