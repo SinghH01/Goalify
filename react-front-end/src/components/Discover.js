@@ -4,7 +4,6 @@ import axios from 'axios'
 import Search from './Search';
 import GoalList from './GoalList'
 import './discover.css'
-import DicoverNavbar from './DiscoverNavbar';
 
 
 
