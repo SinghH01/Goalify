@@ -70,10 +70,12 @@ export default function MyGoals() {
   return (<>
     {state === "all" && (
       <>
-        <h3 className='goal_header'>My Goals</h3>
-        <Fab color="primary" aria-label="add" className='createButton' onClick={handleClick}>
+        <h2 className='goal_header'>My Goals</h2>
+        <div className='createButton'>
+        <Fab color="primary" aria-label="add"  onClick={handleClick}>
           <AddIcon />
         </Fab>
+        </div>
         <div className="table-wrapper">
           <TableContainer component={Paper}>
             <Table aria-label="collapsible table">
