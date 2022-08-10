@@ -85,7 +85,7 @@ function GoalListItem(props) {
 
   return (
     <>
-      <Card style={styles}>
+      <Card className="goal-card" style={styles}>
         <Card.Img variant="top" src={props.image} style={{ height: '300px', cursor: "pointer" }} onClick={() => setModalShow(true)} />
         <Card.Body >
           <Card.Title>{props.title}</Card.Title>
