@@ -91,10 +91,19 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/:id", (req, res) => {
-    const values = [req.params.id, req.body.title, req.body.description, req.body.image, req.body.start_date, req.body.end_date]
+  router.post("/:id", upload.single('image'), (req, res) => {
+    console.log(req.body.title)
+    console.log(req.file)
+    const values = [
+      req.params.id,
+      req.body.title,
+      req.body.description,
+      req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename,
+      req.body.start_date,
+      req.body.end_date
+    ]
     db.query(`INSERT INTO goals (user_id, title, description, image, start_date, end_date)
-      VALUES ($1, $2, $3, $4, $5,$6)`, values)
+        VALUES ($1, $2, $3, $4, $5,$6)`, values)
       .then(() => {
         setTimeout(() => {
           res.status(204).json({});
