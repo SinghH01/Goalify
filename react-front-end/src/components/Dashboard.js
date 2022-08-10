@@ -28,7 +28,7 @@ export default function Dashboard() {
         <Sidebar onStateChange={setState} />
         <main className='dashboard-main'>
           {state === 'find' && (<DashboardContext.Provider value={setState} ><Discover/></DashboardContext.Provider>)}
-          {state === 'favourites' && (<Favourites />)}
+          {state === 'favourites' && (<DashboardContext.Provider value={setState} ><Favourites/></DashboardContext.Provider>)}
           {state === 'activegoals' && (<ActiveGoals />)}
           {state === 'mygoals' && (<MyGoals />)}
           {state === "loading" && (<Loading />)}
