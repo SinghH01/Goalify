@@ -9,6 +9,8 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography, Fab } from '@material-ui/core'
 import { notification } from 'antd';
+import { Popconfirm } from 'antd';
+
 
 
 export default function GoalsTableRow(props) {
@@ -93,9 +95,11 @@ export default function GoalsTableRow(props) {
           <IconButton onClick={() => props.handleEdit({ ...props.obj })}>
             <EditIcon />
           </IconButton>
-          <IconButton onClick={deleteGoal}>
+          <Popconfirm placement="top" title={"Are you sure to delete this goal"} onConfirm={deleteGoal} okText="Yes" cancelText="No">
+          <IconButton >
             <DeleteIcon />
           </IconButton>
+          </Popconfirm>
         </TableCell>
       </TableRow>
       <TableRow>
