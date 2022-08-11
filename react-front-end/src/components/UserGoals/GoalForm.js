@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { FormGroup, FormControl, Button } from "react-bootstrap";
-
+import { FormGroup, Button } from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GoalForm = (props) => {
@@ -30,7 +30,7 @@ const GoalForm = (props) => {
           }
 
           props.onSubmit(formData)
-          console.log(formData);
+
 
         }}
         initialValues={
@@ -67,23 +67,22 @@ const GoalForm = (props) => {
             </FormGroup>
 
             <FormGroup>
-            
-                  <input
-                    className="custom-file-input"
-                    type='file'
-                    name='image'
-                    accept='image/*'
-                    onChange={(e) =>
-                      setFieldValue('image', e.currentTarget.files[0])
-                    }
-                  />
-               
-
+              <label htmlFor="image">Image</label>
+              <div class="custom-file">
+                <input id="inputGroupFile01" type="file" class="custom-file-input"
+                  name='image'
+                  accept='image/*'
+                  onChange={(e) =>
+                    setFieldValue('image', e.currentTarget.files[0])
+                  } />
+              </div>
             </FormGroup>
             <FormGroup>
               <label>Start Date</label>
               <Field name="start_date" type="date"
-                className="form-control" />
+                className="form-control"
+                value={values.start_date}
+              />
               <ErrorMessage
                 name="start_date"
                 className="d-block invalid-feedback"
@@ -102,10 +101,11 @@ const GoalForm = (props) => {
                 value={values.end_date}
               />
             </FormGroup>
-            <Button variant="danger"
-              block="block" type="submit">
-              {props.children}
-            </Button>
+            <div className="form-submit">
+              <Button variant="outline-success" block="block" type="submit">
+                {props.children}
+              </Button>{' '}
+            </div>
           </Form>
         )}
       </Formik>

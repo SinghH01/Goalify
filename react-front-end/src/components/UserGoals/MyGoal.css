@@ -4,8 +4,8 @@
 }
 
 .goal_header {
-  margin: 0;
-  padding: 0.25em;
+  display: flex;
+  justify-content: center;
   color: rgba(0, 102, 130, 0.7);
   font-weight: 700;
   font-family: "Montserrat";
@@ -33,41 +33,25 @@
 
 
 .createButton {
-  margin-inline: auto !important;
-  display: block !important;
-  margin-block: 16px !important;
+  display: flex;
+  justify-content: end;
+  margin-right: 70px;
 }
 
 
-.milestone-heading {
+.milestone-header {
   display: flex;
   justify-content: space-between;
   padding: 10px;
   margin: 5px
 }
 
-.custom-file-input::-webkit-file-upload-button {
-  visibility: hidden;
-}
-.custom-file-input::before {
-  content: 'Upload Image';
-  display: inline-block;
-  background: linear-gradient(top, #f9f9f9, #e3e3e3);
-  border: 1px solid #999;
-  border-radius: 3px;
-  padding: 5px 8px;
-  outline: none;
-  white-space: nowrap;
-  cursor: pointer;
-  text-shadow: 1px 1px #fff;
-  font-weight: 700;
-  font-size: 10pt;
-}
-.custom-file-input:hover::before {
-  border-color: black;
-}
-.custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+.form-submit {
+  margin-top: 10px;
 }
 
 
+.custom-file {
+  margin-top: 4px;
+  
+}

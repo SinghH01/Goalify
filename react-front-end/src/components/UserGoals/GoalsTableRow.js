@@ -102,7 +102,7 @@ export default function GoalsTableRow(props) {
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Box sx={{ margin: 1 }}>
-              <div className="milestone-heading"><h5>Milestones</h5>
+              <div className="milestone-header"><h5>Milestones</h5>
                 <Fab size="small" color="primary" aria-label="add" onClick={() => props.handleMileStone({ ...props.obj })}>
                   <AddIcon />
                 </Fab>
