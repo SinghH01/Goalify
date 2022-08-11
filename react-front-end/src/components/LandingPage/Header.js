@@ -1,4 +1,6 @@
 import React, {useRef, useEffect} from "react"
+import Login from "../Auth/Login";
+import Register from "../Auth/Register";
 import "./header.css"
 
 export default function Header({timeline, ease}) {
@@ -23,6 +25,11 @@ export default function Header({timeline, ease}) {
     })
   })
 
+  function showLogin() {
+    return <Login />
+  }
+
+  showLogin()
   return (
     <div>
       <div className="header">
@@ -30,9 +37,9 @@ export default function Header({timeline, ease}) {
           GOALIFY
         </div>
         <div className="menu">
-          <div className="menu-item" ref = {el => menu_item1 = el}>About</div>
-          <div className="menu-item" ref = {el => menu_item2 = el}>Sign in</div>
-          <div className="menu-item" ref = {el => menu_item3 = el}>Register</div>
+          <div className="menu-item" ref = {el => menu_item1 = el} >ABOUT</div>
+          <div className="menu-item" ref = {el => menu_item2 = el} ><Login /> </div>
+          <div className="menu-item" ref = {el => menu_item3 = el}><Register /></div>
         </div>
       </div>
     </div>
