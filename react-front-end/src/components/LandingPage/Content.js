@@ -22,9 +22,9 @@ export default function Content({timeline}) {
     <div>
       <div className="content">
         <h1 className="content-inner-bold" ref = {el => h1 = el}>
-          <div>Hard work beats talent</div>
+          <div>Meet, Chat </div>
           <br />
-          <div>When talent doesnt work hard</div>
+          <div>and accomplish goals together !</div>
         </h1>
         <p ref = {el => pText = el}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         <button ref = {el => btn = el}>Discover</button>
