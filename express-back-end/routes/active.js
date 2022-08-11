@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-// const uniqWith = require('lodash.uniqwith')
 const _ = require("lodash");
 
 module.exports = (db) => {
