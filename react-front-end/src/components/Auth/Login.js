@@ -37,9 +37,7 @@ export default function Login({ setValue }) {
 
   return (
     <>
-      <Button variant="light" onClick={handleShow}>
-        Login
-      </Button>
+      <div onClick={handleShow}> LOGIN</div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
