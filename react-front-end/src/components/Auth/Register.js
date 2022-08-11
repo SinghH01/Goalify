@@ -30,9 +30,7 @@ export default function Register() {
 
   return (
     <>
-      <Button variant="light" onClick={handleShow}>
-       Register
-      </Button>
+      <div onClick={handleShow}> REGISTER</div>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
