@@ -8,6 +8,7 @@ import './App.css';
 import MyLandingPage from './components/MyLandingPage';
 import Discover from './components/Discover';
 import Dashboard from './components/Dashboard';
+import LandingPage from './components/LandingPage/LandingPage';
 
 
 //Setup global state variable using Recoil JS
@@ -36,7 +37,7 @@ const App = () => {
       if (user.first_name !== undefined) {
         component = <Dashboard />
       } else {
-        component = <MyLandingPage />
+        component = <LandingPage />
       }
 
   return (

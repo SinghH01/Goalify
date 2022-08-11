@@ -6,7 +6,9 @@
 .sidebar-user-info {
   width: 250px;
   height: 300px;
-  background-color: #334655;
+  /* background-color: #334655; */
+  background: rgb(5,22,33);
+  background: linear-gradient(140deg, rgba(5,22,33,1) 50%, rgba(2,72,124,1) 100%);  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +51,7 @@
 
 .sidebarList .row:hover {
   cursor: pointer;
-  background-color: #2f4050;
+  background-color: rgba(2,72,124,1);
 }
 
 #listItems {
