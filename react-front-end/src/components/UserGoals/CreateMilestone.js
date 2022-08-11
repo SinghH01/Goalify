@@ -35,7 +35,7 @@ const CreateMilestone = (props) => {
 
   return (
     <>
-      <h1 className="goal_header">Greate MileStone</h1>
+      <h2 className="goal_header">Create MileStone</h2>
       <MilestoneForm initialValues={formValues}
         onSubmit={onSubmit}
         enableReinitialize>
