@@ -29,7 +29,7 @@ function GoalListItem(props) {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/like', { userId: user.id, goalId: props.id });
       openNotificationWithIcon("success", <>
-      The Goal <strong>{props.title}</strong> add on the Favourites!!!
+      The Goal <strong>{props.title}</strong> added on the Favourites!!!
     </>);
     } catch (error) {
       console.log(error);

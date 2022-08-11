@@ -48,10 +48,11 @@ const MilestoneForm = (props) => {
               component="span"
             />
           </FormGroup>
-          <Button variant="danger" 
-            block="block" type="submit">
-            {props.children}
-          </Button>
+          <div className="form-submit">
+              <Button variant="outline-success" block="block" type="submit">
+                {props.children}
+              </Button>{' '}
+            </div>
         </Form>
       </Formik>
     </div>

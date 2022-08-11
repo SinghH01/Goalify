@@ -9,6 +9,8 @@ import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography, Fab } from '@material-ui/core'
 import { notification } from 'antd';
+import { Popconfirm } from 'antd';
+
 
 
 export default function GoalsTableRow(props) {
@@ -48,7 +50,7 @@ export default function GoalsTableRow(props) {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
-          openNotificationWithIcon("error", "MileStone")
+          openNotificationWithIcon("error", "Milestone")
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
@@ -93,9 +95,11 @@ export default function GoalsTableRow(props) {
           <IconButton onClick={() => props.handleEdit({ ...props.obj })}>
             <EditIcon />
           </IconButton>
-          <IconButton onClick={deleteGoal}>
-            <DeleteIcon />
-          </IconButton>
+          <Popconfirm placement="top" title={"Are you sure to delete this goal"} onConfirm={deleteGoal} okText="Yes" cancelText="No">
+            <IconButton >
+              <DeleteIcon />
+            </IconButton>
+          </Popconfirm>
         </TableCell>
       </TableRow>
       <TableRow>
@@ -124,9 +128,13 @@ export default function GoalsTableRow(props) {
                       <TableCell> {milestone.title}</TableCell>
                       <TableCell>{milestone.description}</TableCell>
                       <TableCell>{moment(milestone.end_date).format('MMMM Do, YYYY')}</TableCell>
-                      <TableCell><IconButton onClick={() => deleteMilestone(milestone.id)}>
-                        <DeleteIcon />
-                      </IconButton></TableCell>
+                      <TableCell>
+                        <Popconfirm placement="top" title={"Are you sure to delete this milestone"} onConfirm={() => deleteMilestone(milestone.id)} okText="Yes" cancelText="No">
+                          <IconButton>
+                            <DeleteIcon />
+                          </IconButton>
+                        </Popconfirm>
+                      </TableCell>
 
                     </TableRow>
                   ))}
