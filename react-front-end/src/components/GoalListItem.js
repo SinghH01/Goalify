@@ -28,7 +28,9 @@ function GoalListItem(props) {
   const likeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/like', { userId: user.id, goalId: props.id });
-      openNotificationWithIcon("success", "added to");
+      openNotificationWithIcon("success", <>
+      The Goal <strong>{props.title}</strong> add on the Favourites!!!
+    </>);
     } catch (error) {
       console.log(error);
     }
@@ -36,7 +38,9 @@ function GoalListItem(props) {
   const dislikeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/dislike', { userId: user.id, goalId: props.id });
-      openNotificationWithIcon("error", "removed from");
+      openNotificationWithIcon("error", <>
+      The Goal <strong>{props.title}</strong> removed from the Favourites!!!
+    </>);
     } catch (error) {
       console.log(error);
     }
@@ -71,23 +75,24 @@ function GoalListItem(props) {
     notification[type]({
       message: 'Goalify',
       description: (
-        <>
-          The Goal <strong>{props.title}</strong> {text} the Favourites!!!
-        </>
+        text
       )
     });
   };
 
+  
 
-  const joinGaol = () => {
+
+  const joinGoal = () => {
     setState("loading")
     Axios.post(
       `http://localhost:8080/active/add`,
       { userId: user.id, goalId: props.id })
       .then((res) => {
         if (res.status === 204) {
+          openNotificationWithIcon("success", <>
+      You have joined the <strong>{props.title}</strong> goal!!!</>);
           setState("activegoals");
-          // openNotificationWithIcon("error", "MileStone")
         } else Promise.reject();
       })
       .catch(err => alert('Something went wrong'))
@@ -133,7 +138,7 @@ function GoalListItem(props) {
               }
             </span>
             <span>
-              <Button variant="primary" style={{ width: '66px', height: '42px' }} onClick={joinGaol}>Join</Button>
+              <Button variant="primary" style={{ width: '66px', height: '42px' }} onClick={joinGoal}>Join</Button>
             </span>
           </ListGroup.Item>
         </ListGroup>
