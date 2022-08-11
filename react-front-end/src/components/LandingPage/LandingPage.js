@@ -12,9 +12,9 @@ export default function LandingPage() {
 
   return (
     <div className="goalify">
-      <Header timeline = {tl} ease = {ease} />
+      <Header timeline= {tl} ease= {ease} />
       <div className="container">
-        <Content />
+        <Content timeline= {tl}/>
         <Images />
       </div>
     </div>
