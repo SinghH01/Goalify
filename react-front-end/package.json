@@ -12,6 +12,7 @@
     "bootstrap": "^5.2.0",
     "formik": "^2.2.9",
     "google-map-react": "^2.2.0",
+    "gsap": "^3.10.4",
     "moment": "^2.29.4",
     "react": "^16.8.6",
     "react-bootstrap": "^2.4.0",
