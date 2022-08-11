@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import "./modal.css"
 import Axios from 'axios'
 
 
@@ -39,8 +40,12 @@ export default function Login({ setValue }) {
     <>
       <div onClick={handleShow}> LOGIN</div>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
+      <Modal show={show} onHide={handleClose}            
+            size="md"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            >
+        <Modal.Header  className= "modal-header" closeButton>
           <Modal.Title>Login</Modal.Title>
         </Modal.Header>
         <Modal.Body>
@@ -59,18 +64,14 @@ export default function Login({ setValue }) {
               <Form.Control
                 type="password"
                 placeholder="password"
-                onChange={(e) => { setPassword(e.target.value) }}
-                autoFocus
+                onChange={(e) => { setPassword(e.target.value) }}                
               />
             </Form.Group>
 
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={loginButton}>
+        <Modal.Footer id= "modal-footer">
+          <Button id='footer-btn' variant="outline-light" size="lg" onClick={loginButton}>
             Login
           </Button>
         </Modal.Footer>
