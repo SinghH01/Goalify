@@ -1,5 +1,7 @@
 const express = require('express');
-const router  = express.Router();
+const router = express.Router();
+// const uniqWith = require('lodash.uniqwith')
+const _ = require("lodash");
 
 module.exports = (db) => {
   router.post("/", (req, res) => {
@@ -11,14 +13,21 @@ module.exports = (db) => {
     JOIN users ON users.id = users_goals.user_id
     WHERE users.id = $1;`, values)
       .then(data => {
+        let goals = data.rows;
+        console.log("users-goals")
+        db.query(`SELECT * FROM goals where user_id = $1;`, [
+          req.body.id
+        ]).then(data => {
 
-        const goals = data.rows;
-        res.json( goals );
+          let allGoals = [...goals, ...data.rows];
+
+          const removeDuplicatesGoals = _.uniqWith(allGoals, _.isEqual);
+          res.json(removeDuplicatesGoals);
+        })
       })
+
       .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+        res.status(500).json({ error: err.message });
       });
   });
 
@@ -28,17 +37,17 @@ module.exports = (db) => {
 
     db.query(`INSERT INTO users_goals (user_id, goal_id)
     VALUES ($1, $2)`, values)
-    .then(() => {
-      setTimeout(() => {
-        res.status(204).json({});
-      }, 1000);
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-});
+      .then(() => {
+        setTimeout(() => {
+          res.status(204).json({});
+        }, 1000);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
   return router;
