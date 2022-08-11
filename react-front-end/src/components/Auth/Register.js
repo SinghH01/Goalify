@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
+import "./modal.css"
 import Axios from 'axios';
 
 export default function Register() {
@@ -32,17 +33,20 @@ export default function Register() {
     <>
       <div onClick={handleShow}> REGISTER</div>
 
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Login</Modal.Title>
+      <Modal show={show} onHide={handleClose}
+          size="md"
+          aria-labelledby="contained-modal-title-vcenter"
+          centered
+        >
+        <Modal.Header className= "modal-header" closeButton>
+          <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
           <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>Firstname</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="name@example.com"
+                type="text"
                 onChange={(e)=> {setFirstnameReg(e.target.value)}}
                 autoFocus
               />
@@ -50,10 +54,8 @@ export default function Register() {
               <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
               <Form.Label>Lastname</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="name@example.com"
+                type="text"
                 onChange={(e)=> {setLastnameReg(e.target.value)}}
-                autoFocus
               />
               </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
@@ -62,7 +64,6 @@ export default function Register() {
                 type="email"
                 placeholder="name@example.com"
                 onChange={(e)=> {setEmailReg(e.target.value)}}
-                autoFocus
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput4">
@@ -70,18 +71,14 @@ export default function Register() {
               <Form.Control
                 type="password"
                 placeholder="password"
-                onChange={(e)=> {setPasswordReg(e.target.value)}}
-                autoFocus
+                onChange={(e)=> {setPasswordReg(e.target.value)}}               
               />
             </Form.Group>
 
           </Form>
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={registerButton}>
+        <Modal.Footer id= "modal-footer">
+          <Button id='footer-btn' variant="outline-light" onClick={registerButton}>
             Register
           </Button>
         </Modal.Footer>
