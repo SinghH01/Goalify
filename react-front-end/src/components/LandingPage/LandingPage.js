@@ -15,7 +15,7 @@ export default function LandingPage() {
       <Header timeline= {tl} ease= {ease} />
       <div className="container">
         <Content timeline= {tl}/>
-        <Images />
+        <Images timeline= {tl} ease= {ease}/>
       </div>
     </div>
   )
