@@ -18,10 +18,9 @@ export default function GoalList(props) {
           {
             goals.map((goal) => {
               return (
-                <Col xs={6} >
-                  <Zoom >
+                <Col xs={6} key={goal.id} >
+                  <Zoom  >
                   <GoalListItem
-                    key={goal.id}
                     id={goal.id}
                     title={goal.title}
                     description={goal.description}
