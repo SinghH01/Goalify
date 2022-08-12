@@ -5,6 +5,7 @@ import Axios from "axios";
 import Chat from "./Chat";
 import "./goal.css";
 import MapContainer from "../Map/MapContainer";
+import UnFollowGoal from "./UnfollowGoal";
 import Confeti from "./confetti";
 import Pulse from "react-reveal/Pulse";
 import moment from "moment";
@@ -156,6 +157,9 @@ function Goal(props) {
             <Steps current={current} onChange={onChange} direction="vertical">
               {individualMilestone}
             </Steps>
+            <div className="unfollow">
+              <UnFollowGoal/>
+            </div>
           </div>
           <div>
             <h5>UNTIL GOAL IS COMPLETED</h5>
