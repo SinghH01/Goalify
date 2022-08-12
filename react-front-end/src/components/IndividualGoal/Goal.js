@@ -103,7 +103,7 @@ function Goal(props) {
   let individualMilestone = milestones.map((step, index) => {
     return (
 
-    <Step title={step.title} description={step.description} subTitle={`End Date: ${moment(step.end_date).format('MMMM Do, YYYY')}`} onClick={()=> clickStep(step.id)}/>
+    <Step key={step.id} title={step.title} description={step.description} subTitle={`End Date: ${moment(step.end_date).format('MMMM Do, YYYY')}`} onClick={()=> clickStep(step.id)}/>
 
     )
 });
