@@ -27,10 +27,9 @@ export default function ActiveList(props) {
             {
               goals.map((goal) => {
                 return (
-                  <Col xs={6} >
+                  <Col xs={6} key={goal.id}>
                     <Zoom>
                     <ActiveListItem
-                      key={goal.id}
                       id={goal.id}
                       title={goal.title}
                       description={goal.description}
