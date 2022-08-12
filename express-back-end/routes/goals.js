@@ -1,5 +1,32 @@
 const express = require('express');
+const multer = require('multer');
 const router = express.Router();
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(
+      null,
+      new Date().toISOString().replace(/:/g, '-') + '-' + file.originalname
+    );
+  },
+});
+
+const filefilter = (req, file, cb) => {
+  if (
+    file.mimetype === 'image/png' ||
+    file.mimetype === 'image/jpg' ||
+    file.mimetype === 'image/jpeg'
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const upload = multer({ storage: storage, filefilter: filefilter });
+
 
 module.exports = (db) => {
   router.get("/", (req, res) => {
@@ -39,7 +66,7 @@ module.exports = (db) => {
     FROM goals WHERE id = $1;`, values)
       .then(data => {
         const goals = data.rows;
-        res.json( goals );
+        res.json(goals);
       })
       .catch(err => {
         res
@@ -64,14 +91,23 @@ module.exports = (db) => {
       });
   });
 
-  router.post("/:id", (req, res) => {
-    console.log(req.body)
-    console.log(req.params.id)
-    const values = [req.params.id, req.body.title, req.body.description,req.body.image, req.body.start_date, req.body.end_date]
+  router.post("/:id", upload.single('image'), (req, res) => {
+    console.log(req.body.title)
+    console.log(req.file)
+    const values = [
+      req.params.id,
+      req.body.title,
+      req.body.description,
+      req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename,
+      req.body.start_date,
+      req.body.end_date
+    ]
     db.query(`INSERT INTO goals (user_id, title, description, image, start_date, end_date)
-      VALUES ($1, $2, $3, $4, $5,$6)`, values)
-      .then(()=> {
-        console.log("goal added to the database");
+        VALUES ($1, $2, $3, $4, $5,$6)`, values)
+      .then(() => {
+        setTimeout(() => {
+          res.status(204).json({});
+        }, 1000);
       })
       .catch(err => {
         res
@@ -80,6 +116,41 @@ module.exports = (db) => {
       });
   });
 
+  // POST route for delete Goal
+  router.delete("/delete/:id", (req, res) => {
+    db.query(`DELETE FROM goals
+    WHERE id = $1;`, [
+      req.params.id
+    ])
+      .then(() => {
+        setTimeout(() => {
+          res.status(204).json({});
+        }, 1000);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+  // Put route for update Goal
+  router.put("/edit/:id", (req, res) => {
+    db.query(`UPDATE goals SET title = $1, description = $2, image=$3, start_date=$4, end_date=$5
+     WHERE id = $6;`,
+      [req.body.title, req.body.description, req.body.image, req.body.start_date, req.body.end_date, req.params.id
+      ])
+      .then(() => {
+        setTimeout(() => {
+          res.status(204).json({});
+        }, 1000);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
 
 
 

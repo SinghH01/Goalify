@@ -11,7 +11,14 @@
 .dashboard-main {
   height: 100vh;
   width: 100vw;
-  background-image: url('../../src/assets/background.png');
+  background-color: #F7F9Fa;
+  /* background-image: url('../../src/assets/background.png');
   background-repeat: no-repeat;
-  background-size: 100% 98%;
+  background-size: 100% 98%; */
+  padding-top: 2%;  
+  overflow: scroll
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* make scrollbar transparent */
 }

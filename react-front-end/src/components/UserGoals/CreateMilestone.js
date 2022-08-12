@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Axios from 'axios';
-import GoalForm from "./GoalForm";
+import MilestoneForm from "./MilestoneForm";
 import { notification } from 'antd';
 
-
-
-
-
-const CreateGoal = (props) => {
+const CreateMilestone = (props) => {
 
   const openNotificationWithIcon = (type) => {
     notification[type]({
@@ -15,18 +11,19 @@ const CreateGoal = (props) => {
       description: (
         <>
         Thank you {props.userName}.<br />
-        Your Gaol has been successfully created!!!
+        Your MileStone has been successfully created!!!
         </>
       )
     });
   };
 
   const [formValues, setFormValues] =
-    useState({ title: '', description: '', image: '', start_date: '', end_date: '' })
+    useState({ title: '', description: '', end_date: '' })
+
   const onSubmit = goalObject => {
     props.setState("loading")
     Axios.post(
-      `http://localhost:8080/api/goals/${props.userId}`,
+      `http://localhost:8080/api/milestones/add/${props.goalId}`,
       goalObject)
       .then(res => {
         props.setState("all")
@@ -38,15 +35,15 @@ const CreateGoal = (props) => {
 
   return (
     <>
-      <h2 className="goal_header">Create New Goal</h2>
-      <GoalForm initialValues={formValues}
+      <h2 className="goal_header">Create MileStone</h2>
+      <MilestoneForm initialValues={formValues}
         onSubmit={onSubmit}
         enableReinitialize>
-        Create Goal
-      </GoalForm>
+        Create Milestone
+      </MilestoneForm>
     </>
   )
 }
 
 
-export default CreateGoal
+export default CreateMilestone

@@ -9,6 +9,7 @@ import MyLandingPage from './components/MyLandingPage';
 import Discover from './components/Discover';
 import Dashboard from './components/Dashboard';
 import About from './components/about'
+import LandingPage from './components/LandingPage/LandingPage';
 
 //Setup global state variable using Recoil JS
 export const userState = atom({
@@ -32,12 +33,14 @@ const App = () => {
   }, [])
 
   //Check if user is logged in or not
+
   let component = undefined;
   if (user.first_name !== undefined) {
     component = <Dashboard />
   } else {
-    component = <MyLandingPage />
+    component = <LandingPage />
   }
+
 
   return (
 

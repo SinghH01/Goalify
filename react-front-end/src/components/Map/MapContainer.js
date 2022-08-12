@@ -8,7 +8,7 @@ function MapContainer(props) {
   const [lat, setLat] = useState(undefined);
   const [lng, setLng] = useState(undefined);
 
-  Geocode.setApiKey("AIzaSyDlzphQTYQUKCPWteVktSdBUU0RiLGYRww");
+  Geocode.setApiKey("AIzaSyDvv-ZvZZ0lRK-QlkG5w0XG8dCxHKgIoa8");
   Geocode.setLanguage("en");
   Geocode.setLocationType("ROOFTOP");
   Geocode.enableDebug();
@@ -20,7 +20,6 @@ function getGeo() {
       const { lat, lng } = response.results[0].geometry.location;
       setLat(lat);
       setLng(lng);
-      console.log(lat, lng);
     },
     (error) => {
       console.error(error);
@@ -36,7 +35,6 @@ let value = {
 getGeo();
   return (
     <div >
-      <h5>{props.location}</h5>
        {lat !== undefined && lng !== undefined && (<Map value = {value}/>)}      
     </div>
   );

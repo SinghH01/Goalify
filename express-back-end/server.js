@@ -9,6 +9,7 @@ const http = require("http");
 const morgan = require("morgan");
 const cors = require("cors")
 const { Server } = require("socket.io")
+const path = require('path');
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -35,6 +36,9 @@ io.on("connection", (socket) => {
   });
 });
 
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+
 //user-session
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
@@ -58,12 +62,14 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors({
   origin: ["http://localhost:3000"],
-  methods: ["GET", "POST"],
+  methods: ["GET", "POST", "DELETE", "PUT"],
   credentials: true,
 }));
 
+
+
 app.use(cookieParser());
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(session({
   key: "userId",
@@ -91,6 +97,8 @@ const favouritesRoutes = require("./routes/favourites");
 const activeRoutes = require("./routes/active");
 
 
+
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -101,6 +109,9 @@ app.use("/api/goals", goalsRoutes(db));
 app.use("/api/milestones", milestonesRoutes(db));
 app.use("/favourites", favouritesRoutes(db));
 app.use("/active", activeRoutes(db));
+
+
+
 
 
 

@@ -7,57 +7,163 @@ import './goal.css'
 import MapContainer from "../Map/MapContainer";
 import Confeti from "./confetti";
 import Jump from 'react-reveal/Jump';
+import Flip from 'react-reveal/Flip';
+import Pulse from 'react-reveal/Pulse';
+import moment from 'moment';
+import 'antd/dist/antd.css'
+import EventAvailableIcon from '@material-ui/icons/EventAvailable';
+import EventBusyIcon from '@material-ui/icons/EventBusy';
+import { Progress, Steps } from 'antd';
+const { Step } = Steps;
+
+
+
 
 
 function Goal(props) {
   const [user, setUser] = useRecoilState(userState);
   const[goal, setGoal] = useState({message: 'hi'})
+  const[milestones, setMilestones] = useState([])
   const[location, setLocation] = useState(undefined)
   const [fullAddress, setFullAddress] = useState(undefined)
   const [confetti, setConfetti] = useState(false)
+  const [daysLeft, setDaysLeft] = useState(0)
+  const [dayLeft, setDayLeft] = useState(0)
+  const [current, setCurrent] = useState(0);
 
-  useEffect(() => {
-    fetchGoals();
-  }, []);  
 
-   
+  const onChange = (value) => {
+    console.log('onChange:', current);
+    setCurrent(value);
+  };
+
+  let count = 0;
   const fetchGoals = async () => {
     try {
       const response = await Axios.post('/api/goals/individualgoal',{ id: props.id});
+      const userMilestones = await Axios.post('/api/milestones/get_users_milestones',{ userId: user.id, goalId: props.id});
+        
+      userMilestones.data.rows.map((item)=>{        
+          if(item.completed === true) {
+              count = count +1;
+          }
+       })
+       
+        setCurrent(count);
+
+        console.log("============")
+        var totalDays = new Date(response.data[0].end_date).getTime() - new Date(response.data[0].start_date).getTime();
+        let daysUntilNow =  new Date().getTime() - new Date(response.data[0].start_date).getTime() ;
+        let remainingDays =   new Date(response.data[0].end_date).getTime() - new Date().getTime() ;
+        console.log(totalDays/(1000 * 60 * 60 * 24))
+        console.log(daysUntilNow/(1000 * 60 * 60 * 24))
+
+        console.log("============")
+        console.log(remainingDays/(1000 * 60 * 60 * 24))
+        let remainingDaysPercent = (daysUntilNow/totalDays) * 100;
+        setDaysLeft(remainingDaysPercent);
+
+        console.log(remainingDaysPercent)
+
+        setDayLeft(remainingDays/(1000 * 60 * 60 * 24))
+        console.log(dayLeft)
+
+
+      const milestone = await Axios.get(`/api/milestones/${props.id}`);
       const goalLocation = await Axios.get(`/api/goals/goal_location/${props.id}`);
       setGoal(response.data[0])
+      setMilestones(milestone.data)
       setLocation(goalLocation.data[0])
       setFullAddress(`${goalLocation.data[0].street}, ${goalLocation.data[0].city}, ${goalLocation.data[0].province}`)
+      
+
 
     } catch (error) {
 
-      console.log(error);
-      
+      console.log(error);      
     }
   };
+
+  useEffect(() => {
+    fetchGoals(); 
+    setCurrent()   
+  }, []);  
 
   function showConfetti () {
     setConfetti(true);
     setTimeout(function() { setConfetti(false); }, 8000);
   }
+  const clickStep = async(value) =>{
+    const updateMilestone = await Axios.post(`/api/milestones/user_milestones`, { userId: user.id, milestoneId: value});
+    console.log(updateMilestone)
+    setCurrent(current+1);
+    showConfetti();
+  }
+
+  let individualMilestone = milestones.map((step, index) => {
+    return (
+
+    <Step title={step.title} description={step.description} subTitle={`End Date: ${moment(step.end_date).format('MMMM Do, YYYY')}`} onClick={()=> clickStep(step.id)}/>
+
+    )
+});
 
   return (
     <div className="goal-main">
+      {confetti === true && (<Confeti />)}
 
-      <div className="goal">
-        <h1>{goal.title}</h1>
-        <Jump>
-        <img className="goal-image" src={goal.image} />
-        </Jump>
-      
-        <button onClick={showConfetti}> Click Me </button>
-          {confetti === true && (<Confeti />)}
+      <div className="goal"> 
+         
+          <img className="goal-image" src={goal.image} />
+          
+          <Pulse>
+              <div className="goal-details">
+              <div className="test">
+                  <h1>{goal.title}</h1>
+                  </div> 
+                <div>
+                              
+                  <h5>{goal.description}</h5>
+                </div>
+
+                <div className="goal-dates">
+                  <div className="start-date">
+                    <p><EventAvailableIcon /> START DATE</p>
+                    <p>{` ${moment(goal.start_date).format('MMMM Do, YYYY')}`}</p>
+                  
+                  </div>
+                  <div className="end-date">
+                  <p><EventBusyIcon /> END DATE</p>
+                  <p>{` ${moment(goal.end_date).format('MMMM Do, YYYY')}`}</p>
+                  </div>
+                </div>
+              </div> 
+              </Pulse>
+        <div className="goal-progress">
+          <div className="steps">
+            <h3>MILESTONES</h3>
+            <Steps current={current} onChange={onChange} direction="vertical">
+            {individualMilestone}
+            </Steps>      
+          </div>
+          <div>
+            <h5>UNTIL GOAL IS COMPLETED</h5>
+            <Progress className="progress-bar" type="circle" percent={Math.round(daysLeft)} format={(percent) => `${Math.round(dayLeft)} Days Left`} />
+          </div>
+        </div>
+        
       </div>
 
       <div className="chat">
         <Chat id = {props.id}/>
         <div className="location-container">
-        {location !== undefined && (<MapContainer location = {fullAddress}/>)}
+        {location !== undefined && (
+        <div className="map-div">
+        <h5>LOCATION</h5>
+        <p>{fullAddress}</p>
+        <MapContainer location = {fullAddress}/>
+        </div>
+        )}
         {location === undefined && (<h3>This is an online goal</h3>)}
         </div>        
       </div>

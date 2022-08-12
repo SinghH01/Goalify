@@ -1,16 +1,16 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
+import './search.css'
 
 const Search = ({ setSearchQuery }) => {
   return (
-    <Form className="d-flex" style={{ marginInline: 'auto', marginTop: '50px', width: '65%' }} >
+    <Form className="d-flex search" >
       <Form.Control
         type="search"
         onInput={(e) => setSearchQuery(e.target.value)}
-        placeholder="search for goals"
-        className="me-2"
+        placeholder="Search For Goals"
+        className="search_input"
         aria-label="Search"
-        style={{ boxShadow: '1px 1px 10px #888' }}
       />
     </Form >
   )

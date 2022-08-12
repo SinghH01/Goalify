@@ -1,25 +1,35 @@
-import React from 'react'
+import React from 'react';
 import { useState, useEffect } from 'react';
 import Axios from 'axios'
 import { useRecoilState } from 'recoil';
 import { userState } from '../../App';
 import "bootstrap/dist/css/bootstrap.css";
-import GoalsTableRow from './GoalsTableRow';
 import './MyGoal.css'
 import EditGoal from './EditGoals';
 import CreateGoal from './CreateGoal';
-import { Button, Table } from 'react-bootstrap';
+import CreateMilestone from './CreateMilestone';
+// import { Button } from 'react-bootstrap';
+import Loading from "../Loading";
+import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Fab } from '@material-ui/core';
+import AddIcon from '@material-ui/icons//Add';
+import GoalsTableRow from './GoalsTableRow';
+import 'antd/dist/antd.css';
 
 
-function MyGoals() {
+
+
+
+export default function MyGoals() {
 
   const [goals, setGoals] = useState([]);
   const [user, setUser] = useRecoilState(userState);
   const [state, setState] = useState("all")
+  const [goal, setGoal] = useState({})
+
 
   useEffect(() => {
     fetchGoals();
-  }, []);
+  }, [state]);
 
   const fetchGoals = async () => {
     try {
@@ -30,11 +40,15 @@ function MyGoals() {
     }
   };
 
-
-
   const DataTable = () => {
     return goals.map((res, i) => {
-      return <GoalsTableRow handleEdit={handleEdit} obj={res} key={i} />;
+      return <GoalsTableRow
+        obj={res}
+        key={i}
+        setState={setState} 
+        handleEdit={handleEdit}
+        handleMileStone={handleMileStone}
+        />;
     });
   };
 
@@ -42,39 +56,54 @@ function MyGoals() {
     setState("create");
   }
 
-  const handleEdit = () => {
+  const handleEdit = (goal) => {
+    setGoal({ ...goal })
     setState("edit");
   }
+
+  const handleMileStone = (goal) => {
+    setGoal({ ...goal })
+    setState("createMilestone");
+  }
+
 
   return (<>
     {state === "all" && (
       <>
-        <Button variant="outline-primary" onClick={handleClick}>Create Goal</Button>{' '}
-
-        <div className="table-wrapper">
-          <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>image</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>{DataTable()}</tbody>
-          </Table>
+        <h2 className='goal_header'>My Goals</h2>
+        <div className='createButton'>
+        <Fab color="primary" aria-label="add"  onClick={handleClick}>
+          <AddIcon />
+        </Fab>
         </div>
+        <div className="table-wrapper">
+          <TableContainer component={Paper}>
+            <Table aria-label="collapsible table">
+              <TableHead>
+                <TableRow >
+                  <TableCell />
+                  <TableCell>Title</TableCell>
+                  <TableCell>Description</TableCell>
+                  <TableCell>Image</TableCell>
+                  <TableCell>Start</TableCell>
+                  <TableCell>End</TableCell>
+                  <TableCell>Action</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {DataTable()}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </div>
+
       </>
     )}
-
-    {state === "create" && (<CreateGoal userId={user.id} />)}
-    {state === "edit" && (<EditGoal />)}
-
+    {state === "create" && (<CreateGoal userId={user.id} setState={setState} userName={user.first_name} />)}
+    {state === "createMilestone" && (<CreateMilestone goalId={goal.id} setState={setState} userName={user.first_name} />)}
+    {state === "edit" && (<EditGoal  goal={goal} setState={setState} userName={user.first_name}/>)}
+    {state === "loading" && (<Loading />)}
   </>
   );
 
 }
-
-export default MyGoals;

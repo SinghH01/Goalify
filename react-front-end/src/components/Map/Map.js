@@ -8,7 +8,7 @@ const Map = (props) => {
 
     <div className='map'>
     <GoogleMapReact 
-      bootstrapURLKeys = {{key: 'AIzaSyDlzphQTYQUKCPWteVktSdBUU0RiLGYRww'}}
+      bootstrapURLKeys = {{key: "AIzaSyDvv-ZvZZ0lRK-QlkG5w0XG8dCxHKgIoa8"}}
       defaultCenter = {props.value}
       defaultZoom = {16}
     >        

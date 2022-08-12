@@ -1,49 +1,152 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React, { useState } from "react";
+import Axios from "axios";
 import moment from 'moment';
-  
-const GoalsTableRow = (props) => {
-  const { title, description, image,start_date,end_date,online_goal } = props.obj;
-//   const deleteStudent = () => {
-//     axios
-//       .delete(
-// "http://localhost:4000/students/delete-student/" + _id)
-//       .then((res) => {
-//         if (res.status === 200) {
-//           alert("Student successfully deleted");
-//           window.location.reload();
-//         } else Promise.reject();
-//       })
-//       .catch((err) => alert("Something went wrong"));
-//   };
-  
+import './MyGoal.css'
+import DeleteIcon from '@material-ui/icons//Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons//Add';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
+import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography, Fab } from '@material-ui/core'
+import { notification } from 'antd';
+import { Popconfirm } from 'antd';
+
+
+
+export default function GoalsTableRow(props) {
+
+  const openNotificationWithIcon = (type, text) => {
+    notification[type]({
+      message: 'Goalify',
+      description:
+        `Your ${text} has been deleted!!!`
+    });
+  };
+
+  const { id, title, description, image, start_date, end_date } = props.obj;
+  const [open, setOpen] = useState(false);
+  const [milestones, setMilestones] = useState([]);
+
+
+  const deleteGoal = () => {
+    props.setState("loading");
+    Axios
+      .delete(
+        `http://localhost:8080/api/goals/delete/${id}`)
+      .then((res) => {
+        if (res.status === 204) {
+          props.setState("all");
+          openNotificationWithIcon("error", "Goal")
+        } else Promise.reject();
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const deleteMilestone = (id) => {
+    props.setState("loading");
+    Axios
+      .delete(
+        `http://localhost:8080/api/milestones/delete/${id}`)
+      .then((res) => {
+        if (res.status === 204) {
+          props.setState("all");
+          openNotificationWithIcon("error", "Milestone")
+        } else Promise.reject();
+      })
+      .catch((err) => console.log(err));
+  };
+
+
+
+  const fetchMilestones = async () => {
+    try {
+      const res = await Axios.get(`/api/milestones/${id}`);
+      setMilestones(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const onClick = () => {
+    fetchMilestones();
+    setOpen(!open);
+  };
+
   return (
-    <tr>
-      <td>{title}</td>
-      <td>{description}</td>
-      <td>
-      < img className="img-fluid img-thumbnail" src={image}/>
-      </td>
-      <td>{moment(start_date).format('MMMM Do, YYYY')}</td>
-      <td>{moment(end_date).format('MMMM Do, YYYY')}</td>
-      
+    <>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+        <TableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => onClick()}
+          >
+            {open ? <ArrowUpwardIcon /> : <ArrowDownwardIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row">
+          {title}
+        </TableCell>
+        <TableCell>{description}</TableCell>
+        <TableCell>< img className="goal-img" src={image} /></TableCell>
+        <TableCell>{moment(start_date).format('MMMM Do, YYYY')}</TableCell>
+        <TableCell>{moment(end_date).format('MMMM Do, YYYY')}</TableCell>
+        <TableCell>
+          <IconButton onClick={() => props.handleEdit({ ...props.obj })}>
+            <EditIcon />
+          </IconButton>
+          <Popconfirm placement="top" title={"Are you sure to delete this goal"} onConfirm={deleteGoal} okText="Yes" cancelText="No">
+            <IconButton >
+              <DeleteIcon />
+            </IconButton>
+          </Popconfirm>
+        </TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <div className="milestone-header"><h5>Milestones</h5>
+                <Fab size="small" color="primary" aria-label="add" onClick={() => props.handleMileStone({ ...props.obj })}>
+                  <AddIcon />
+                </Fab>
+              </div>
+              <Typography variant="h6" gutterBottom component="div">
+              </Typography>
+              <Table size="small" aria-label="milsestones">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Title</TableCell>
+                    <TableCell>Description</TableCell>
+                    <TableCell>End Date</TableCell>
+                    <TableCell>Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {milestones.map((milestone, i) => (
+                    <TableRow key={i}>
+                      <TableCell> {milestone.title}</TableCell>
+                      <TableCell>{milestone.description}</TableCell>
+                      <TableCell>{moment(milestone.end_date).format('MMMM Do, YYYY')}</TableCell>
+                      <TableCell>
+                        <Popconfirm placement="top" title={"Are you sure to delete this milestone"} onConfirm={() => deleteMilestone(milestone.id)} okText="Yes" cancelText="No">
+                          <IconButton>
+                            <DeleteIcon />
+                          </IconButton>
+                        </Popconfirm>
+                      </TableCell>
 
-
-
-      <td>
-        <Button onClick={event => props.handleEdit()} 
-          size="lg" variant="primary">
-          Edit
-        </Button>
-        <Button onClick={"deleteStudent"} 
-          size="sm" variant="danger">
-          Delete
-        </Button>
-      </td>
-    </tr>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </>
   );
-};
-  
-export default GoalsTableRow;
+}
+
+
+

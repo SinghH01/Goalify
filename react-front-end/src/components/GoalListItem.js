@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import moment from 'moment';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -10,6 +10,9 @@ import GoalDetails from "./GoalDetails";
 import Axios from 'axios'
 import { useRecoilState } from 'recoil';
 import { userState } from '../App';
+import DashboardContext from "./DashBoardContext";
+import { notification } from 'antd';
+
 
 function GoalListItem(props) {
 
@@ -18,10 +21,16 @@ function GoalListItem(props) {
   const [favState, setFavState] = useState(false)
   const [user, setUser] = useRecoilState(userState);
 
+  const setState = useContext(DashboardContext)
+
+
+
   const likeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/like', { userId: user.id, goalId: props.id });
-      console.log(response.data);
+      openNotificationWithIcon("success", <>
+      The Goal <strong>{props.title}</strong> added on the Favourites!!!
+    </>);
     } catch (error) {
       console.log(error);
     }
@@ -29,20 +38,66 @@ function GoalListItem(props) {
   const dislikeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/dislike', { userId: user.id, goalId: props.id });
-      console.log(response.data);
+      openNotificationWithIcon("error", <>
+      The Goal <strong>{props.title}</strong> removed from the Favourites!!!
+    </>);
     } catch (error) {
       console.log(error);
     }
   };
   function favButton() {
-    if (favState === false) {
+    if (!favState) {
       likeGoal();
-      setFavState(true)
+      setFavState(prev => !prev);
+
     } else {
       dislikeGoal();
-      setFavState(false);
+      setFavState(prev => !prev);
     }
-  }
+  };
+
+  const checkFavourite = async () => {
+    try {
+      const response = await Axios.post('/favourites/check', { userId: user.id, goalId: props.id });
+      if (response.data.liked === true) {
+        setFavState(prev => !prev);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    checkFavourite();
+  }, [])
+
+  const openNotificationWithIcon = (type, text) => {
+    notification[type]({
+      message: 'Goalify',
+      description: (
+        text
+      )
+    });
+  };
+
+  
+
+
+  const joinGoal = () => {
+    setState("loading")
+    Axios.post(
+      `http://localhost:8080/active/add`,
+      { userId: user.id, goalId: props.id })
+      .then((res) => {
+        if (res.status === 204) {
+          openNotificationWithIcon("success", <>
+      You have joined the <strong>{props.title}</strong> goal!!!</>);
+          setState("activegoals");
+        } else Promise.reject();
+      })
+      .catch(err => alert('Something went wrong'))
+  };
+
 
 
   let styles = {
@@ -55,7 +110,7 @@ function GoalListItem(props) {
 
   return (
     <>
-      <Card style={styles}>
+      <Card className="goal-card" style={styles}>
         <Card.Img variant="top" src={props.image} style={{ height: '300px', cursor: "pointer" }} onClick={() => setModalShow(true)} />
         <Card.Body >
           <Card.Title>{props.title}</Card.Title>
@@ -76,12 +131,14 @@ function GoalListItem(props) {
 
           <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <span >
-              {favState === false && (<FavoriteBorderIcon onClick={favButton} />)}
-              {favState === true && (<FavoriteIcon onClick={favButton} />)}
-
+              {!favState ?
+                <FavoriteBorderIcon style={{ cursor: "pointer" }} onClick={favButton} />
+                :
+                <FavoriteIcon style={{ cursor: "pointer" }} onClick={favButton} />
+              }
             </span>
             <span>
-              <Button variant="primary" style={{ width: '66px', height: '42px' }}>Join</Button>
+              <Button variant="primary" style={{ width: '66px', height: '42px' }} onClick={joinGoal}>Join</Button>
             </span>
           </ListGroup.Item>
         </ListGroup>
