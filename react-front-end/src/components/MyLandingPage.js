@@ -20,6 +20,7 @@ function MyLandingPage(props) {
 
 
             <ul>
+              <li><Link to='about'> About us</Link> </li>
               <li><Link to='discover'> Discover</Link> </li>
               <li>
                 <Login />
