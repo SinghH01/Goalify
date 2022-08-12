@@ -158,7 +158,7 @@ function Goal(props) {
               {individualMilestone}
             </Steps>
             <div className="unfollow">
-              <UnFollowGoal/>
+              <UnFollowGoal userId={user.id} goalId={props.id}/>
             </div>
           </div>
           <div>
