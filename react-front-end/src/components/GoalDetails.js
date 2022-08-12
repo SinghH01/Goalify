@@ -43,7 +43,8 @@ function GoalDetails(props) {
 
   let individualMilestone = milestones.map((milestone, index) => {
       return (
-      <Accordion.Item eventKey={index}>
+        
+      <Accordion.Item eventKey={index} key={milestone.id}>
       <Accordion.Header>
         {milestone.title}
       </Accordion.Header>

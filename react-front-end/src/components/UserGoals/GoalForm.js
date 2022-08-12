@@ -69,7 +69,7 @@ const GoalForm = (props) => {
             <FormGroup>
               <label htmlFor="image">Image</label>
               <div class="custom-file">
-                <input id="inputGroupFile01" type="file" class="custom-file-input"
+                <input id="inputGroupFile01" type="file" className="custom-file-input"
                   name='image'
                   accept='image/*'
                   onChange={(e) =>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import moment from 'moment';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -21,16 +21,17 @@ function GoalListItem(props) {
   const [favState, setFavState] = useState(false)
   const [user, setUser] = useRecoilState(userState);
 
-  const setState = useContext(DashboardContext)
-
+  const providerValue = useContext(DashboardContext)
+  const { setState, setRerender } = providerValue
+  
 
 
   const likeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/like', { userId: user.id, goalId: props.id });
       openNotificationWithIcon("success", <>
-      The Goal <strong>{props.title}</strong> added on the Favourites!!!
-    </>);
+        The Goal <strong>{props.title}</strong> added on the Favourites!!!
+      </>);
     } catch (error) {
       console.log(error);
     }
@@ -39,8 +40,8 @@ function GoalListItem(props) {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/dislike', { userId: user.id, goalId: props.id });
       openNotificationWithIcon("error", <>
-      The Goal <strong>{props.title}</strong> removed from the Favourites!!!
-    </>);
+        The Goal <strong>{props.title}</strong> removed from the Favourites!!!
+      </>);
     } catch (error) {
       console.log(error);
     }
@@ -53,6 +54,7 @@ function GoalListItem(props) {
     } else {
       dislikeGoal();
       setFavState(prev => !prev);
+      setRerender(prev => !prev)
     }
   };
 
@@ -80,7 +82,7 @@ function GoalListItem(props) {
     });
   };
 
-  
+
 
 
   const joinGoal = () => {
@@ -91,7 +93,7 @@ function GoalListItem(props) {
       .then((res) => {
         if (res.status === 204) {
           openNotificationWithIcon("success", <>
-      You have joined the <strong>{props.title}</strong> goal!!!</>);
+            You have joined the <strong>{props.title}</strong> goal!!!</>);
           setState("activegoals");
         } else Promise.reject();
       })

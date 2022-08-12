@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo } from 'react'
 import DashboardContext from './DashBoardContext';
 import './dashboard.css'
 
@@ -17,6 +17,12 @@ import Loading from './Loading';
 export default function Dashboard() {
 
   const [state, setState] = useState('find')
+  const [rerender, setRerender] = useState(false)
+
+  const providerValue = useMemo(() => ({
+    state, setState,
+    rerender, setRerender,
+  }), [state, rerender]);
 
   return (
     <div className='dashboard'>
@@ -24,8 +30,8 @@ export default function Dashboard() {
       <div className='dashboard-body'>
         <Sidebar onStateChange={setState} />
         <main className='dashboard-main'>
-          {state === 'find' && (<DashboardContext.Provider value={setState} ><Discover/></DashboardContext.Provider>)}
-          {state === 'favourites' && (<DashboardContext.Provider value={setState} ><Favourites/></DashboardContext.Provider>)}
+          {state === 'find' && (<DashboardContext.Provider value={providerValue} ><Discover /></DashboardContext.Provider>)}
+          {state === 'favourites' && (<DashboardContext.Provider value={providerValue} ><Favourites /></DashboardContext.Provider>)}
           {state === 'activegoals' && (<ActiveGoals />)}
           {state === 'mygoals' && (<MyGoals />)}
           {state === "loading" && (<Loading />)}
