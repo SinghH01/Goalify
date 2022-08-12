@@ -3,13 +3,12 @@ import Axios from 'axios'
 import { Button } from 'antd';
 
 
-function UnFollowGoal() {
+function UnFollowGoal({ userId, goalId }) {
 
-
-  const unfolloweGoal = ({userId, goalId}) => {
+  const unfolloweGoal = () => {
     Axios
-      .delete(
-        `http://localhost:8080/active/delete/`,{ userId: user.id, goalId: goalId })
+      .post(
+        `http://localhost:8080/active/delete`, { userId, goalId })
       .then((res) => {
         if (res.status === 204) {
           alert("success")
@@ -20,8 +19,8 @@ function UnFollowGoal() {
 
   return (
     <Button type="primary" danger ghost onClick={unfolloweGoal}>
-    Unfollow
-  </Button>
+      Unfollow
+    </Button>
   );
 }
 
