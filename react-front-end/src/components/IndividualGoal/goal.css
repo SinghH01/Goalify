@@ -1,6 +1,7 @@
 .goal-main {
   display: flex;
-  flex-direction: row;   
+  flex-direction: row; 
+  margin-top: 20px; 
 }
 
 h1 {
@@ -13,10 +14,8 @@ h1 {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  flex: 65%;
-  height: 100vh;
-  text-align: center;
-  margin-top: 7%;  
+  flex: 70%;
+  text-align: center;  
 }
 
 .goal-details {
@@ -65,18 +64,15 @@ h1 {
 
 
 .chat {
-flex: 35%;
-height: 100vh;
+flex: 30%;
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-top: 1.5%; 
 }
 
 .goal-image {
-  height: 45%;
-  width: 70%;
-  /* box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; */
+  height: 55%;
+  width: 90%;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   border-radius: 15px;
 }
@@ -90,5 +86,9 @@ margin-top: 1.5%;
   border-radius: 15px; 
   margin-top: 3.5%; 
   margin-bottom: 2%;
+}
+
+.location-container {
+   width:90%;  
 }
 
