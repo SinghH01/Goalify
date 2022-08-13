@@ -3,6 +3,8 @@ import DashboardContext from "../DashBoardContext";
 import Axios from 'axios'
 import { Button } from 'antd';
 import { openNotificationWithIcon } from "../Notification";
+import { Popconfirm } from 'antd';
+
 
 
 function UnFollowGoal({ userId, goalId, goalTitle }) {
@@ -25,9 +27,11 @@ function UnFollowGoal({ userId, goalId, goalTitle }) {
   };
 
   return (
-    <Button type="primary" danger ghost onClick={unfolloweGoal}>
+    <Popconfirm placement="top" title={"Are you sure to unfollow this goal"} onConfirm={unfolloweGoal} okText="Yes" cancelText="No">
+    <Button type="primary" danger ghost>
       Unfollow
     </Button>
+    </Popconfirm>
   );
 }
 
