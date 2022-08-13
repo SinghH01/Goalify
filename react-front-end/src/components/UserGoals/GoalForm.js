@@ -10,8 +10,8 @@ const GoalForm = (props) => {
   const validationSchema = Yup.object().shape({
     title: Yup.string().required(" Title Can't be Balnk"),
     description: Yup.string().required("Description Can't be Balnk"),
-    // image: Yup.string().required("Required"),
-    start_date: Yup.date().required("Start Date Required"),
+    image: Yup.mixed().required("Image is required"),
+    start_date: Yup.date().required("End Date Required"),
     end_date: Yup.date().required("End Date Required")
   });
 
@@ -76,29 +76,35 @@ const GoalForm = (props) => {
                     setFieldValue('image', e.currentTarget.files[0])
                   } />
               </div>
+              <ErrorMessage
+                name="image"
+                className="d-block invalid-feedback"
+                component="span"
+              />
             </FormGroup>
             <FormGroup>
               <label>Start Date</label>
               <Field name="start_date" type="date"
                 className="form-control"
+                onChange={handleChange}
                 value={values.start_date}
               />
               <ErrorMessage
                 name="start_date"
                 className="d-block invalid-feedback"
-                onChange={handleChange}
-                value={values.start_date}
+                component="span"
               />
             </FormGroup>
             <FormGroup>
               <label>End Date</label>
               <Field name="end_date" type="date"
+                onChange={handleChange}
+                value={values.end_date}
                 className="form-control" />
               <ErrorMessage
                 name="end_date"
                 className="d-block invalid-feedback"
-                onChange={handleChange}
-                value={values.end_date}
+                component="span"
               />
             </FormGroup>
             <div className="form-submit">
