@@ -11,7 +11,7 @@ const GoalForm = (props) => {
     title: Yup.string().required(" Title Can't be Balnk"),
     description: Yup.string().required("Description Can't be Balnk"),
     image: Yup.mixed().required("Image is required"),
-    start_date: Yup.date().required("End Date Required"),
+    start_date: Yup.date().required("Start Date Required"),
     end_date: Yup.date().required("End Date Required")
   });
 
@@ -23,20 +23,15 @@ const GoalForm = (props) => {
 
 
         onSubmit={(values) => {
-
           const formData = new FormData();
           for (let value in values) {
             formData.append(value, values[value]);
           }
-
-          props.onSubmit(formData)
-
-
+          props.onSubmit(formData);
         }}
         initialValues={
           { ...props.initialValues }
         }
-
       >
 
         {({ handleChange, values, setFieldValue }) => (
@@ -44,8 +39,8 @@ const GoalForm = (props) => {
             <FormGroup>
               <label htmlFor="title">Title</label>
               <Field name="title" className="form-control" type="text"
-                onChange={handleChange}
                 value={values.title}
+                onChange={handleChange}
               />
 
               <ErrorMessage
