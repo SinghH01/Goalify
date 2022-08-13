@@ -73,12 +73,6 @@ function GoalListItem(props) {
     checkFavourite();
   }, [])
 
-  notification.config({
-    placement: 'topRight',
-    top: 90,
-    duration: 3,
-    rtl: true,
-  });
 
   const openNotificationWithIcon = (type, text) => {
     notification[type]({
