@@ -169,7 +169,7 @@ function Goal(props) {
             />
           </div>
           <div className="unfollow">
-            <UnFollowGoal userId={user.id} goalId={props.id} />
+            <UnFollowGoal userId={user.id} goalId={props.id} goalTitle={goal.title} />
           </div>
         </div>
       </div>
