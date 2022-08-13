@@ -9,14 +9,21 @@ import Sidebar from './Sidebar'
 import Favourites from './Favourites';
 import MyGoals from './UserGoals/MyGoals';
 import ActiveGoals from './IndividualGoal/ActiveGoals';
+import { atom, useRecoilState } from 'recoil';
 import Loading from './Loading';
 
 
 
+//Setup global state variable using Recoil JS
+export const linkState = atom({
+  key: 'linkState',
+  default: 'activegoals'
+})
+
 
 export default function Dashboard() {
 
-  const [state, setState] = useState('find')
+  const [state, setState] = useRecoilState(linkState);  
   const [rerender, setRerender] = useState(false)
 
   const providerValue = useMemo(() => ({
