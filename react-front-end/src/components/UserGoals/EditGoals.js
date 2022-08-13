@@ -1,31 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React  from "react";
 import Axios from "axios";
 import GoalForm from "./GoalForm";
-import { notification } from 'antd';
-
+import { openNotificationWithIcon } from "../Notification";
 
 
 
 const EditGoal = (props) => {
 
-  const openNotificationWithIcon = (type) => {
-    notification[type]({
-      message: 'Goalify',
-      description: (
-        <>
-          Thank you {props.userName}.<br />
-          Your Gaol has been successfully Edited!!!
-        </>
-      )
-    });
-  };
-
-
   const formValues = {
     title: props.goal.title,
     description: props.goal.description,
     image: props.goal.image
-  }
+  };
 
   const onSubmit = (GoalObject) => {
     props.setState("loading");
@@ -37,7 +23,13 @@ const EditGoal = (props) => {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
-          openNotificationWithIcon("warning")
+          openNotificationWithIcon(
+            "warning",
+            <>
+          Thank you <strong>{props.userName}</strong>.<br />
+          Your Gaol has been successfully Edited!!!
+        </>  
+            )
         } else Promise.reject();
       })
       .catch((err) => alert("Something went wrong"));
