@@ -24,14 +24,13 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
 
   return (
 
-    <Navbar className="nav navbar navbar-default" expand="lg" >
+    <Navbar className="nav navbar navbar-default" fixed="top" expand="lg" >
       <Navbar.Brand href="" className='logoDiscover' style={{
         color: '#f8f9fa', marginInlineStart: '22px'
         , fontSize: '24px'
       }}><GiStairsGoal size='2rem' /> Goalify
 
       </Navbar.Brand>
-      <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
         <Nav
           className="me-auto my-2 my-lg-0"

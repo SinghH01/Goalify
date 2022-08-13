@@ -13,6 +13,7 @@ import "antd/dist/antd.css";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
 import { Progress, Steps } from "antd";
+import GoalMembers from "./GoalMembers";
 const { Step } = Steps;
 
 function Goal(props) {
@@ -172,10 +173,6 @@ function Goal(props) {
             <UnFollowGoal userId={user.id} goalId={props.id} goalTitle={goal.title} />
           </div>
         </div>
-      </div>
-
-      <div className="chat">
-        <Chat id={props.id} />
         <div className="location-container">
           {location !== undefined && (
             <div className="map-div">
@@ -186,6 +183,12 @@ function Goal(props) {
           )}
           {location === undefined && <h3>This is an online goal</h3>}
         </div>
+      </div>
+
+      <div className="chat">
+        <Chat id={props.id} />
+
+        <GoalMembers goalId={props.id} />
       </div>
     </div>
   );
