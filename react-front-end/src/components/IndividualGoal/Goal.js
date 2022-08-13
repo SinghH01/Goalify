@@ -157,10 +157,8 @@ function Goal(props) {
             <Steps current={current} onChange={onChange} direction="vertical">
               {individualMilestone}
             </Steps>
-            <div className="unfollow">
-              <UnFollowGoal userId={user.id} goalId={props.id}/>
-            </div>
           </div>
+
           <div>
             <h5>UNTIL GOAL IS COMPLETED</h5>
             <Progress
@@ -169,6 +167,9 @@ function Goal(props) {
               percent={Math.round(daysLeft)}
               format={(percent) => `${Math.round(dayLeft)} Days Left`}
             />
+          </div>
+          <div className="unfollow">
+            <UnFollowGoal userId={user.id} goalId={props.id} />
           </div>
         </div>
       </div>
