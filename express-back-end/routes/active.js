@@ -40,9 +40,23 @@ module.exports = (db) => {
   });
 
 
+  router.post("/delete", (req, res) => {
+    console.log(req.body)
+    db.query(`DELETE FROM users_goals
+    WHERE user_id = $1 AND goal_id = $2;`, [
+      req.body.userId, req.body.goalId
+    ])
+      .then(() => {
+        setTimeout(() => {
+          res.status(204).json({});
+        }, 1000);
+      });
+  });
+
+
   //Fetch members of speciic goals
   router.post("/goal_members", (req, res) => {
-     let values = [req.body.goalId]
+    let values = [req.body.goalId]
 
     db.query(`SELECT users.id,users.first_name, users.avatar
     FROM users_goals
