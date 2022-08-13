@@ -5,6 +5,7 @@ import Axios from "axios";
 import Chat from "./Chat";
 import "./goal.css";
 import MapContainer from "../Map/MapContainer";
+import UnFollowGoal from "./UnfollowGoal";
 import Confeti from "./confetti";
 import Pulse from "react-reveal/Pulse";
 import moment from "moment";
@@ -158,6 +159,7 @@ function Goal(props) {
               {individualMilestone}
             </Steps>
           </div>
+
           <div>
             <h5>UNTIL GOAL IS COMPLETED</h5>
             <Progress
@@ -166,6 +168,9 @@ function Goal(props) {
               percent={Math.round(daysLeft)}
               format={(percent) => `${Math.round(dayLeft)} Days Left`}
             />
+          </div>
+          <div className="unfollow">
+            <UnFollowGoal userId={user.id} goalId={props.id} goalTitle={goal.title} />
           </div>
         </div>
         <div className="location-container">

@@ -92,8 +92,7 @@ module.exports = (db) => {
   });
 
   router.post("/:id", upload.single('image'), (req, res) => {
-    console.log(req.body.title)
-    console.log(req.file)
+
     const values = [
       req.params.id,
       req.body.title,
@@ -101,18 +100,25 @@ module.exports = (db) => {
       req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename,
       req.body.start_date,
       req.body.end_date
+
     ]
+
     db.query(`INSERT INTO goals (user_id, title, description, image, start_date, end_date)
-        VALUES ($1, $2, $3, $4, $5,$6)`, values)
-      .then(() => {
-        setTimeout(() => {
-          res.status(204).json({});
-        }, 1000);
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
+        VALUES ($1, $2, $3, $4, $5,$6) RETURNING *`, values)
+      .then((data) => {
+        const newGoalId = data.rows[0].id;
+        db.query(`INSERT INTO users_goals (user_id, goal_id)
+        VALUES ($1, $2)`, [req.params.id, newGoalId])
+          .then(() => {
+            setTimeout(() => {
+              res.status(204).json({});
+            }, 1000);
+          })
+          .catch(err => {
+            res
+              .status(500)
+              .json({ error: err.message });
+          });
       });
   });
 
@@ -135,10 +141,16 @@ module.exports = (db) => {
   });
 
   // Put route for update Goal
-  router.put("/edit/:id", (req, res) => {
+  router.put("/edit/:id", upload.single('image'), (req, res) => {
     db.query(`UPDATE goals SET title = $1, description = $2, image=$3, start_date=$4, end_date=$5
      WHERE id = $6;`,
-      [req.body.title, req.body.description, req.body.image, req.body.start_date, req.body.end_date, req.params.id
+      [
+        req.body.title,
+        req.body.description,
+        req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename,
+        req.body.start_date,
+        req.body.end_date,
+        req.params.id
       ])
       .then(() => {
         setTimeout(() => {

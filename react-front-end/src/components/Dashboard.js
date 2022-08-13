@@ -39,7 +39,7 @@ export default function Dashboard() {
         <main className='dashboard-main'>
           {state === 'find' && (<DashboardContext.Provider value={providerValue} ><Discover /></DashboardContext.Provider>)}
           {state === 'favourites' && (<DashboardContext.Provider value={providerValue} ><Favourites /></DashboardContext.Provider>)}
-          {state === 'activegoals' && (<ActiveGoals />)}
+          {state === 'activegoals' && (<DashboardContext.Provider value={providerValue} ><ActiveGoals /></DashboardContext.Provider>)}
           {state === 'mygoals' && (<MyGoals />)}
           {state === "loading" && (<Loading />)}
 

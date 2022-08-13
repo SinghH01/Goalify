@@ -24,7 +24,9 @@ const EditGoal = (props) => {
   const formValues = {
     title: props.goal.title,
     description: props.goal.description,
-    image: props.goal.image
+    image: "",
+    start_date: "",
+    end_date: ""
   }
 
   const onSubmit = (GoalObject) => {

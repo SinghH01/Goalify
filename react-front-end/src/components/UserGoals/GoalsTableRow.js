@@ -8,20 +8,13 @@ import AddIcon from '@material-ui/icons//Add';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography, Fab } from '@material-ui/core'
-import { notification } from 'antd';
 import { Popconfirm } from 'antd';
+import { openNotificationWithIcon } from "../Notification";
 
 
 
 export default function GoalsTableRow(props) {
 
-  const openNotificationWithIcon = (type, text) => {
-    notification[type]({
-      message: 'Goalify',
-      description:
-        `Your ${text} has been deleted!!!`
-    });
-  };
 
   const { id, title, description, image, start_date, end_date } = props.obj;
   const [open, setOpen] = useState(false);
@@ -36,7 +29,7 @@ export default function GoalsTableRow(props) {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
-          openNotificationWithIcon("error", "Goal")
+          openNotificationWithIcon("error",`Your Goal has been deleted!!!`)
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
@@ -50,7 +43,7 @@ export default function GoalsTableRow(props) {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
-          openNotificationWithIcon("error", "Milestone")
+          openNotificationWithIcon("error",`Your Milestone has been deleted!!!`)
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
