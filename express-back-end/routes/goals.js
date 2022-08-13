@@ -141,10 +141,16 @@ module.exports = (db) => {
   });
 
   // Put route for update Goal
-  router.put("/edit/:id", (req, res) => {
+  router.put("/edit/:id", upload.single('image'), (req, res) => {
     db.query(`UPDATE goals SET title = $1, description = $2, image=$3, start_date=$4, end_date=$5
      WHERE id = $6;`,
-      [req.body.title, req.body.description, req.body.image, req.body.start_date, req.body.end_date, req.params.id
+      [
+        req.body.title,
+        req.body.description,
+        req.protocol + '://' + req.get('host') + '/uploads/' + req.file.filename,
+        req.body.start_date,
+        req.body.end_date,
+        req.params.id
       ])
       .then(() => {
         setTimeout(() => {
