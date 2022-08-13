@@ -51,7 +51,7 @@ module.exports = (db) => {
 
   //Fetch members of speciic goals
   router.post("/goal_members", (req, res) => {
-     let values = [req.body.userId, req.body.goalId]
+     let values = [req.body.goalId]
 
     db.query(`SELECT users.id,users.first_name, users.avatar
     FROM users_goals
