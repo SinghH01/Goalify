@@ -11,8 +11,7 @@ import Axios from 'axios'
 import { useRecoilState } from 'recoil';
 import { userState } from '../App';
 import DashboardContext from "./DashBoardContext";
-import { notification } from 'antd';
-
+import { openNotificationWithIcon } from "./Notification";
 
 function GoalListItem(props) {
 
@@ -23,7 +22,7 @@ function GoalListItem(props) {
 
   const providerValue = useContext(DashboardContext)
   const { setState, setRerender } = providerValue
-  
+
 
 
   const likeGoal = async () => {
@@ -39,9 +38,12 @@ function GoalListItem(props) {
   const dislikeGoal = async () => {
     try {
       const response = await Axios.post('http://localhost:8080/favourites/dislike', { userId: user.id, goalId: props.id });
-      openNotificationWithIcon("error", <>
-        The Goal <strong>{props.title}</strong> removed from the Favourites!!!
-      </>);
+      openNotificationWithIcon(
+        "error",
+        <>
+          The Goal <strong>{props.title}</strong> removed from the Favourites!!!
+        </>
+      );
     } catch (error) {
       console.log(error);
     }
@@ -73,18 +75,6 @@ function GoalListItem(props) {
     checkFavourite();
   }, [])
 
-  const openNotificationWithIcon = (type, text) => {
-    notification[type]({
-      message: 'Goalify',
-      description: (
-        text
-      )
-    });
-  };
-
-
-
-
   const joinGoal = () => {
     setState("loading")
     Axios.post(
@@ -93,7 +83,7 @@ function GoalListItem(props) {
       .then((res) => {
         if (res.status === 204) {
           openNotificationWithIcon("success", <>
-            You have joined the <strong>{props.title}</strong> goal!!!</>);
+            You have joined the Goal <strong>{props.title}</strong>!!!</>);
           setState("activegoals");
         } else Promise.reject();
       })
