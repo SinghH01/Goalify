@@ -92,3 +92,10 @@ align-items: center;
    width:90%;  
 }
 
+@media only screen and (max-width: 900px) {
+  .goal-main {
+    display: flex;
+    flex-direction: column; 
+    margin-top: 20px; 
+  }
+}
