@@ -24,7 +24,7 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
 
   return (
 
-    <Navbar className="nav navbar navbar-default" expand="lg" >
+    <Navbar className="nav navbar navbar-default" fixed="top" expand="lg" >
       <Navbar.Brand href="" className='logoDiscover' style={{
         color: '#f8f9fa', marginInlineStart: '22px'
         , fontSize: '24px'
