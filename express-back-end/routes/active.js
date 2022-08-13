@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const _ = require("lodash");
+
 
 module.exports = (db) => {
   router.post("/", (req, res) => {
@@ -14,17 +14,8 @@ module.exports = (db) => {
 
       .then(data => {
         let goals = data.rows;
-        db.query(`SELECT * FROM goals where user_id = $1;`, [
-          req.body.id
-        ]).then(data => {
-
-          let allGoals = [...goals, ...data.rows];
-
-          const removeDuplicatesGoals = _.uniqWith(allGoals, _.isEqual);
-          res.json(removeDuplicatesGoals);
-        })
+        res.json(goals);
       })
-
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
