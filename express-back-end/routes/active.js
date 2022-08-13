@@ -49,5 +49,24 @@ module.exports = (db) => {
   });
 
 
+  //Fetch members of speciic goals
+  router.post("/goal_members", (req, res) => {
+     let values = [req.body.goalId]
+
+    db.query(`SELECT users.id,users.first_name, users.avatar
+    FROM users_goals
+    JOIN users ON users.id = users_goals.user_id
+    WHERE users_goals.goal_id = $1`, values)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  });
+
+
   return router;
 };

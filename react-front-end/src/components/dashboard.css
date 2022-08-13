@@ -1,6 +1,7 @@
 .dashboard {
   display: flex;
   flex-direction: column;
+  margin-top: 60px;
 }
 
 .dashboard-body {
@@ -11,14 +12,19 @@
 .dashboard-main {
   height: 100vh;
   width: 100vw;
+  margin-left: 250px;
   background-color: #F7F9Fa;
-  /* background-image: url('../../src/assets/background.png');
-  background-repeat: no-repeat;
-  background-size: 100% 98%; */
   padding-top: 2%;  
   overflow: scroll
 }
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* make scrollbar transparent */
+}
+
+
+@media only screen and (max-width: 900px) {
+  .dashboard-main{
+    margin-left: 100px;
+  }
 }

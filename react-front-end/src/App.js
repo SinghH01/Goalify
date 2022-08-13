@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { atom, useRecoilState } from 'recoil';
+import { notification } from 'antd';
 import Axios from 'axios';
 import './App.css';
 
 //Components
-import MyLandingPage from './components/MyLandingPage';
 import Discover from './components/Discover';
 import Dashboard from './components/Dashboard';
 import About from './components/about'
@@ -19,6 +19,14 @@ export const userState = atom({
 
 const App = () => {
   const [user, setUser] = useRecoilState(userState);
+
+  notification.config({
+    placement: 'topRight',
+    top: 90,
+    duration: 3,
+    rtl: true,
+  });
+
 
   useEffect(() => {
     Axios.get("http://localhost:8080/login").then((response) => {

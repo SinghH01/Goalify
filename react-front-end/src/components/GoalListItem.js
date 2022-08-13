@@ -73,6 +73,7 @@ function GoalListItem(props) {
     checkFavourite();
   }, [])
 
+
   const openNotificationWithIcon = (type, text) => {
     notification[type]({
       message: 'Goalify',
