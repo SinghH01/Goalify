@@ -20,12 +20,6 @@ export const userState = atom({
 const App = () => {
   const [user, setUser] = useRecoilState(userState);
 
-  notification.config({
-    placement: 'topRight',
-    top: 90,
-    duration: 3,
-    rtl: true,
-  });
 
 
   useEffect(() => {
