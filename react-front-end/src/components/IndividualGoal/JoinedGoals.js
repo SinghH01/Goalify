@@ -16,7 +16,7 @@ import Goal from '../IndividualGoal/Goal';
 function JoinedGoals() {
   const [goals, setGoals] = useState([]);
   const [user, setUser] = useRecoilState(userState);
-  const [changeState, setChangeState] = useState({ state: "all", goalId: 0, ownerAvatar: "" })
+  const [changeState, setChangeState] = useState({ state: "all", goalId: 0})
 
   useEffect(() => {
     fetchGoals();
