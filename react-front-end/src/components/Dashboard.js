@@ -11,6 +11,7 @@ import MyGoals from './UserGoals/MyGoals';
 import ActiveGoals from './IndividualGoal/ActiveGoals';
 import { atom, useRecoilState } from 'recoil';
 import Loading from './Loading';
+// import JoinedGoals from './IndividualGoal/JoinedGoals';
 
 
 
@@ -42,7 +43,6 @@ export default function Dashboard() {
           {state === 'activegoals' && (<DashboardContext.Provider value={providerValue} ><ActiveGoals /></DashboardContext.Provider>)}
           {state === 'mygoals' && (<MyGoals />)}
           {state === "loading" && (<Loading />)}
-
         </main>
       </div>
     </div>
