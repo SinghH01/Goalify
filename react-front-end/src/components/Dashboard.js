@@ -11,14 +11,14 @@ import MyGoals from './UserGoals/MyGoals';
 import ActiveGoals from './IndividualGoal/ActiveGoals';
 import { atom, useRecoilState } from 'recoil';
 import Loading from './Loading';
-// import JoinedGoals from './IndividualGoal/JoinedGoals';
+import JoinedGoals from './IndividualGoal/JoinedGoals';
 
 
 
 //Setup global state variable using Recoil JS
 export const linkState = atom({
   key: 'linkState',
-  default: 'activegoals'
+  default: 'find'
 })
 
 
@@ -40,7 +40,7 @@ export default function Dashboard() {
         <main className='dashboard-main'>
           {state === 'find' && (<DashboardContext.Provider value={providerValue} ><Discover /></DashboardContext.Provider>)}
           {state === 'favourites' && (<DashboardContext.Provider value={providerValue} ><Favourites /></DashboardContext.Provider>)}
-          {state === 'activegoals' && (<DashboardContext.Provider value={providerValue} ><ActiveGoals /></DashboardContext.Provider>)}
+          {state === 'activegoals' && (<DashboardContext.Provider value={providerValue} ><JoinedGoals /></DashboardContext.Provider>)}
           {state === 'mygoals' && (<MyGoals />)}
           {state === "loading" && (<Loading />)}
         </main>
