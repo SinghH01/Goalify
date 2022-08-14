@@ -7,6 +7,8 @@ export const openNotificationWithIcon = (type, text) => {
     message: 'Goalify',
     description: (
       text
-    )
+    ),
+    className: "ant-notification-center",
+    duration: 0,
   });
 };
