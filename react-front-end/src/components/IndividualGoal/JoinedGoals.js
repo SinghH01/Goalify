@@ -45,6 +45,7 @@ function JoinedGoals() {
   );
 
   const data = goals.map((goal, i) => ({
+    key:i,
     id: goal.id,
     start: goal.start_date,
     end: goal.edn_date,
@@ -67,7 +68,7 @@ function JoinedGoals() {
             dataSource={data}
             renderItem={item => (
               <List.Item
-                key={item.title}
+              key={item.key}
                 actions={[
                   <Button key="3" onClick={() => handleClick(item.id)} >View</Button>,
                   <UnFollowGoal userId={user.id} goalId={item.id} goalTitle={item.title} />,
