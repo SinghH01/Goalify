@@ -144,3 +144,8 @@ div#navbarScroll {
   left: 0;
   right: 0;
 }
+
+
+.ant-notification-center {
+  margin-top: 50px;
+}

@@ -9,6 +9,5 @@ export const openNotificationWithIcon = (type, text) => {
       text
     ),
     className: "ant-notification-center",
-    duration: 0,
   });
 };
