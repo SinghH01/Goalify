@@ -1,13 +1,12 @@
 import React from "react";
 import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 import { UploadOutlined } from '@ant-design/icons';
 import { Button as AntdButton, Input, Upload, DatePicker, Space } from 'antd';
 
 
 const { TextArea } = Input;
-const { RangePicker } = DatePicker;
 
 const GoalForm = (props) => {
 
