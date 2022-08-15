@@ -151,3 +151,25 @@ div#navbarScroll {
 .ant-notification-center {
   margin-top: 50px;
 }
+
+/* CSS FOR HEADING IN EACH PAGE */
+
+.page-heading{
+  text-align: center;
+  margin-top: 24px;
+}
+
+.page-heading h2{
+  padding-right: 150px;
+  color: rgba(2,72,124,1);
+  margin-bottom: 0px;
+}
+.page-heading h5{
+  padding-right: 150px;
+  color: rgba(2,72,124,1);
+}
+.header-icon{  
+  transform: scale(1.6);
+  margin-bottom: 8px;
+  margin-right: 10px;
+}
