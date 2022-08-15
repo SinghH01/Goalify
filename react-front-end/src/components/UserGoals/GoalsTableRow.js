@@ -10,6 +10,8 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, TableRow, Typography, Fab } from '@material-ui/core'
 import { Popconfirm } from 'antd';
 import { openNotificationWithIcon } from "../Notification";
+import { Empty } from 'antd';
+
 
 
 
@@ -29,7 +31,7 @@ export default function GoalsTableRow(props) {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
-          openNotificationWithIcon("error",`Your Goal has been deleted!!!`)
+          openNotificationWithIcon("error", `Your Goal has been deleted!!!`)
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
@@ -43,7 +45,7 @@ export default function GoalsTableRow(props) {
       .then((res) => {
         if (res.status === 204) {
           props.setState("all");
-          openNotificationWithIcon("error",`Your Milestone has been deleted!!!`)
+          openNotificationWithIcon("error", `Your Milestone has been deleted!!!`)
         } else Promise.reject();
       })
       .catch((err) => console.log(err));
@@ -106,33 +108,35 @@ export default function GoalsTableRow(props) {
               </div>
               <Typography variant="h6" gutterBottom component="div">
               </Typography>
-              <Table size="small" aria-label="milsestones">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Title</TableCell>
-                    <TableCell>Description</TableCell>
-                    <TableCell>End Date</TableCell>
-                    <TableCell>Action</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {milestones.map((milestone, i) => (
-                    <TableRow key={i}>
-                      <TableCell> {milestone.title}</TableCell>
-                      <TableCell>{milestone.description}</TableCell>
-                      <TableCell>{moment(milestone.end_date).format('MMMM Do, YYYY')}</TableCell>
-                      <TableCell>
-                        <Popconfirm placement="top" title={"Are you sure to delete this milestone"} onConfirm={() => deleteMilestone(milestone.id)} okText="Yes" cancelText="No">
-                          <IconButton>
-                            <DeleteIcon />
-                          </IconButton>
-                        </Popconfirm>
-                      </TableCell>
-
+              {milestones.length === 0 ? <Empty /> :
+                <Table size="small" aria-label="milsestones">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Title</TableCell>
+                      <TableCell>Description</TableCell>
+                      <TableCell>End Date</TableCell>
+                      <TableCell>Action</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
+                  </TableHead>
+                  <TableBody>
+                    {milestones.map((milestone, i) => (
+                      <TableRow key={i}>
+                        <TableCell> {milestone.title}</TableCell>
+                        <TableCell>{milestone.description}</TableCell>
+                        <TableCell>{moment(milestone.end_date).format('MMMM Do, YYYY')}</TableCell>
+                        <TableCell>
+                          <Popconfirm placement="top" title={"Are you sure to delete this milestone"} onConfirm={() => deleteMilestone(milestone.id)} okText="Yes" cancelText="No">
+                            <IconButton>
+                              <DeleteIcon />
+                            </IconButton>
+                          </Popconfirm>
+                        </TableCell>
+
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              }
             </Box>
           </Collapse>
         </TableCell>
