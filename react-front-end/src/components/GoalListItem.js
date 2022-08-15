@@ -125,7 +125,7 @@ function GoalListItem(props) {
           onClick={() => setModalShow(true)}
         />
         <Card.Body>
-          <Card.Title>{props.title}</Card.Title>
+          <Card.Title><h3> {props.title}</h3></Card.Title>
           <Card.Text className="text-goal">{props.description}</Card.Text>
         </Card.Body>
 
