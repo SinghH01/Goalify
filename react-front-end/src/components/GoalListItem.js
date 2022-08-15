@@ -7,7 +7,8 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
-import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import Tooltip from "@material-ui/core/Tooltip";
 import "./GoalList.css";
 import "./goalListItem.css";
 import GoalDetails from "./GoalDetails";
@@ -151,19 +152,28 @@ function GoalListItem(props) {
           >
             <span>
               {!favState ? (
-                <FavoriteBorderIcon
-                  className="favourite-button-unclicked"
-                  onClick={favButton}
-                />
+                <Tooltip title="Add to favourites" placement="right">
+                  <FavoriteBorderIcon
+                    className="favourite-button-unclicked"
+                    onClick={favButton}
+                  />
+                </Tooltip>
               ) : (
-                <FavoriteIcon
-                  className="favourite-button-clicked"
-                  onClick={favButton}
-                />
+                <Tooltip title="Remove from favourites" placement="right">
+                  <FavoriteIcon
+                    className="favourite-button-clicked"
+                    onClick={favButton}
+                  />
+                </Tooltip>
               )}
             </span>
             <span>
-              <Button id= "join-btn" variant="primary" size="md" onClick={joinGoal} >
+              <Button
+                id="join-btn"
+                variant="primary"
+                size="md"
+                onClick={joinGoal}
+              >
                 <PlaylistAddIcon /> Join
               </Button>
             </span>
