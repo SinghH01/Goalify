@@ -11,20 +11,14 @@ import CreateMilestone from "./CreateMilestone";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Divider } from "antd";
 import Loading from "../Loading";
-import {
-  TableCell,
-  Table,
-  TableBody,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Fab,
-} from "@material-ui/core";
-import AddIcon from "@material-ui/icons//Add";
+import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Fab } from '@material-ui/core';
+import AddIcon from '@material-ui/icons//Add';
 import TrackChangesIcon from "@material-ui/icons/TrackChanges";
-import GoalsTableRow from "./GoalsTableRow";
-import "antd/dist/antd.css";
+import GoalsTableRow from './GoalsTableRow';
+import 'antd/dist/antd.css';
+import { Empty } from 'antd';
+
+
 
 export default function MyGoals() {
   const [goals, setGoals] = useState([]);
@@ -47,15 +41,13 @@ export default function MyGoals() {
 
   const DataTable = () => {
     return goals.map((res, i) => {
-      return (
-        <GoalsTableRow
-          obj={res}
-          key={i}
-          setState={setState}
-          handleEdit={handleEdit}
-          handleMileStone={handleMileStone}
-        />
-      );
+      return <GoalsTableRow
+        obj={res}
+        key={i}
+        setState={setState}
+        handleEdit={handleEdit}
+        handleMileStone={handleMileStone}
+      />;
     });
   };
 

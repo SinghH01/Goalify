@@ -1,9 +1,12 @@
 import React from "react";
 import * as Yup from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { UploadOutlined } from '@ant-design/icons';
+import { Button as AntdButton, Input, Upload, DatePicker, Space } from 'antd';
 
+
+const { TextArea } = Input;
 
 const GoalForm = (props) => {
 
@@ -15,6 +18,7 @@ const GoalForm = (props) => {
     end_date: Yup.date().required("End Date Required")
   });
 
+
   return (
     <div className="form-wrapper">
 
@@ -23,6 +27,7 @@ const GoalForm = (props) => {
 
 
         onSubmit={(values) => {
+          console.log(values)
           const formData = new FormData();
           for (let value in values) {
             formData.append(value, values[value]);
@@ -32,76 +37,94 @@ const GoalForm = (props) => {
         initialValues={
           { ...props.initialValues }
         }
+
       >
 
         {({ handleChange, values, setFieldValue }) => (
+
           <Form>
             <FormGroup>
-              <label htmlFor="title">Title</label>
-              <Field name="title" className="form-control" type="text"
+              <Input
+                showCount maxLength={20}
+                name="title"
+                type="text"
+                placeholder="Title"
                 value={values.title}
-                onChange={handleChange}
-              />
-
+                onChange={handleChange} />
               <ErrorMessage
                 name="title"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
+            <br />
             <FormGroup>
-              <label htmlFor="description">Description</label>
-              <Field name="description" className="form-control" as="textarea" rows={3} cols={10}
-                onChange={handleChange}
-                value={values.description} />
+              <TextArea
+                showCount maxLength={140}
+                name="description"
+                placeholder="Description"
+                value={values.description}
+                onChange={handleChange} />
               <ErrorMessage
                 name="description"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
-
+            <br />
             <FormGroup>
-              <label htmlFor="image">Image</label>
-              <div class="custom-file">
-                <input id="inputGroupFile01" type="file" className="custom-file-input"
-                  name='image'
-                  accept='image/*'
-                  onChange={(e) =>
-                    setFieldValue('image', e.currentTarget.files[0])
-                  } />
-              </div>
+              <Upload name='file'
+                listType="picture"
+                className="upload-list-inline"
+                defaultFileList={values.image}
+                onChange={(e) =>
+                  setFieldValue('image', e.file.originFileObj)}
+              >
+                <AntdButton icon={<UploadOutlined />}>Upload Image</AntdButton>
+              </Upload>
               <ErrorMessage
                 name="image"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
+            <br />
             <FormGroup>
-              <label>Start Date</label>
-              <Field name="start_date" type="date"
-                className="form-control"
-                onChange={handleChange}
-                value={values.start_date}
-              />
+              <Space direction="vertical" size={12}>
+                <DatePicker
+                  showTime
+                  name="start_date"
+                  placeholder="Start Date"
+                  selected={(values.start_date && new Date(values.start_date)) || null}
+                  onChange={(value, dateString) =>
+                    setFieldValue("start_date", dateString)}
+                />
+              </Space>
               <ErrorMessage
                 name="start_date"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
+            <br />
             <FormGroup>
-              <label>End Date</label>
-              <Field name="end_date" type="date"
-                onChange={handleChange}
-                value={values.end_date}
-                className="form-control" />
+              <Space direction="vertical" size={12}>
+                <DatePicker
+                  showTime
+                  name="end_date"
+                  placeholder="End Date"
+                  selected={(values.end_date && new Date(values.start_date)) || null}
+                  onChange={(value, dateString) =>
+                    setFieldValue("end_date", dateString)}
+                />
+              </Space>
               <ErrorMessage
                 name="end_date"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
+            <br />
             <div className="form-submit">
               <Button variant="outline-success" block="block" type="submit">
                 {props.children}
