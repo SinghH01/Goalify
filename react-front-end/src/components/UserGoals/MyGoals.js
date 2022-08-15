@@ -14,6 +14,7 @@ import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper
 import AddIcon from '@material-ui/icons//Add';
 import GoalsTableRow from './GoalsTableRow';
 import 'antd/dist/antd.css';
+import { Empty } from 'antd';
 
 
 
@@ -45,10 +46,10 @@ export default function MyGoals() {
       return <GoalsTableRow
         obj={res}
         key={i}
-        setState={setState} 
+        setState={setState}
         handleEdit={handleEdit}
         handleMileStone={handleMileStone}
-        />;
+      />;
     });
   };
 
@@ -72,36 +73,40 @@ export default function MyGoals() {
       <>
         <h2 className='goal_header'>My Goals</h2>
         <div className='createButton'>
-        <Fab color="primary" aria-label="add"  onClick={handleClick}>
-          <AddIcon />
-        </Fab>
+          <Fab color="primary" aria-label="add" onClick={handleClick}>
+            <AddIcon />
+          </Fab>
         </div>
         <div className="table-wrapper">
-          <TableContainer component={Paper}>
-            <Table aria-label="collapsible table">
-              <TableHead>
-                <TableRow >
-                  <TableCell />
-                  <TableCell>Title</TableCell>
-                  <TableCell>Description</TableCell>
-                  <TableCell>Image</TableCell>
-                  <TableCell>Start</TableCell>
-                  <TableCell>End</TableCell>
-                  <TableCell>Action</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {DataTable()}
-              </TableBody>
-            </Table>
-          </TableContainer>
+          {goals.length === 0 ? <Empty /> :
+            <TableContainer component={Paper}>
+              <Table aria-label="collapsible table">
+                <TableHead>
+                  <TableRow >
+                    <TableCell />
+                    <TableCell>Title</TableCell>
+                    <TableCell>Description</TableCell>
+                    <TableCell>Image</TableCell>
+                    <TableCell>Start</TableCell>
+                    <TableCell>End</TableCell>
+                    <TableCell>Action</TableCell>
+                  </TableRow>
+                </TableHead>
+
+                <TableBody>
+                  {DataTable()}
+                </TableBody>
+
+              </Table>
+            </TableContainer>
+          }
         </div>
 
       </>
     )}
     {state === "create" && (<CreateGoal userId={user.id} setState={setState} userName={user.first_name} />)}
     {state === "createMilestone" && (<CreateMilestone goalId={goal.id} setState={setState} userName={user.first_name} />)}
-    {state === "edit" && (<EditGoal  goal={goal} setState={setState} userName={user.first_name}/>)}
+    {state === "edit" && (<EditGoal goal={goal} setState={setState} userName={user.first_name} />)}
     {state === "loading" && (<Loading />)}
   </>
   );
