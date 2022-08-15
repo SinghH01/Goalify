@@ -1,0 +1,13 @@
+.favourite-button-unclicked{
+  cursor: pointer;
+  color: #061b28;  
+}
+
+.favourite-button-clicked {
+  cursor: pointer;
+  color: rgba(2,72,124,1);  
+}
+
+#join-btn{
+  background-color: rgba(2,72,124,1);
+}

@@ -8,7 +8,6 @@ import Discover from './Discover';
 import Sidebar from './Sidebar'
 import Favourites from './Favourites';
 import MyGoals from './UserGoals/MyGoals';
-import ActiveGoals from './IndividualGoal/ActiveGoals';
 import { atom, useRecoilState } from 'recoil';
 import Loading from './Loading';
 import JoinedGoals from './IndividualGoal/JoinedGoals';

@@ -1,16 +1,15 @@
-import React from 'react'
-import { useState, useEffect } from 'react';
-import axios from 'axios'
-import Search from './Search';
-import GoalList from './GoalList'
-import './discover.css'
-
-
-
+import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import Search from "./Search";
+import GoalList from "./GoalList";
+import { Divider } from "antd";
+import PageviewIcon from "@material-ui/icons/Pageview";
+import "./discover.css";
 
 function Discover() {
-  const [goals, setGoals] = useState([])
-  const [searchQuery, setSearchQuery] = useState('');
+  const [goals, setGoals] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     fetchGoals();
@@ -18,7 +17,7 @@ function Discover() {
 
   const fetchGoals = async () => {
     try {
-      const response = await axios.get('/api/goals');
+      const response = await axios.get("/api/goals");
       setGoals(response.data);
     } catch (error) {
       console.log(error);
@@ -34,15 +33,18 @@ function Discover() {
   const filteredGoals = filterGoals(goals);
 
   return (
-
-    <div >
-
+    <div>
+      <div className="page-heading">
+        <h2>
+          <PageviewIcon className="header-icon" /> DISCOVER
+        </h2>
+        <h5>Find new goals to follow</h5>
+        <Divider className="header-divider"></Divider>
+      </div>
       <Search setSearchQuery={setSearchQuery} />
       <GoalList goals={searchQuery ? filteredGoals : goals} />
-
-
     </div>
-  )
+  );
 }
 
 export default Discover;

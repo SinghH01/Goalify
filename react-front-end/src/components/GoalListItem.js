@@ -1,43 +1,54 @@
 import React, { useEffect, useState, useContext } from "react";
-import moment from 'moment';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import "./GoalList.css"
+import moment from "moment";
+import Card from "react-bootstrap/Card";
+import { Button } from "react-bootstrap";
+import ListGroup from "react-bootstrap/ListGroup";
+import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
+import FavoriteIcon from "@material-ui/icons/Favorite";
+import EventAvailableIcon from "@material-ui/icons/EventAvailable";
+import EventBusyIcon from "@material-ui/icons/EventBusy";
+import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
+import Tooltip from "@material-ui/core/Tooltip";
+import "./GoalList.css";
+import "./goalListItem.css";
 import GoalDetails from "./GoalDetails";
-import Axios from 'axios'
-import { useRecoilState } from 'recoil';
-import { userState } from '../App';
+import Axios from "axios";
+import { useRecoilState } from "recoil";
+import { userState } from "../App";
 import DashboardContext from "./DashBoardContext";
 import { openNotificationWithIcon } from "./Notification";
 
 function GoalListItem(props) {
+  const [modalShow, setModalShow] = useState(false);
 
-  const [modalShow, setModalShow] = useState(false)
-
-  const [favState, setFavState] = useState(false)
+  const [favState, setFavState] = useState(false);
   const [user, setUser] = useRecoilState(userState);
 
-  const providerValue = useContext(DashboardContext)
-  const { setState, setRerender } = providerValue
-
-
+  const providerValue = useContext(DashboardContext);
+  const { setState, setRerender } = providerValue;
 
   const likeGoal = async () => {
     try {
-      const response = await Axios.post('http://localhost:8080/favourites/like', { userId: user.id, goalId: props.id });
-      openNotificationWithIcon("success", <>
-        The Goal <strong>{props.title}</strong> added on the Favourites!!!
-      </>);
+      const response = await Axios.post(
+        "http://localhost:8080/favourites/like",
+        { userId: user.id, goalId: props.id }
+      );
+      openNotificationWithIcon(
+        "success",
+        <>
+          The Goal <strong>{props.title}</strong> added on the Favourites!!!
+        </>
+      );
     } catch (error) {
       console.log(error);
     }
   };
   const dislikeGoal = async () => {
     try {
-      const response = await Axios.post('http://localhost:8080/favourites/dislike', { userId: user.id, goalId: props.id });
+      const response = await Axios.post(
+        "http://localhost:8080/favourites/dislike",
+        { userId: user.id, goalId: props.id }
+      );
       openNotificationWithIcon(
         "error",
         <>
@@ -51,20 +62,22 @@ function GoalListItem(props) {
   function favButton() {
     if (!favState) {
       likeGoal();
-      setFavState(prev => !prev);
-
+      setFavState((prev) => !prev);
     } else {
       dislikeGoal();
-      setFavState(prev => !prev);
-      setRerender(prev => !prev)
+      setFavState((prev) => !prev);
+      setRerender((prev) => !prev);
     }
-  };
+  }
 
   const checkFavourite = async () => {
     try {
-      const response = await Axios.post('/favourites/check', { userId: user.id, goalId: props.id });
+      const response = await Axios.post("/favourites/check", {
+        userId: user.id,
+        goalId: props.id,
+      });
       if (response.data.liked === true) {
-        setFavState(prev => !prev);
+        setFavState((prev) => !prev);
       }
     } catch (error) {
       console.log(error);
@@ -73,77 +86,106 @@ function GoalListItem(props) {
 
   useEffect(() => {
     checkFavourite();
-  }, [])
+  }, []);
 
   const joinGoal = () => {
-    setState("loading")
-    Axios.post(
-      `http://localhost:8080/active/add`,
-      { userId: user.id, goalId: props.id })
+    setState("loading");
+    Axios.post(`http://localhost:8080/active/add`, {
+      userId: user.id,
+      goalId: props.id,
+    })
       .then((res) => {
         if (res.status === 204) {
-          openNotificationWithIcon("success", <>
-            You have joined the Goal <strong>{props.title}</strong>!!!</>);
+          openNotificationWithIcon(
+            "success",
+            <>
+              You have joined the Goal <strong>{props.title}</strong>!!!
+            </>
+          );
           setState("activegoals");
         } else Promise.reject();
       })
-      .catch(err => alert('Something went wrong'))
+      .catch((err) => alert("Something went wrong"));
   };
-
-
 
   let styles = {
     width: "80%",
-    marginBottom: '26px',
-    marginInline: 'auto',
-    boxShadow: '1px 1px 14px #999',
+    marginBottom: "26px",
+    marginInline: "auto",
+    boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
   };
-
 
   return (
     <>
       <Card className="goal-card" style={styles}>
-        <Card.Img variant="top" src={props.image} style={{ height: '300px', cursor: "pointer" }} onClick={() => setModalShow(true)} />
-        <Card.Body >
-          <Card.Title>{props.title}</Card.Title>
-          <Card.Text className="text-goal">
-            {props.description}
-          </Card.Text>
+        <Card.Img
+          variant="top"
+          src={props.image}
+          style={{ height: "300px", cursor: "pointer" }}
+          onClick={() => setModalShow(true)}
+        />
+        <Card.Body>
+          <Card.Title><h3> {props.title}</h3></Card.Title>
+          <Card.Text className="text-goal">{props.description}</Card.Text>
         </Card.Body>
 
         <ListGroup className="list-group-flush">
-          <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <span >
-              Start Date{`-${moment(props.start_date).format('MMMM Do, YYYY')}`}
+          <ListGroup.Item
+            style={{ display: "flex", justifyContent: "space-between" }}
+          >
+            <span>
+              <EventAvailableIcon />
+              {` ${moment(props.start_date).format("MMMM Do, YYYY")}`}
             </span>
             <span>
-              End Date{`-${moment(props.end_date).format('MMMM Do, YYYY')}`}
+              <EventBusyIcon />
+              {` ${moment(props.end_date).format("MMMM Do, YYYY")}`}
             </span>
           </ListGroup.Item>
 
-          <ListGroup.Item style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-            <span >
-              {!favState ?
-                <FavoriteBorderIcon style={{ cursor: "pointer" }} onClick={favButton} />
-                :
-                <FavoriteIcon style={{ cursor: "pointer" }} onClick={favButton} />
-              }
+          <ListGroup.Item
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <span>
+              {!favState ? (
+                <Tooltip title="Add to favourites" placement="right">
+                  <FavoriteBorderIcon
+                    className="favourite-button-unclicked"
+                    onClick={favButton}
+                  />
+                </Tooltip>
+              ) : (
+                <Tooltip title="Remove from favourites" placement="right">
+                  <FavoriteIcon
+                    className="favourite-button-clicked"
+                    onClick={favButton}
+                  />
+                </Tooltip>
+              )}
             </span>
             <span>
-              <Button variant="primary" style={{ width: '66px', height: '42px' }} onClick={joinGoal}>Join</Button>
+              <Button
+                id="join-btn"
+                variant="primary"
+                size="md"
+                onClick={joinGoal}
+              >
+                <PlaylistAddIcon /> Join
+              </Button>
             </span>
           </ListGroup.Item>
         </ListGroup>
+      </Card>
 
-      </Card >
-
-
-      < GoalDetails
+      <GoalDetails
         goal={props}
         show={modalShow}
         onHide={() => setModalShow(false)}
       />
-
     </>
   );
 }
