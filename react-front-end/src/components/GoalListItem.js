@@ -1,12 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import moment from "moment";
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Button } from "react-bootstrap";
 import ListGroup from "react-bootstrap/ListGroup";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 import "./GoalList.css";
 import "./goalListItem.css";
 import GoalDetails from "./GoalDetails";
@@ -162,12 +163,8 @@ function GoalListItem(props) {
               )}
             </span>
             <span>
-              <Button
-                variant="primary"
-                style={{ width: "66px", height: "42px" }}
-                onClick={joinGoal}
-              >
-                Join
+              <Button id= "join-btn" variant="primary" size="md" onClick={joinGoal} >
+                <PlaylistAddIcon /> Join
               </Button>
             </span>
           </ListGroup.Item>
