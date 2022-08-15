@@ -2,27 +2,12 @@ import React from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Input } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
-import { Button as AntdButton, message, Upload } from 'antd';
+import { Button as AntdButton, Input, Upload, DatePicker, Space } from 'antd';
+
+
 const { TextArea } = Input;
-
-const fileList = [
-  {
-    uid: '-1',
-    name: 'xxx.png',
-    status: 'done',
-    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-    thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-  },
-  {
-    uid: '-2',
-    name: 'yyy.png',
-    status: 'error',
-  },
-];
-
+const { RangePicker } = DatePicker;
 
 const GoalForm = (props) => {
 
@@ -43,7 +28,7 @@ const GoalForm = (props) => {
 
 
         onSubmit={(values) => {
-          console.log(values.image)
+          console.log(values)
           const formData = new FormData();
           for (let value in values) {
             formData.append(value, values[value]);
@@ -76,7 +61,7 @@ const GoalForm = (props) => {
             <br />
             <FormGroup>
               <TextArea
-                showCount maxLength={100}
+                showCount maxLength={140}
                 name="description"
                 placeholder="Description"
                 value={values.description}
@@ -106,30 +91,41 @@ const GoalForm = (props) => {
             </FormGroup>
             <br />
             <FormGroup>
-              <label>Start Date</label>
-              <Field name="start_date" type="date"
-                className="form-control"
-                onChange={handleChange}
-                value={values.start_date}
-              />
+              <Space direction="vertical" size={12}>
+                <DatePicker
+                  showTime
+                  name="start_date"
+                  placeholder="Start Date"
+                  selected={(values.start_date && new Date(values.start_date)) || null}
+                  onChange={(value, dateString) =>
+                    setFieldValue("start_date", dateString)}
+                />
+              </Space>
               <ErrorMessage
                 name="start_date"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
+            <br />
             <FormGroup>
-              <label>End Date</label>
-              <Field name="end_date" type="date"
-                onChange={handleChange}
-                value={values.end_date}
-                className="form-control" />
+              <Space direction="vertical" size={12}>
+                <DatePicker
+                  showTime
+                  name="end_date"
+                  placeholder="End Date"
+                  selected={(values.end_date && new Date(values.start_date)) || null}
+                  onChange={(value, dateString) =>
+                    setFieldValue("end_date", dateString)}
+                />
+              </Space>
               <ErrorMessage
                 name="end_date"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
+            <br />
             <div className="form-submit">
               <Button variant="outline-success" block="block" type="submit">
                 {props.children}
