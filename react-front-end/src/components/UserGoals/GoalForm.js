@@ -11,8 +11,8 @@ const { TextArea } = Input;
 const GoalForm = (props) => {
 
   const validationSchema = Yup.object().shape({
-    title: Yup.string().required(" Title Can't be Balnk"),
-    description: Yup.string().required("Description Can't be Balnk"),
+    title: Yup.string().required(" Title Can't be Blank"),
+    description: Yup.string().required("Description Can't be Blank"),
     image: Yup.mixed().required("Image is required"),
     start_date: Yup.date().required("Start Date Required"),
     end_date: Yup.date().required("End Date Required")
