@@ -8,6 +8,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
 import "./GoalList.css";
+import "./goalListItem.css";
 import GoalDetails from "./GoalDetails";
 import Axios from "axios";
 import { useRecoilState } from "recoil";
@@ -109,7 +110,7 @@ function GoalListItem(props) {
     width: "80%",
     marginBottom: "26px",
     marginInline: "auto",
-    boxShadow: "1px 1px 14px #999",
+    boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
   };
 
   return (
@@ -150,12 +151,12 @@ function GoalListItem(props) {
             <span>
               {!favState ? (
                 <FavoriteBorderIcon
-                  style={{ cursor: "pointer" }}
+                  className="favourite-button-unclicked"
                   onClick={favButton}
                 />
               ) : (
                 <FavoriteIcon
-                  style={{ cursor: "pointer" }}
+                  className="favourite-button-clicked"
                   onClick={favButton}
                 />
               )}
