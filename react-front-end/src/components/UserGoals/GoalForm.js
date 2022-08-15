@@ -3,6 +3,25 @@ import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { FormGroup, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Input } from 'antd';
+import { UploadOutlined } from '@ant-design/icons';
+import { Button as AntdButton, message, Upload } from 'antd';
+const { TextArea } = Input;
+
+const fileList = [
+  {
+    uid: '-1',
+    name: 'xxx.png',
+    status: 'done',
+    url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+    thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+  },
+  {
+    uid: '-2',
+    name: 'yyy.png',
+    status: 'error',
+  },
+];
 
 
 const GoalForm = (props) => {
@@ -15,6 +34,7 @@ const GoalForm = (props) => {
     end_date: Yup.date().required("End Date Required")
   });
 
+
   return (
     <div className="form-wrapper">
 
@@ -23,6 +43,7 @@ const GoalForm = (props) => {
 
 
         onSubmit={(values) => {
+          console.log(values.image)
           const formData = new FormData();
           for (let value in values) {
             formData.append(value, values[value]);
@@ -32,51 +53,58 @@ const GoalForm = (props) => {
         initialValues={
           { ...props.initialValues }
         }
+
       >
 
         {({ handleChange, values, setFieldValue }) => (
+
           <Form>
             <FormGroup>
-              <label htmlFor="title">Title</label>
-              <Field name="title" className="form-control" type="text"
+              <Input
+                showCount maxLength={20}
+                name="title"
+                type="text"
+                placeholder="Title"
                 value={values.title}
-                onChange={handleChange}
-              />
-
+                onChange={handleChange} />
               <ErrorMessage
                 name="title"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
+            <br />
             <FormGroup>
-              <label htmlFor="description">Description</label>
-              <Field name="description" className="form-control" as="textarea" rows={3} cols={10}
-                onChange={handleChange}
-                value={values.description} />
+              <TextArea
+                showCount maxLength={100}
+                name="description"
+                placeholder="Description"
+                value={values.description}
+                onChange={handleChange} />
               <ErrorMessage
                 name="description"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
-
+            <br />
             <FormGroup>
-              <label htmlFor="image">Image</label>
-              <div className="custom-file">
-                <input id="inputGroupFile01" type="file" className="custom-file-input"
-                  name='image'
-                  accept='image/*'
-                  onChange={(e) =>
-                    setFieldValue('image', e.currentTarget.files[0])
-                  } />
-              </div>
+              <Upload name='file'
+                listType="picture"
+                className="upload-list-inline"
+                defaultFileList={values.image}
+                onChange={(e) =>
+                  setFieldValue('image', e.file.originFileObj)}
+              >
+                <AntdButton icon={<UploadOutlined />}>Upload Image</AntdButton>
+              </Upload>
               <ErrorMessage
                 name="image"
                 className="d-block invalid-feedback"
                 component="span"
               />
             </FormGroup>
+            <br />
             <FormGroup>
               <label>Start Date</label>
               <Field name="start_date" type="date"
