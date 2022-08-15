@@ -8,6 +8,7 @@ import "./MyGoal.css";
 import EditGoal from "./EditGoals";
 import CreateGoal from "./CreateGoal";
 import CreateMilestone from "./CreateMilestone";
+import Tooltip from "@material-ui/core/Tooltip";
 import { Divider } from "antd";
 import Loading from "../Loading";
 import {
@@ -84,9 +85,11 @@ export default function MyGoals() {
             <Divider className="header-divider"></Divider>
           </div>
           <div className="createButton">
-            <Fab color="primary" aria-label="add" onClick={handleClick}>
+          <Tooltip title="Create a new goal" placement="top"> 
+            <Fab color="primary" className="add-icon" aria-label="add" onClick={handleClick}>
               <AddIcon />
             </Fab>
+            </Tooltip>
           </div>
           <div className="table-wrapper">
             <TableContainer component={Paper}>
