@@ -128,7 +128,7 @@ function Goal(props) {
         <img className="goal-image" src={goal.image} />
 
         <Pulse>
-          <div className="goal-details">
+          <div className="goal-details">Ï
             <div className="test">
               <h1>{goal.title}</h1>
             </div>
@@ -169,9 +169,6 @@ function Goal(props) {
               format={(percent) => `${Math.round(dayLeft)} Days Left`}
             />
           </div>
-          <div className="unfollow">
-            <UnFollowGoal userId={user.id} goalId={props.id} goalTitle={goal.title} />
-          </div>
         </div>
         <div className="location-container">
           {location !== undefined && (
@@ -181,13 +178,16 @@ function Goal(props) {
               <MapContainer location={fullAddress} />
             </div>
           )}
-          {location === undefined && <h3>This is an online goal</h3>}
+          {location === undefined && <h3>This is an online goal</h3>}            
         </div>
+
+        <div className="unfollow-btn">
+              <UnFollowGoal userId={user.id} goalId={props.id} goalTitle={goal.title} />
+              </div>
       </div>
 
       <div className="chat">
         <Chat id={props.id} />
-
         <GoalMembers goalId={props.id} />
       </div>
     </div>

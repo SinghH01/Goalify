@@ -12,7 +12,7 @@ export const SidebarData = [
     link: "activegoals"
   },
   {
-    title: "My Goals",
+    title: "Manage",
     icon: <TrackChangesIcon />,
     link: "mygoals"
   },
