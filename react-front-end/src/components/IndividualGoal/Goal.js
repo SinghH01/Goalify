@@ -12,7 +12,9 @@ import moment from "moment";
 import "antd/dist/antd.css";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
-import { Progress, Steps } from "antd";
+import { SmileOutlined } from "@ant-design/icons";
+import { Progress, Steps, notification } from "antd";
+import { openNotificationWithIcon } from "../Notification";
 import GoalMembers from "./GoalMembers";
 const { Step } = Steps;
 
@@ -95,7 +97,8 @@ function Goal(props) {
     setTimeout(function () {
       setConfetti(false);
     }, 8000);
-  }
+  }  
+
 
   //When user clicks one of the milestones to mark it completed
   const clickStep = async (value) => {
@@ -103,8 +106,17 @@ function Goal(props) {
       `/api/milestones/user_milestones`,
       { userId: user.id, milestoneId: value }
     );
-    console.log(updateMilestone);
+
     setCurrent(current + 1);
+
+    //Notification message when milestones is completed
+    openNotificationWithIcon(
+      "success",
+      <>
+        Congrats! On completing this milestone 
+      </>
+    );
+
     showConfetti();
   };
 
@@ -128,14 +140,13 @@ function Goal(props) {
         <img className="goal-image" src={goal.image} />
 
         <Pulse>
-          <div className="goal-details">Ï
+          <div className="goal-details">
             <div className="test">
               <h1>{goal.title}</h1>
             </div>
             <div>
               <h5>{goal.description}</h5>
             </div>
-
             <div className="goal-dates">
               <div className="start-date">
                 <p>
@@ -173,22 +184,32 @@ function Goal(props) {
         <div className="location-container">
           {location !== undefined && (
             <div className="map-div">
-              <h5>LOCATION</h5>
-              <p>{fullAddress}</p>
+              <h3>LOCATION</h3>
+              <h5>{fullAddress}</h5>
               <MapContainer location={fullAddress} />
             </div>
           )}
-          {location === undefined && <h3>This is an online goal</h3>}            
         </div>
 
         <div className="unfollow-btn">
-              <UnFollowGoal userId={user.id} goalId={props.id} goalTitle={goal.title} />
-              </div>
+          <UnFollowGoal
+            userId={user.id}
+            goalId={props.id}
+            goalTitle={goal.title}
+          />
+        </div>
       </div>
 
       <div className="chat">
         <Chat id={props.id} />
         <GoalMembers goalId={props.id} />
+        <div className="unfollow-btn-small-screen">
+          <UnFollowGoal
+            userId={user.id}
+            goalId={props.id}
+            goalTitle={goal.title}
+          />
+        </div>
       </div>
     </div>
   );
