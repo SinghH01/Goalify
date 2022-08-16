@@ -94,25 +94,25 @@ VALUES (
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   2,
-  'Learn breathing technique',
+  'Learn Breath Focus Technique',
   'Meditate 15 mins every day and focus on breathing',
-  '2022-12-05'
+  '2022-08-10'
 );
 
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   2,
-  'Body scan',
-  'Spend atleast 30 mins a day doing guided meditation technique called Body Scan',
-  '2022-12-08'
+  'Guided Meditation',
+  'Do some research and spend atleast 30 mins a day doing guided meditation technique called Body Scan',
+  '2022-08-18'
 );
 
 INSERT INTO milestones (goal_id, title, description, end_date)
 VALUES (
   2,
   'Unguided meditation',
-  'Meditate without any guiding voice.',
-  '2022-12-25'
+  'Integrate everything learned so far and meditate without any guiding voice (Backkground music is allowed)',
+  '2022-08-30'
 );
 
 INSERT INTO milestones (goal_id, title, description, end_date)

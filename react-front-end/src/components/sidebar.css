@@ -95,13 +95,32 @@
 
 @media only screen and (max-width: 900px) {
   .sidebar-user-info {
+    width: 100px;
+    height: 150px;
+    background: rgb(5,22,33);    
+    display: flex;
+    flex-direction: column;
+    align-items: center;    
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px,
+     rgba(0, 0, 0, 0.22) 0px 10px 10px;     
+  }
+
+  .sidebar-user-info h2 {
     display: none;
   }
+  .avatar {
+    vertical-align: middle;
+    margin-top: 20%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+  }
+
   #listItems #title {
     display: none;
   }
   .sidebar {
-    padding-top: 80px;
+    padding-top: 20px;
     width: 100px;
   }
   .sidebarList .linkItem {

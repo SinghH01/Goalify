@@ -10,6 +10,7 @@ import EventBusyIcon from "@material-ui/icons/EventBusy";
 import HomeIcon from "@material-ui/icons/Home";
 import UnFollowGoal from "../IndividualGoal/UnfollowGoal";
 import Goal from "../IndividualGoal/Goal";
+import "./JoinedGoals.css"
 
 function JoinedGoals() {
   const [goals, setGoals] = useState([]);
@@ -44,7 +45,7 @@ function JoinedGoals() {
     key: i,
     id: goal.id,
     start: goal.start_date,
-    end: goal.edn_date,
+    end: goal.end_date,
     image: goal.image,
     title: goal.title,
     avatar: "https://joeschmoe.io/api/v1/random",
@@ -63,7 +64,7 @@ function JoinedGoals() {
             <Divider className="header-divider"></Divider>
           </div>
 
-          <Row justify="space-evenly">
+          <Row className="active-list" justify="space-evenly">
             <List
               itemLayout="vertical"
               size="large"

@@ -26,7 +26,7 @@ export default function Content({timeline}) {
           <br />
           <div>and accomplish goals together !</div>
         </h1>
-        <p ref = {el => pText = el}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p ref = {el => pText = el}>Goalify is a goal oriented social platform. It's a place where people with similar goals can meet, chat, track goals and be accountable for completing them successfully.</p>
         <button ref = {el => btn = el}>Discover</button>
       </div>
     </div>
