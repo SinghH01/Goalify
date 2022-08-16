@@ -28,7 +28,7 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
       <Navbar.Brand href="" className='logoDiscover' style={{
         color: '#f8f9fa', marginInlineStart: '22px'
         , fontSize: '24px'
-      }}><GiStairsGoal size='2rem' /> Goalify
+      }}> GOALIFY
 
       </Navbar.Brand>
       <Navbar.Collapse id="navbarScroll">
