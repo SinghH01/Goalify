@@ -71,8 +71,8 @@ align-items: center;
 }
 
 .goal-image {
-  height: 55%;
-  width: 90%;
+  height: 40%;
+  width: 70%;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   border-radius: 15px;
 }
