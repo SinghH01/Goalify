@@ -47,6 +47,10 @@ INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (12,2,2);
 INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (13,2,2);
 INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (14,2,2);
 
+INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (12,2,1);
+INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (13,2,1);
+INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (14,2,1);
+
 INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (15,3,2);
 INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (16,3,2);
 INSERT INTO users_milestones (milestone_id,goal_id, user_id) VALUES (17,3,2);

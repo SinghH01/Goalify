@@ -23,15 +23,15 @@ INSERT INTO goals (
 
   You can use it to increase awareness of yourself and your surroundings. Many people think of it as a way to reduce stress and develop concentration',
   'https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F499177459%2F676x380.webp&w=3840&q=75',
-  '2022-08-15',
-  '2022-10-15',
+  '2022-08-01',
+  '2022-09-01',
   TRUE
 );
 
 INSERT INTO goals (
   user_id, title, description, image, start_date, end_date, online_goal
 ) VALUES (
-  2,
+  1,
   'Learn how to code',
   'Coding refers to the intercommunication process for us to give instructions for a computer or program to process our requests. It is widely used in our daily life, from gadgets such as smartphones, tablets, smart TV and other smart home appliances, to automated cars and facilities like traffic lights, etc., it has been part of our lives.
   Lets Learn how to code together',
@@ -44,7 +44,7 @@ INSERT INTO goals (
 INSERT INTO goals (
   user_id, title, description, image, start_date, end_date, online_goal
 ) VALUES (
-  3,
+  1,
   'Investing For Beginners',
   'The biggest misconception about investing is that it’s reserved for the rich.
 
