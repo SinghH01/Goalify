@@ -11,6 +11,7 @@ import { Box, Collapse, IconButton, TableCell, Table, TableBody, TableHead, Tabl
 import { Popconfirm } from 'antd';
 import { openNotificationWithIcon } from "../Notification";
 import { Empty } from 'antd';
+import { QuestionCircleOutlined } from '@ant-design/icons';
 
 
 
@@ -90,7 +91,18 @@ export default function GoalsTableRow(props) {
           <IconButton onClick={() => props.handleEdit({ ...props.obj })}>
             <EditIcon />
           </IconButton>
-          <Popconfirm placement="top" title={"Are you sure to delete this goal"} onConfirm={deleteGoal} okText="Yes" cancelText="No">
+          <Popconfirm placement="left"
+            title={"Are you sure to delete this goal"}
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: 'red',
+                }}
+              />
+            }
+            onConfirm={deleteGoal}
+            okText="Yes"
+            cancelText="No">
             <IconButton >
               <DeleteIcon />
             </IconButton>
@@ -125,7 +137,18 @@ export default function GoalsTableRow(props) {
                         <TableCell>{milestone.description}</TableCell>
                         <TableCell>{moment(milestone.end_date).format('MMMM Do, YYYY')}</TableCell>
                         <TableCell>
-                          <Popconfirm placement="top" title={"Are you sure to delete this milestone"} onConfirm={() => deleteMilestone(milestone.id)} okText="Yes" cancelText="No">
+                          <Popconfirm placement="top"
+                            title={"Are you sure to delete this milestone"}
+                            icon={
+                              <QuestionCircleOutlined
+                                style={{
+                                  color: 'red',
+                                }}
+                              />
+                            }
+                            onConfirm={() => deleteMilestone(milestone.id)}
+                            okText="Yes"
+                            cancelText="No">
                             <IconButton>
                               <DeleteIcon />
                             </IconButton>

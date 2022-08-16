@@ -4,6 +4,8 @@ import Axios from "axios";
 import { Button } from "antd";
 import { openNotificationWithIcon } from "../Notification";
 import { Popconfirm } from "antd";
+import { QuestionCircleOutlined } from '@ant-design/icons';
+
 
 function UnFollowGoal({ userId, goalId, goalTitle }) {
   const providerValue = useContext(DashboardContext);
@@ -31,6 +33,13 @@ function UnFollowGoal({ userId, goalId, goalTitle }) {
     <Popconfirm
       placement="top"
       title={"Are you sure to unfollow this goal"}
+      icon={
+        <QuestionCircleOutlined
+          style={{
+            color: 'red',
+          }}
+        />
+      }
       onConfirm={unfolloweGoal}
       okText="Yes"
       cancelText="No"
