@@ -20,6 +20,9 @@
   display: flex;
   margin-right: 50px;
 }
+.header .menu a {
+  text-decoration: none;
+}
 
 .header .menu .menu-item {
     margin-left: 40px;
