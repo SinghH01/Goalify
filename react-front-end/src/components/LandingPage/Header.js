@@ -37,9 +37,9 @@ export default function Header({timeline, ease}) {
           GOALIFY
         </div>
         <div className="menu">
-          <div className="menu-item" ref = {el => menu_item1 = el} >ABOUT</div>
+          <a href="/about"><div className="menu-item" ref = {el => menu_item1 = el} >ABOUT</div></a>
           <div className="menu-item" ref = {el => menu_item2 = el} ><Login /> </div>
-          <div className="menu-item" ref = {el => menu_item3 = el}><Register /></div>
+          <div className="menu-item" ref = {el => menu_item3 = el} ><Register /></div>
         </div>
       </div>
     </div>
