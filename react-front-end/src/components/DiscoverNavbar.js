@@ -1,7 +1,6 @@
 import React from 'react'
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { GiStairsGoal } from "react-icons/gi";
 import Button from 'react-bootstrap/Button';
 import axios from 'axios'
 import './navbar.css'
