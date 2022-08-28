@@ -2,7 +2,7 @@ import React from "react"
 import Content from "./Content"
 import Header from "./Header"
 import Images from "./Images"
-import "./landingPage.css"
+import "../../styles/landingPage.css"
 import {gsap, Power3} from 'gsap'
 
 export default function LandingPage() {

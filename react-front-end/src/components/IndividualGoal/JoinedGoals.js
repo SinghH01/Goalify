@@ -10,7 +10,7 @@ import EventBusyIcon from "@material-ui/icons/EventBusy";
 import HomeIcon from "@material-ui/icons/Home";
 import UnFollowGoal from "../IndividualGoal/UnfollowGoal";
 import Goal from "../IndividualGoal/Goal";
-import "./JoinedGoals.css"
+import "../../styles/JoinedGoals.css"
 
 function JoinedGoals() {
   const [goals, setGoals] = useState([]);

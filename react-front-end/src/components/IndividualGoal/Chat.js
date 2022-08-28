@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from 'recoil';
 import { userState } from '../../App';
-import './chat.css'
+import '../../styles/chat.css'
 import ScrollToBottom from 'react-scroll-to-bottom'
 import io from 'socket.io-client'
 

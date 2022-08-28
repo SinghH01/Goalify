@@ -1,7 +1,7 @@
 import React from 'react'
 import GoogleMapReact from 'google-map-react'
 import LocationMarker from './LocationMarker'
-import './map.css'
+import '../../styles/map.css'
 
 const Map = (props) => {
   return (
