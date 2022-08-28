@@ -1,7 +1,7 @@
 import React, {useRef, useEffect} from "react"
 import Login from "../Auth/Login";
 import Register from "../Auth/Register";
-import "./header.css"
+import "../../styles/header.css"
 
 export default function Header({timeline, ease}) {
   let logo = useRef(null);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./goalMembers.css";
+import "../../styles/goalMembers.css";
 import Axios from "axios";
 
 export default function GoalMembers(props) {

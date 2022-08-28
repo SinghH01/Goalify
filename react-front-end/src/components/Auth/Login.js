@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
-import "./modal.css"
+import "../../styles/modal.css"
 import Axios from 'axios'
-
 
 export default function Login({ setValue }) {
   const [show, setShow] = useState(false);

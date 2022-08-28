@@ -9,8 +9,7 @@ import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
 import PlaylistAddIcon from "@material-ui/icons/PlaylistAdd";
 import Tooltip from "@material-ui/core/Tooltip";
-import "./GoalList.css";
-import "./goalListItem.css";
+import "../styles/goalListItem.css";
 import GoalDetails from "./GoalDetails";
 import Axios from "axios";
 import { useRecoilState } from "recoil";
@@ -125,7 +124,9 @@ function GoalListItem(props) {
           onClick={() => setModalShow(true)}
         />
         <Card.Body>
-          <Card.Title><h3> {props.title}</h3></Card.Title>
+          <Card.Title>
+            <h3> {props.title}</h3>
+          </Card.Title>
           <Card.Text className="text-goal">{props.description}</Card.Text>
         </Card.Body>
 

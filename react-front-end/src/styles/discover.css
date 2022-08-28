@@ -1,0 +1,15 @@
+.logoDiscover {
+  font-weight: bold;
+  font-size: 22px;
+  letter-spacing: 1px;
+  text-shadow: 3px 3px 10px #666;
+}
+
+span.logoDiscover.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.div .Sear {
+  background-color: blueviolet;
+}
