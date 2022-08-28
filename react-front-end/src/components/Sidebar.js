@@ -1,7 +1,7 @@
 import React from 'react'
 import { useRecoilState } from 'recoil';
 import { SidebarData } from "./SidebarData"
-import './sidebar.css'
+import '../styles/sidebar.css'
 import { userState } from '../App';
 import { linkState } from './Dashboard'
 

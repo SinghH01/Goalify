@@ -5,7 +5,7 @@ import Search from "./Search";
 import GoalList from "./GoalList";
 import { Divider } from "antd";
 import PageviewIcon from "@material-ui/icons/Pageview";
-import "./discover.css";
+import "../styles/discover.css";
 
 function Discover() {
   const [goals, setGoals] = useState([]);

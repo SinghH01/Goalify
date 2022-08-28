@@ -1,6 +1,6 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
-import './search.css'
+import '../styles/search.css'
 
 const Search = ({ setSearchQuery }) => {
   return (
