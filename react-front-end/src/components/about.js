@@ -1,9 +1,9 @@
 import React from "react";
 import "./about.css";
-import { AiFillGithub } from "react-icons/ai";
-import { AiFillLinkedin } from "react-icons/ai";
-import { BsFillTelephoneForwardFill } from "react-icons/bs";
-import { AiOutlineMail } from "react-icons/ai";
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import PhoneIcon from '@material-ui/icons/Phone';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
 
 const About = () => {
   return (
@@ -19,10 +19,10 @@ const About = () => {
           <ul>
             <li>
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/in/singhharshbir/"
                 className="icon fa-twitter alt"
               >
-                <AiFillLinkedin /> LinkedIn profile
+                <LinkedInIcon /> LinkedIn profile
               </a>
             </li>
             <li>
@@ -30,18 +30,18 @@ const About = () => {
                 href="https://github.com/SinghH01"
                 className="icon fa-github alt"
               >
-                <AiFillGithub /> GitHub profile
+                <GitHubIcon /> GitHub profile
               </a>
             </li>
 
             <li>
               <a href="">
-                <BsFillTelephoneForwardFill /> 587-222-1202
+                <PhoneIcon /> 587-222-1202
               </a>
             </li>
             <li>
               <a href="mailto:singh.hveer1@gmail.com" className="">
-                <AiOutlineMail /> singh.hveer1@gmail.com
+                <MailOutlineIcon /> singh.hveer1@gmail.com
               </a>
             </li>
           </ul>
@@ -59,7 +59,7 @@ const About = () => {
                 href="https://www.linkedin.com/"
                 className="icon fa-twitter alt"
               >
-                <AiFillLinkedin /> LinkedIn profile
+                <LinkedInIcon /> LinkedIn profile
               </a>
             </li>
             <li>
@@ -67,18 +67,18 @@ const About = () => {
                 href="https://github.com/Edgarsar"
                 className="icon fa-github alt"
               >
-                <AiFillGithub /> GitHub profile
+                <GitHubIcon /> GitHub profile
               </a>
             </li>
 
             <li>
               <a href="https://wa.me/+14039289813">
-                <BsFillTelephoneForwardFill /> 306-216-9949
+                <PhoneIcon /> 306-216-9949
               </a>
             </li>
             <li>
               <a href="mailto:edgarsargsyan@hotmail.com" className="">
-                <AiOutlineMail /> edgarsargsyan@hotmail.com
+                <MailOutlineIcon /> edgarsargsyan@hotmail.com
               </a>
             </li>
           </ul>
@@ -96,7 +96,7 @@ const About = () => {
                 href="https://www.linkedin.com/in/huwaida-khalid-271190242/"
                 className="icon fa-twitter alt"
               >
-                <AiFillLinkedin /> LinkedIn profile
+                <LinkedInIcon /> LinkedIn profile
               </a>
             </li>
             <li>
@@ -104,18 +104,18 @@ const About = () => {
                 href="https://github.com/Huwaida1990"
                 className="icon fa-github alt"
               >
-                <AiFillGithub /> GitHub profile
+                <GitHubIcon /> GitHub profile
               </a>
             </li>
 
             <li>
               <a href="https://wa.me/+14039289813">
-                <BsFillTelephoneForwardFill /> +14039289813
+                <PhoneIcon /> +14039289813
               </a>
             </li>
             <li>
               <a href="mailto:huwaida_khaild@yahoo.com" className="">
-                <AiOutlineMail /> huwaida_khaild@yahoo.com
+                <MailOutlineIcon /> huwaida_khaild@yahoo.com
               </a>
             </li>
           </ul>
