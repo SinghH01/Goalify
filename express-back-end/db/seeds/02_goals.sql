@@ -52,8 +52,8 @@ INSERT INTO goals (
 
   In fact, with so many investments now available to beginners, there’s no excuse to skip out. And that’s good news, because investing is a great way to grow your wealth.',
   'https://www.meetup.com/_next/image/?url=https%3A%2F%2Fsecure-content.meetupstatic.com%2Fimages%2Fclassic-events%2F500766461%2F676x380.webp&w=3840&q=75',
-  '2022-12-01',
-  '2022-12-25',
+  '2021-12-01',
+  '2022-05-25',
   FALSE
 );
 
