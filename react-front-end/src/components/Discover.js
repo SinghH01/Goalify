@@ -24,10 +24,11 @@ function Discover() {
     }
   };
 
+  // Filter goals based on the search query
   const filterGoals = (goals) => {
     return goals.filter((goal) => {
       const goalTitle = goal.title.toLowerCase();
-      return goalTitle.includes(searchQuery);
+      return goalTitle.includes(searchQuery.toLowerCase());
     });
   };
   const filteredGoals = filterGoals(goals);
