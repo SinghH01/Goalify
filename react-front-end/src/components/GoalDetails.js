@@ -82,11 +82,11 @@ function GoalDetails(props) {
         >
           <span>
             <EventAvailableIcon />
-            {` ${moment(props.start_date).format("MMMM Do, YYYY")}`}
+            {` ${moment(props.goal.start_date).format("MMMM Do, YYYY")}`}
           </span>
           <span>
             <EventBusyIcon />
-            {` ${moment(props.end_date).format("MMMM Do, YYYY")}`}
+            {` ${moment(props.goal.end_date).format("MMMM Do, YYYY")}`}
           </span>
         </Modal.Footer>
       </Modal>
