@@ -114,6 +114,9 @@ function GoalListItem(props) {
     boxShadow: "rgba(0, 0, 0, 0.45) 0px 25px 20px -20px",
   };
 
+  let goalEndDate = new Date(props.end_date).getTime();
+  let dateNow = new Date().getTime();
+
   return (
     <>
       <Card className="goal-card" style={styles}>
@@ -169,14 +172,27 @@ function GoalListItem(props) {
               )}
             </span>
             <span>
-              <Button
-                id="join-btn"
-                variant="primary"
-                size="md"
-                onClick={joinGoal}
-              >
-                <PlaylistAddIcon /> Join
-              </Button>
+              {goalEndDate > dateNow ? (
+                // Disable join button if current date is > goal end date
+                <Button
+                  id="join-btn"
+                  variant="primary"
+                  size="md"
+                  onClick={joinGoal}
+                >
+                  <PlaylistAddIcon /> Join
+                </Button>
+              ) : (
+                <Button
+                  id="join-btn"
+                  variant="primary"
+                  size="md"
+                  onClick={joinGoal}
+                  disabled
+                >
+                  <PlaylistAddIcon /> Join
+                </Button>
+              )}
             </span>
           </ListGroup.Item>
         </ListGroup>
