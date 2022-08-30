@@ -13,7 +13,7 @@ import "antd/dist/antd.css";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
 import { SmileOutlined } from "@ant-design/icons";
-import { Progress, Steps} from "antd";
+import { Progress, Steps } from "antd";
 import { openNotificationWithIcon } from "../Notification";
 import GoalMembers from "./GoalMembers";
 const { Step } = Steps;
@@ -31,6 +31,7 @@ function Goal(props) {
   const [daysLeft, setDaysLeft] = useState(0);
   const [dayLeft, setDayLeft] = useState(0);
   const [current, setCurrent] = useState(0);
+  const [isGoalExpired, setIsGoalExpired] = useState(false);
 
   const onChange = (value) => {
     console.log("onChange:", current);
@@ -59,6 +60,13 @@ function Goal(props) {
       setCurrent(count);
 
       // Progress bar data
+
+      let endDate = new Date(response.data[0].end_date).getTime();
+      let todaysDate = new Date().getTime();
+      if (endDate < todaysDate) {
+        setIsGoalExpired(true);
+      }
+
       var totalDays =
         new Date(response.data[0].end_date).getTime() -
         new Date(response.data[0].start_date).getTime();
@@ -97,8 +105,7 @@ function Goal(props) {
     setTimeout(function () {
       setConfetti(false);
     }, 8000);
-  }  
-
+  }
 
   //When user clicks one of the milestones to mark it completed
   const clickStep = async (value) => {
@@ -112,9 +119,7 @@ function Goal(props) {
     //Notification message when milestones is completed
     openNotificationWithIcon(
       "success",
-      <>
-        Congrats! On completing this milestone 
-      </>
+      <>Congrats! On completing this milestone</>
     );
 
     showConfetti();
@@ -173,12 +178,21 @@ function Goal(props) {
 
           <div>
             <h5>UNTIL GOAL IS COMPLETED</h5>
-            <Progress
-              className="progress-bar"
-              type="circle"
-              percent={Math.round(daysLeft)}
-              format={(percent) => `${Math.round(dayLeft)} Days Left`}
-            />
+            {isGoalExpired ? (
+              <Progress
+                className="progress-bar"
+                type="circle"
+                percent={100}
+                format={(percent) => `Goal Ended`}
+              />
+            ) : (
+              <Progress
+                className="progress-bar"
+                type="circle"
+                percent={Math.round(daysLeft)}
+                format={(percent) => `${Math.round(dayLeft)} Days Left`}
+              />
+            )}
           </div>
         </div>
         <div className="location-container">
