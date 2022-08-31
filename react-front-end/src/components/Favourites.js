@@ -10,7 +10,7 @@ import { Divider } from "antd";
 
 function Favourites() {
   const [goals, setGoals] = useState([]);
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
   const providerValue = useContext(DashboardContext);
   const { rerender } = providerValue;
 
