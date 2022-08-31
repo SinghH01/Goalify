@@ -12,7 +12,6 @@ import moment from "moment";
 import "antd/dist/antd.css";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
-import { SmileOutlined } from "@ant-design/icons";
 import { Progress, Steps } from "antd";
 import { openNotificationWithIcon } from "../Notification";
 import GoalMembers from "./GoalMembers";
@@ -20,7 +19,7 @@ const { Step } = Steps;
 
 function Goal(props) {
   //User, Goal and milestones info states
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
   const [goal, setGoal] = useState({ message: "hi" });
   const [milestones, setMilestones] = useState([]);
   const [location, setLocation] = useState(undefined);
@@ -56,6 +55,7 @@ function Goal(props) {
         if (item.completed === true) {
           count = count + 1;
         }
+        return null;
       });
       setCurrent(count);
 
@@ -109,10 +109,10 @@ function Goal(props) {
 
   //When user clicks one of the milestones to mark it completed
   const clickStep = async (value) => {
-    const updateMilestone = await Axios.post(
-      `/api/milestones/user_milestones`,
-      { userId: user.id, milestoneId: value }
-    );
+    await Axios.post(`/api/milestones/user_milestones`, {
+      userId: user.id,
+      milestoneId: value,
+    });
 
     setCurrent(current + 1);
 
@@ -142,7 +142,7 @@ function Goal(props) {
       {confetti === true && <Confeti />}
 
       <div className="goal">
-        <img className="goal-image" src={goal.image} />
+        <img className="goal-image" src={goal.image} alt="goal" />
 
         <Pulse>
           <div className="goal-details">
