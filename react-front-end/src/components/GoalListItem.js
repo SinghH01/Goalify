@@ -21,17 +21,17 @@ function GoalListItem(props) {
   const [modalShow, setModalShow] = useState(false);
 
   const [favState, setFavState] = useState(false);
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
 
   const providerValue = useContext(DashboardContext);
   const { setState, setRerender } = providerValue;
 
   const likeGoal = async () => {
     try {
-      const response = await Axios.post(
-        "http://localhost:8080/favourites/like",
-        { userId: user.id, goalId: props.id }
-      );
+      await Axios.post("http://localhost:8080/favourites/like", {
+        userId: user.id,
+        goalId: props.id,
+      });
       openNotificationWithIcon(
         "success",
         <>
@@ -44,10 +44,10 @@ function GoalListItem(props) {
   };
   const dislikeGoal = async () => {
     try {
-      const response = await Axios.post(
-        "http://localhost:8080/favourites/dislike",
-        { userId: user.id, goalId: props.id }
-      );
+      await Axios.post("http://localhost:8080/favourites/dislike", {
+        userId: user.id,
+        goalId: props.id,
+      });
       openNotificationWithIcon(
         "error",
         <>

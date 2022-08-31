@@ -35,7 +35,7 @@ const About = () => {
             </li>
 
             <li>
-              <a href="">
+              <a href="https://wa.me/+15872221202">
                 <PhoneIcon /> 587-222-1202
               </a>
             </li>

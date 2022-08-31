@@ -11,18 +11,24 @@ import CreateMilestone from "./CreateMilestone";
 import Tooltip from "@material-ui/core/Tooltip";
 import { Divider } from "antd";
 import Loading from "../Loading";
-import { TableCell, Table, TableBody, TableContainer, TableHead, TableRow, Paper, Fab } from '@material-ui/core';
-import AddIcon from '@material-ui/icons//Add';
+import {
+  TableCell,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Fab,
+} from "@material-ui/core";
+import AddIcon from "@material-ui/icons//Add";
 import TrackChangesIcon from "@material-ui/icons/TrackChanges";
-import GoalsTableRow from './GoalsTableRow';
-import 'antd/dist/antd.css';
-import { Empty } from 'antd';
-
-
+import GoalsTableRow from "./GoalsTableRow";
+import "antd/dist/antd.css";
 
 export default function MyGoals() {
   const [goals, setGoals] = useState([]);
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
   const [state, setState] = useState("all");
   const [goal, setGoal] = useState({});
 
@@ -41,13 +47,15 @@ export default function MyGoals() {
 
   const DataTable = () => {
     return goals.map((res, i) => {
-      return <GoalsTableRow
-        obj={res}
-        key={i}
-        setState={setState}
-        handleEdit={handleEdit}
-        handleMileStone={handleMileStone}
-      />;
+      return (
+        <GoalsTableRow
+          obj={res}
+          key={i}
+          setState={setState}
+          handleEdit={handleEdit}
+          handleMileStone={handleMileStone}
+        />
+      );
     });
   };
 
@@ -77,10 +85,15 @@ export default function MyGoals() {
             <Divider className="header-divider"></Divider>
           </div>
           <div className="createButton">
-          <Tooltip title="Create a new goal" placement="top"> 
-            <Fab color="primary" className="add-icon" aria-label="add" onClick={handleClick}>
-              <AddIcon />
-            </Fab>
+            <Tooltip title="Create a new goal" placement="top">
+              <Fab
+                color="primary"
+                className="add-icon"
+                aria-label="add"
+                onClick={handleClick}
+              >
+                <AddIcon />
+              </Fab>
             </Tooltip>
           </div>
           <div className="table-wrapper">

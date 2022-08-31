@@ -9,8 +9,8 @@ import io from 'socket.io-client'
 const socket = io.connect("http://localhost:8080")
 function Chat(props) {
 
-  const [user, setUser] = useRecoilState(userState);
-  const [room, setRoom]= useState(props.id)
+  const [user] = useRecoilState(userState);
+  const [room]= useState(props.id)
   const [currentMessage, setCurrentMessage] = useState("");
   const [messageList, setMessageList] = useState([])
 

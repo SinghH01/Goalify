@@ -1,47 +1,43 @@
-import React, { useState, useEffect } from "react";
-import Axios from 'axios';
+import React, { useState } from "react";
+import Axios from "axios";
 import MilestoneForm from "./MilestoneForm";
 import { openNotificationWithIcon } from "../Notification";
 
-
-
 const CreateMilestone = (props) => {
+  const [formValues] = useState({ title: "", description: "", end_date: "" });
 
-  
-  const [formValues, setFormValues] =
-    useState({ title: '', description: '', end_date: '' });
-
-  const onSubmit = goalObject => {
+  const onSubmit = (goalObject) => {
     props.setState("loading");
     Axios.post(
       `http://localhost:8080/api/milestones/add/${props.goalId}`,
-      goalObject)
-      .then(res => {
+      goalObject
+    )
+      .then((res) => {
         props.setState("all");
         openNotificationWithIcon(
           "success",
           <>
-        Thank you <strong>{props.userName}</strong>.<br />
-        Your MileStone has been successfully created!!!
-        </>
-          );
+            Thank you <strong>{props.userName}</strong>.<br />
+            Your MileStone has been successfully created!!!
+          </>
+        );
       })
-      .catch(err => alert('Something went wrong'));
+      .catch((err) => alert("Something went wrong"));
   };
-
 
   return (
     <>
       <h2 className="goal_header">Create MileStone</h2>
-      <br/>
-      <MilestoneForm initialValues={formValues}
+      <br />
+      <MilestoneForm
+        initialValues={formValues}
         onSubmit={onSubmit}
-        enableReinitialize>
+        enableReinitialize
+      >
         Create Milestone
       </MilestoneForm>
     </>
-  )
-}
+  );
+};
 
-
-export default CreateMilestone
+export default CreateMilestone;

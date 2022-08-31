@@ -24,7 +24,7 @@ export default function GoalMembers(props) {
   let membersList = members.map((item) => {
     return (
       <div className="member-details">
-        <img className="member-avatar" src={item.avatar}></img>
+        <img className="member-avatar" src={item.avatar} alt="avatar-pic"></img>
         <p className="member-name">{item.first_name}</p>
       </div>
     );

@@ -12,7 +12,7 @@ function DicoverNavbar({ searchQuery, setSearchQuery }) {
   const logout = () => {
     axios.get("http://localhost:8080/logout").then((val) => {
       console.log(val);
-      if (val.status == 200) {
+      if (val.status === 200) {
         sessionStorage.clear();
         refreshPage();
       }

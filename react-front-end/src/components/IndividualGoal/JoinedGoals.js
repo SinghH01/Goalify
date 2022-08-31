@@ -3,18 +3,18 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import { useRecoilState } from "recoil";
 import { userState } from "../../App";
-import { Divider, Row, Space, Button, List } from "antd";
+import { Divider, Row, Button, List } from "antd";
 import moment from "moment";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
 import HomeIcon from "@material-ui/icons/Home";
 import UnFollowGoal from "../IndividualGoal/UnfollowGoal";
 import Goal from "../IndividualGoal/Goal";
-import "../../styles/JoinedGoals.css"
+import "../../styles/JoinedGoals.css";
 
 function JoinedGoals() {
   const [goals, setGoals] = useState([]);
-  const [user, setUser] = useRecoilState(userState);
+  const [user] = useRecoilState(userState);
   const [changeState, setChangeState] = useState({ state: "all", goalId: 0 });
 
   useEffect(() => {
@@ -33,13 +33,6 @@ function JoinedGoals() {
       console.log(error);
     }
   };
-
-  const IconText = ({ icon, text }) => (
-    <Space>
-      {React.createElement(icon)}
-      {text}
-    </Space>
-  );
 
   const data = goals.map((goal, i) => ({
     key: i,
