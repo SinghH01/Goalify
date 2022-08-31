@@ -84,7 +84,7 @@ export default function GoalsTableRow(props) {
           {title}
         </TableCell>
         <TableCell>{description}</TableCell>
-        <TableCell>< img className="goal-img" src={image} /></TableCell>
+        <TableCell>< img className="goal-img" src={image} alt="goal"/></TableCell>
         <TableCell>{moment(start_date).format('MMMM Do, YYYY')}</TableCell>
         <TableCell>{moment(end_date).format('MMMM Do, YYYY')}</TableCell>
         <TableCell>
