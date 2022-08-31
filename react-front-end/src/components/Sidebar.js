@@ -8,8 +8,8 @@ import { linkState } from './Dashboard'
 
 export default function Sidebar({ onStateChange }) {
 
-  const [user, setUser] = useRecoilState(userState);
-  const [state, setState] = useRecoilState(linkState);
+  const [user] = useRecoilState(userState);
+  const [state] = useRecoilState(linkState);
 
   const stateChange = (link) => {
     if (state === link) {
