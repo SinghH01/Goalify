@@ -1,54 +1,47 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { atom, useRecoilState } from 'recoil';
-import { notification } from 'antd';
-import Axios from 'axios';
-import './App.css';
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { atom, useRecoilState } from "recoil";
+import Axios from "axios";
+import "./App.css";
 
 //Components
-import Discover from './components/Discover';
-import Dashboard from './components/Dashboard';
-import About from './components/about'
-import LandingPage from './components/LandingPage/LandingPage';
+import Discover from "./components/Discover";
+import Dashboard from "./components/Dashboard";
+import About from "./components/about";
+import LandingPage from "./components/LandingPage/LandingPage";
 
 //Setup global state variable using Recoil JS
 export const userState = atom({
-  key: 'userState',
-  default: {}
-})
+  key: "userState",
+  default: {},
+});
 
 const App = () => {
   const [user, setUser] = useRecoilState(userState);
-
-
 
   useEffect(() => {
     Axios.get("http://localhost:8080/login").then((response) => {
       if (response.data.user !== undefined) {
         setUser(response.data.user.rows[0]);
         console.log(response);
-
       } else {
         console.log(response);
       }
-    })
-  }, [])
+    });
+  }, []);
 
   //Check if user is logged in or not
 
   let component = undefined;
   if (user.first_name !== undefined) {
-    component = <Dashboard />
+    component = <Dashboard />;
   } else {
-    component = <LandingPage />
+    component = <LandingPage />;
   }
 
-
   return (
-
     <Router>
       <>
-
         <Routes>
           <Route exact path="/about" element={<About />} />
           <Route exact path="/discover" element={<Discover />} />
@@ -56,10 +49,6 @@ const App = () => {
         </Routes>
       </>
     </Router>
-
-  )
-
-}
+  );
+};
 export default App;
-
-
