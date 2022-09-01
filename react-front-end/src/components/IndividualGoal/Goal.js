@@ -2,19 +2,23 @@ import React, { useState, useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { userState } from "../../App";
 import Axios from "axios";
-import Chat from "./Chat";
 import "../../styles/goal.css";
+
+//App Components
+import GoalMembers from "./GoalMembers";
+import Chat from "./Chat";
 import MapContainer from "../Map/MapContainer";
 import UnFollowGoal from "./UnfollowGoal";
 import Confeti from "./confetti";
 import Pulse from "react-reveal/Pulse";
 import moment from "moment";
+
+//AntDesign styling Components
 import "antd/dist/antd.css";
 import EventAvailableIcon from "@material-ui/icons/EventAvailable";
 import EventBusyIcon from "@material-ui/icons/EventBusy";
-import { Progress, Steps } from "antd";
 import { openNotificationWithIcon } from "../Notification";
-import GoalMembers from "./GoalMembers";
+import { Progress, Steps } from "antd";
 const { Step } = Steps;
 
 function Goal(props) {

@@ -11,7 +11,7 @@ const About = () => {
       <div className="about-us">
         <div className="profile">
           <img
-            src={require("../assets/avatar2.jpeg")}
+            src="https://avatars.githubusercontent.com/u/96675830?v=4"
             alt="avatar"
             className="avatar"
           />
@@ -48,7 +48,7 @@ const About = () => {
         </div>
         <div className="profile">
           <img
-            src={require("../assets/avatar2.jpeg")}
+            src="https://avatars.githubusercontent.com/u/93940571?v=4"
             alt="avatar"
             className="avatar"
           />

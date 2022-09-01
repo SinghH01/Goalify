@@ -4,7 +4,7 @@ import Axios from "axios";
 import { useRecoilState } from "recoil";
 import { userState } from "../../App";
 import "bootstrap/dist/css/bootstrap.css";
-import "./MyGoal.css";
+import "../../styles/MyGoal.css";
 import EditGoal from "./EditGoals";
 import CreateGoal from "./CreateGoal";
 import CreateMilestone from "./CreateMilestone";
