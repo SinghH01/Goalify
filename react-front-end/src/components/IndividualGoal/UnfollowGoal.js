@@ -4,14 +4,13 @@ import Axios from "axios";
 import { Button } from "antd";
 import { openNotificationWithIcon } from "../Notification";
 import { Popconfirm } from "antd";
-import { QuestionCircleOutlined } from '@ant-design/icons';
-
+import { QuestionCircleOutlined } from "@ant-design/icons";
 
 function UnFollowGoal({ userId, goalId, goalTitle }) {
   const providerValue = useContext(DashboardContext);
   const { setState } = providerValue;
 
-  const unfolloweGoal = () => {
+  const unfollowGoal = () => {
     setState("laoding");
     Axios.post(`http://localhost:8080/active/delete`, { userId, goalId })
       .then((res) => {
@@ -20,7 +19,9 @@ function UnFollowGoal({ userId, goalId, goalTitle }) {
             "error",
             <>
               {" "}
-              You Unfollow the Goal <strong>{goalTitle}</strong>{" "}
+              Goal removed from active goals list <strong>
+                {goalTitle}
+              </strong>{" "}
             </>
           );
           setState("activegoals");
@@ -36,11 +37,11 @@ function UnFollowGoal({ userId, goalId, goalTitle }) {
       icon={
         <QuestionCircleOutlined
           style={{
-            color: 'red',
+            color: "red",
           }}
         />
       }
-      onConfirm={unfolloweGoal}
+      onConfirm={unfollowGoal}
       okText="Yes"
       cancelText="No"
     >
