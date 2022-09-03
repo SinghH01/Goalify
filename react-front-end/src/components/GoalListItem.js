@@ -190,7 +190,7 @@ function GoalListItem(props) {
                   onClick={joinGoal}
                   disabled
                 >
-                  <PlaylistAddIcon /> Join
+                   End Date Expired
                 </Button>
               )}
             </span>
