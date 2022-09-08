@@ -17,7 +17,7 @@ In the other terminal, `cd` into `express-back-end`. Run `npm install` or `yarn`
 
 ### Creating The DB
 
-Use the `psql -U development` command to login to the PostgreSQL server with the username `development` and the password `development`. This command **MUST** be run in a vagrant terminal, we are using the PostgreSQL installation provided in the vagrant environment.
+Use the `psql -U development` command to login to the PostgreSQL server with the username `development` and the password `development`. 
 
 Create a database with the command `CREATE DATABASE goalify_development;`.
 
@@ -38,19 +38,24 @@ Run the command `npm run db:reset` and then `npm start` or `yarn start` to launc
  
 
 ## Features
-* Find a goal to join or create your own
-* User can favourite goals
+* Search a goal using the search bar or create your own
+* User can add goals to their favourites
 * User's with same goal can chat with each other
-* Track completed milestones and progress of goal
+* User can track completed milestones and progress of a goal
 * View the location of goal on google maps (if location provided by the goal creator) 
 
 ## Screenshots
 * Landing Page
 !["Landing Page"](./react-front-end/public/images/landingPage.png)
+* Dashboard
 !["Dashboard"](./react-front-end/public/images/dashboard.png)
+* Active Goals
 ![Active Goals](./react-front-end/public/images/activeGoals.png)
+* Goal Details
 !["Goal Details"](./react-front-end/public/images/goaldetails.png)
+* Progress Bar and MAP
 !["Progress bar and map"](./react-front-end/public/images/progressAndMap.png)
+* Manage Goals
 !["Manage"](./react-front-end/public/images/manageGoals.png)
 
 
