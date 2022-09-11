@@ -7,9 +7,9 @@ const express = require("express");
 const app = express();
 const http = require("http");
 const morgan = require("morgan");
-const cors = require("cors")
-const { Server } = require("socket.io")
-const path = require('path');
+const cors = require("cors");
+const { Server } = require("socket.io");
+const path = require("path");
 
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -17,37 +17,35 @@ const io = new Server(server, {
     origin: "http://localhost:3000",
     method: ["GET", "POST"],
   },
-})
+});
 
 io.on("connection", (socket) => {
   console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
     socket.join(data);
-    console.log(`User with ID: ${socket.id} joined the Room ID ${data}`)
-  })
+    console.log(`User with ID: ${socket.id} joined the Room ID ${data}`);
+  });
 
   socket.on("send_message", (data) => {
-    socket.to(data.room).emit("receive_message", data)
-  })
+    socket.to(data.room).emit("receive_message", data);
+  });
 
   socket.on("disconnect", () => {
-    console.log("User Disconected", socket.id)
+    console.log("User Disconected", socket.id);
   });
 });
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 //user-session
-const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
-const session = require('express-session')
-
+const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const session = require("express-session");
 
 //Password Encryption
-const bcrypt = require('bcrypt')
-const saltRounds = 10
+const bcrypt = require("bcrypt");
+const saltRounds = 10;
 
 // PG database client/connection setup
 const { Pool } = require("pg");
@@ -60,29 +58,30 @@ db.connect();
 //         The :status token will be colored red for server error codes, yellow for client error codes, cyan for redirection codes, and uncolored for all other codes.
 app.use(morgan("dev"));
 app.use(express.json());
-app.use(cors({
-  origin: ["http://localhost:3000"],
-  methods: ["GET", "POST", "DELETE", "PUT"],
-  credentials: true,
-}));
-
-
+app.use(
+  cors({
+    origin: ["http://localhost:3000"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    credentials: true,
+  })
+);
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(session({
-  key: "userId",
-  secret: "userSecret",
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    express: 60 * 60 * 24,
-  },
-}))
+app.use(
+  session({
+    key: "userId",
+    secret: "userSecret",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      express: 60 * 60 * 24,
+    },
+  })
+);
 
 app.use(express.urlencoded({ extended: true }));
-
 
 app.use(express.static("public"));
 
@@ -96,9 +95,6 @@ const milestonesRoutes = require("./routes/milestones");
 const favouritesRoutes = require("./routes/favourites");
 const activeRoutes = require("./routes/active");
 
-
-
-
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 app.use("/api/users", usersRoutes(db));
@@ -109,11 +105,6 @@ app.use("/api/goals", goalsRoutes(db));
 app.use("/api/milestones", milestonesRoutes(db));
 app.use("/favourites", favouritesRoutes(db));
 app.use("/active", activeRoutes(db));
-
-
-
-
-
 
 server.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
